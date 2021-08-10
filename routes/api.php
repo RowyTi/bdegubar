@@ -12,4 +12,7 @@ JsonApi::register('v1')->routes(function ($api){
     });;
 
     $api->resource('addresses');
+    $api->resource('customers')->relationships(function ($api){
+        $api->hasMany('branches');
+    });;
 });

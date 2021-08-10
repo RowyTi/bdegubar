@@ -1,7 +1,8 @@
 <?php
 
-namespace App\JsonApi\Addresses;
+namespace App\JsonApi\Customers;
 
+use App\Models\Customer;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,7 +33,7 @@ class Adapter extends AbstractAdapter
      */
     public function __construct(StandardStrategy $paging)
     {
-        parent::__construct(new \App\Models\Address(), $paging);
+        parent::__construct(new Customer(), $paging);
     }
 
     /**
@@ -45,4 +46,7 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
+    public function branches(){
+        return $this->hasMany();
+    }
 }
