@@ -24,8 +24,8 @@ class TableFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'qr' => $this->faker->word,
+            'name' => $this->faker->name(),
+            'qr' => $this->faker->word(),
             'state' => $this->faker->randomElement(["activo","inactivo"]),
             'branch_id' => Branch::factory(),
         ];
