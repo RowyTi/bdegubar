@@ -17,7 +17,7 @@ class CreateTablesTable extends Migration
 
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 4);
+            $table->string('name');
             $table->string('qr');
             $table->enum('state', ["activo","inactivo"]);
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();

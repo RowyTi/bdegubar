@@ -25,9 +25,9 @@ class BranchFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'latitud' => $this->faker->word,
-            'longitud' => $this->faker->word,
+            'name' => $this->faker->name(),
+            'latitud' => $this->faker->latitude(),
+            'longitud' => $this->faker->longitude(),
             'customer_id' => Customer::factory(),
             'address_id' => Address::factory(),
         ];

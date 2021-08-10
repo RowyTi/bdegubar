@@ -1,6 +1,6 @@
 <?php
 
-namespace App\JsonApi\Tables;
+namespace App\JsonApi\Branches;
 
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
 
@@ -13,7 +13,7 @@ class Validators extends AbstractValidators
      * @var string[]|null
      *      the allowed paths, an empty array for none allowed, or null to allow all paths.
      */
-    protected $allowedIncludePaths = ['branches'];
+    protected $allowedIncludePaths = ['tables'];
 
     /**
      * The sort field names a client is allowed send.
@@ -58,6 +58,5 @@ class Validators extends AbstractValidators
             //
         ];
     }
-
 
 }

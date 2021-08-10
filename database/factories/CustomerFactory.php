@@ -23,8 +23,8 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'logo' => $this->faker->word,
+            'name' => $this->faker->firstName(),
+            'logo' => $this->faker->imageUrl($width=40, $height=40, 'abstract')    ,
         ];
     }
 }

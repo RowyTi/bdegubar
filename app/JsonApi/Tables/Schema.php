@@ -31,9 +31,26 @@ class Schema extends SchemaProvider
     public function getAttributes($table)
     {
         return [
-            'name' => $table->name,
+            'name'  =>  $table->name,
+            'qr'    =>  $table->qr,
+            'state' =>  $table->state,
             'createdAt' => $table->created_at->format('d-m-Y H:i:s'),
             'updatedAt' => $table->updated_at->format('d-m-Y H:i:s'),
+        ];
+    }
+
+    public function getRelationships($table, $isPrimary, array $includeRelationships)
+    {
+        return [
+            'branches' => [
+                self::SHOW_RELATED  => true,
+                self::SHOW_SELF     => true,
+                self::SHOW_DATA     => isset($includeRelationships['branches']),
+                self::DATA          => function() use ($table){
+                    return $table->branch;
+                }
+            ]
+
         ];
     }
 }

@@ -25,7 +25,7 @@ class TableFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'qr' => $this->faker->word(),
+            'qr' => $this->faker->ean13(),
             'state' => $this->faker->randomElement(["activo","inactivo"]),
             'branch_id' => Branch::factory(),
         ];
