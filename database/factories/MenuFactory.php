@@ -4,17 +4,17 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Profile;
-use App\Models\User;
+use App\Models\Customer;
+use App\Models\Menu;
 
-class UserFactory extends Factory
+class MenuFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Menu::class;
 
     /**
      * Define the model's default state.
@@ -24,10 +24,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'email' => $this->faker->safeEmail,
-            'password' => $this->faker->password,
-            'email_verified_at' => $this->faker->dateTime(),
-            'profile_id' => Profile::factory(),
+            'name' => $this->faker->name,
+            'customer_id' => Customer::factory(),
         ];
     }
 }

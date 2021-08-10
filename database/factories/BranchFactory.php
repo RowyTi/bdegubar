@@ -4,17 +4,18 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Profile;
-use App\Models\User;
+use App\Models\Address;
+use App\Models\Branch;
+use App\Models\Customer;
 
-class UserFactory extends Factory
+class BranchFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Branch::class;
 
     /**
      * Define the model's default state.
@@ -24,10 +25,11 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'email' => $this->faker->safeEmail,
-            'password' => $this->faker->password,
-            'email_verified_at' => $this->faker->dateTime(),
-            'profile_id' => Profile::factory(),
+            'name' => $this->faker->name,
+            'latitud' => $this->faker->word,
+            'longitud' => $this->faker->word,
+            'customer_id' => Customer::factory(),
+            'address_id' => Address::factory(),
         ];
     }
 }
