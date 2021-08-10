@@ -8,5 +8,8 @@ JsonApi::register('v1')->routes(function ($api){
     });
     $api->resource('branches')->relationships(function ($api){
         $api->hasMany('tables');
+        $api->hasOne('addresses');
     });;
+
+    $api->resource('addresses');
 });

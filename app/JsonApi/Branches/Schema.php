@@ -49,6 +49,14 @@ class Schema extends SchemaProvider
                 self::DATA          => function() use ($branch){
                     return $branch->tables;
                 }
+            ],
+            'addresses' => [
+                self::SHOW_RELATED  => true,
+                self::SHOW_SELF     => true,
+                self::SHOW_DATA     => isset($includeRelationships['addresses']),
+                self::DATA          => function() use ($branch){
+                    return $branch->addresses;
+                }
             ]
 
         ];

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\JsonApi\Branches;
+namespace App\JsonApi\Addresses;
 
-use App\Models\Branch;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
@@ -12,6 +11,7 @@ class Adapter extends AbstractAdapter
 {
     protected $guarded = ['id'];
 
+//    protected $includePaths = ['addresses' => 'address'];
     /**
      * Mapping of JSON API attribute field names to model keys.
      *
@@ -33,7 +33,7 @@ class Adapter extends AbstractAdapter
      */
     public function __construct(StandardStrategy $paging)
     {
-        parent::__construct(new Branch(), $paging);
+        parent::__construct(new \App\Models\Address(), $paging);
     }
 
     /**
@@ -46,11 +46,4 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
-    public function tables(){
-        return $this->hasMany();
-    }
-
-    public function addresses(){
-        return $this->belongsTo('address');
-    }
 }
