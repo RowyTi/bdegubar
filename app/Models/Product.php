@@ -23,13 +23,12 @@ class Product extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'price' => 'decimal',
+        'price' => 'float',
         'category_id' => 'integer',
     ];
 
-
     public function category()
     {
-        return $this->belongsTo(\App\Models\Category::class);
+        return $this->belongsTo(Category::class);
     }
 }

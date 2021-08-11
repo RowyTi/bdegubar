@@ -2,7 +2,10 @@
 
 use App\Models\Address;
 use App\Models\Branch;
+use App\Models\Category;
 use App\Models\Customer;
+use App\Models\Menu;
+use App\Models\Product;
 use App\Models\Table;
 use App\Post;
 use CloudCreativity\LaravelJsonApi\Queue\ClientJob;
@@ -74,10 +77,13 @@ return [
     | `'posts' => App\Post::class`
     */
     'resources' => [
-        'tables' => Table::class,
-        'branches' => Branch::class,
-        'addresses' => Address::class,
-        'customers' => Customer::class,
+        'tables'        =>  Table::class,
+        'branches'      =>  Branch::class,
+        'addresses'     =>  Address::class,
+        'customers'     =>  Customer::class,
+        'products'      =>  Product::class,
+        'categories'    =>  Category::class,
+        'menus'         =>  Menu::class,
     ],
 
     /*
