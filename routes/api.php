@@ -10,9 +10,8 @@ JsonApi::register('v1')->routes(function ($api){
         $api->hasMany('tables');
         $api->hasOne('addresses');
     });;
-
-    $api->resource('addresses');
     $api->resource('customers')->relationships(function ($api){
         $api->hasMany('branches');
     });;
+    $api->resource('addresses');
 });

@@ -27,6 +27,10 @@ class Branch extends Model
         'address_id' => 'integer',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     public function tables()
     {
