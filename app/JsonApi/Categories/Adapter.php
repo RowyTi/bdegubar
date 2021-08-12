@@ -44,4 +44,7 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
+    public function products(){
+        return $this->hasMany('products');
+    }
 }

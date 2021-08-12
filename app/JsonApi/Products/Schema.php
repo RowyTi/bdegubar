@@ -18,7 +18,7 @@ class Schema extends SchemaProvider
      *      the domain record being serialized.
      * @return string
      */
-    public function getId($resource)
+    public function getId($resource): string
     {
         return (string) $resource->getRouteKey();
     }
@@ -41,12 +41,12 @@ class Schema extends SchemaProvider
         ];
     }
 
-    public function getRelationships($product, $isPrimary, array $includeRelationships)
+    public function getRelationships($product, $isPrimary, array $includeRelationships): array
     {
         return [
             'categories' => [
-                self::SHOW_RELATED  =>  true,
-                self::SHOW_SELF     =>  true,
+                self::SHOW_RELATED  =>  isset($product->category_id),
+                self::SHOW_SELF     =>  isset($product->category_id),
                 self::SHOW_DATA     =>  isset($includeRelationships['categories']),
                 self::DATA          =>  function() use ($product){
                     return $product->category;

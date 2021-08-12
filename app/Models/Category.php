@@ -29,11 +29,11 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMany(\App\Models\Product::class);
+        return $this->hasMany(Product::class);
     }
 
     public function menu()
     {
-        return $this->belongsTo(\App\Models\Menu::class);
+        return $this->belongsTo(Menu::class);
     }
 }
