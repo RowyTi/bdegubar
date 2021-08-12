@@ -20,7 +20,7 @@ class CreateStaffTable extends Migration
             $table->string('password');
             $table->string('userName')->unique();
             $table->foreignId('customer_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('profile_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('profile_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 

@@ -5,7 +5,6 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Category;
-use App\Models\Menu;
 
 class CategoryFactory extends Factory
 {
@@ -24,9 +23,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->slug(),
-            'menu_id' => Menu::factory(),
+            'name' => $this->faker->name,
         ];
     }
 }

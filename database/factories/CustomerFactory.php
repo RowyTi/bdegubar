@@ -23,9 +23,9 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->slug(),
-            'logo' => $this->faker->image($dir = '/tmp', $width = 40, $height = 40),
+            'name' => $this->faker->name,
+            'slug' => $this->faker->slug,
+            'logo' => $this->faker->word,
         ];
     }
 }

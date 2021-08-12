@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfilesTable extends Migration
+class CreateAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,15 +15,13 @@ class CreateProfilesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('secondName')->nullable();
-            $table->string('apellido');
-            $table->string('avatar')->nullable();
-            $table->date('DateOfBirth');
-            $table->integer('phone');
-            $table->foreignId('address_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('street');
+            $table->integer('number')->nullable();
+            $table->integer('piso')->nullable();
+            $table->string('dpto', 3)->nullable();
+            $table->string('cp', 12);
             $table->timestamps();
         });
 
@@ -37,6 +35,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('addresses');
     }
 }

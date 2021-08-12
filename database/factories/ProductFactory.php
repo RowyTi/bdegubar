@@ -24,11 +24,10 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->slug(),
-            'price' => $this->faker->randomFloat(0, 0, 99.),
-            'image' => $this->faker->image($dir = '/tmp', $width = 50, $height = 100),
-            'description' => $this->faker->text(200),
+            'name' => $this->faker->name,
+            'mount' => $this->faker->randomFloat(2, 0, 999999.99),
+            'image' => $this->faker->word,
+            'description' => $this->faker->text,
             'category_id' => Category::factory(),
         ];
     }

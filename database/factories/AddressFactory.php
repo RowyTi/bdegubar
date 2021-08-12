@@ -23,11 +23,11 @@ class AddressFactory extends Factory
     public function definition()
     {
         return [
-            'street' => $this->faker->streetName(),
-            'number' => $this->faker->numberBetween(1, 10000),
-            'piso' => $this->faker->numberBetween(1, 20),
-            'dpto' => $this->faker->randomLetter(),
-            'cp' => $this->faker->postcode(),
+            'street' => $this->faker->streetName,
+            'number' => $this->faker->numberBetween(-10000, 10000),
+            'piso' => $this->faker->numberBetween(-10000, 10000),
+            'dpto' => $this->faker->regexify('[A-Za-z0-9]{3}'),
+            'cp' => $this->faker->regexify('[A-Za-z0-9]{12}'),
         ];
     }
 }

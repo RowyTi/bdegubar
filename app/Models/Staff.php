@@ -22,7 +22,7 @@ class Staff extends Model
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password'
     ];
 
     /**
@@ -39,11 +39,11 @@ class Staff extends Model
 
     public function customer()
     {
-        return $this->belongsTo(\App\Models\Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function profile()
     {
-        return $this->belongsTo(\App\Models\Profile::class);
+        return $this->belongsTo(Profile::class);
     }
 }

@@ -23,7 +23,6 @@ class Category extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'menu_id' => 'integer',
     ];
 
 
@@ -32,8 +31,8 @@ class Category extends Model
         return $this->hasMany(Product::class);
     }
 
-    public function menu()
+    public function menus()
     {
-        return $this->belongsTo(Menu::class);
+        return $this->belongsToMany(Menu::class);
     }
 }

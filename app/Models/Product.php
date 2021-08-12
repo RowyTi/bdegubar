@@ -23,9 +23,10 @@ class Product extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'price' => 'float',
+        'mount' => 'decimal:2',
         'category_id' => 'integer',
     ];
+
 
     public function category()
     {

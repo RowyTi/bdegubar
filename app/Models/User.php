@@ -23,6 +23,7 @@ class User extends Model
      */
     protected $hidden = [
         'password',
+        'remember_token',
     ];
 
     /**
@@ -37,13 +38,13 @@ class User extends Model
     ];
 
 
-    public function socialNetworks()
+    public function socialNetwork()
     {
-        return $this->hasMany(\App\Models\SocialNetwork::class);
+        return $this->hasMany(SocialNetwork::class);
     }
 
     public function profile()
     {
-        return $this->belongsTo(\App\Models\Profile::class);
+        return $this->belongsTo(Profile::class);
     }
 }

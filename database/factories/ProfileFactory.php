@@ -26,9 +26,9 @@ class ProfileFactory extends Factory
         return [
             'name' => $this->faker->name,
             'secondName' => $this->faker->word,
-            'apellido' => $this->faker->word,
+            'lastName' => $this->faker->word,
             'avatar' => $this->faker->word,
-            'DateOfBirth' => $this->faker->date(),
+            'dateOfBirth' => $this->faker->date(),
             'phone' => $this->faker->phoneNumber,
             'address_id' => Address::factory(),
         ];

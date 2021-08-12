@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddressesTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,13 +15,13 @@ class CreateAddressesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('street');
-            $table->integer('number');
-            $table->integer('piso')->nullable();
-            $table->string('dpto', 3)->nullable();
-            $table->string('cp', 12);
+            $table->string('name');
+            $table->decimal('mount', 8, 2);
+            $table->string('image')->nullable();
+            $table->string('description')->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 
@@ -35,6 +35,6 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('products');
     }
 }

@@ -24,8 +24,7 @@ class MenuFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->slug(),
+            'name' => $this->faker->name,
             'customer_id' => Customer::factory(),
         ];
     }

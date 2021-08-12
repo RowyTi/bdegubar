@@ -25,15 +25,6 @@ class Customer extends Model
         'id' => 'integer',
     ];
 
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
-
-    public function menu()
-    {
-        return $this->hasOne(Menu::class);
-    }
 
     public function paymentKey()
     {
@@ -48,5 +39,10 @@ class Customer extends Model
     public function branches()
     {
         return $this->hasMany(Branch::class);
+    }
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
     }
 }
