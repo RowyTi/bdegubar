@@ -34,7 +34,7 @@ class Schema extends SchemaProvider
             'name'          =>  $product->name,
             'slug'          =>  $product->slug,
             'description'   =>  $product->description,
-            'price'         =>  $product->price,
+            'price'         =>  $product->mount,
             'image'         =>  $product->image,
             'createdAt'     =>  $product->created_at->format('d-m-Y H:i:s'),
             'updatedAt'     =>  $product->updated_at->format('d-m-Y H:i:s'),

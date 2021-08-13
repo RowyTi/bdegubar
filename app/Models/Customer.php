@@ -25,6 +25,10 @@ class Customer extends Model
         'id' => 'integer',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     public function paymentKey()
     {

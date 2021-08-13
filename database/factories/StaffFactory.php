@@ -22,11 +22,11 @@ class StaffFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'password' => $this->faker->password,
-            'userName' => $this->faker->word,
+            'password' => $this->faker->password(),
+            'userName' => $this->faker->userName(),
             'customer_id' => Customer::factory(),
             'profile_id' => Profile::factory(),
         ];

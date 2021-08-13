@@ -21,10 +21,10 @@ class SocialNetworkFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'access_token' => $this->faker->word,
+            'access_token' => $this->faker->word(),
             'user_id' => User::factory(),
         ];
     }
