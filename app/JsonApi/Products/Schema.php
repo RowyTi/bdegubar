@@ -32,7 +32,6 @@ class Schema extends SchemaProvider
     {
         return [
             'name'          =>  $product->name,
-            'slug'          =>  $product->slug,
             'description'   =>  $product->description,
             'price'         =>  $product->mount,
             'image'         =>  $product->image,

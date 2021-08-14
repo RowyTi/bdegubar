@@ -39,10 +39,11 @@ class Schema extends SchemaProvider
     }
     public function getRelationships($customer, $isPrimary, array $includeRelationships): array
     {
+//        dd($customer->has('branches')->exists()); consulta si existe una relacion con la tabla branches
         return [
             'branches' => [
-                self::SHOW_RELATED  => true,
-                self::SHOW_SELF     => true,
+                self::SHOW_RELATED  => $customer->has('branches')->exists(),
+                self::SHOW_SELF     => $customer->has('branches')->exists(),
                 self::SHOW_DATA     => isset($includeRelationships['branches']),
                 self::DATA          => function() use ($customer){
                     return $customer->branches;
