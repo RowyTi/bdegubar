@@ -21,11 +21,11 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'email' => $this->faker->safeEmail(),
-            'password' => $this->faker->password(),
+            'email' => $this->faker->safeEmail,
+            'password' => $this->faker->password,
             'email_verified_at' => $this->faker->dateTime(),
             'remember_token' => Str::random(10),
             'profile_id' => Profile::factory(),

@@ -21,10 +21,10 @@ class MenuFactory extends Factory
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'name' => $this->faker->name,
             'customer_id' => Customer::factory(),
         ];
     }

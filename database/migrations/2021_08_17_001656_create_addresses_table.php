@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTablesTable extends Migration
+class CreateAddressesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,12 +15,13 @@ class CreateTablesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('tables', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('qr');
-            $table->enum('state', ["activo","inactivo"]);
-            $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->string('street');
+            $table->integer('number');
+            $table->integer('piso')->nullable();
+            $table->string('dpto', 3)->nullable();
+            $table->string('cp', 12);
             $table->timestamps();
         });
 
@@ -34,6 +35,6 @@ class CreateTablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tables');
+        Schema::dropIfExists('addresses');
     }
 }

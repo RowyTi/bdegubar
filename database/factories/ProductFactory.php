@@ -21,13 +21,13 @@ class ProductFactory extends Factory
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'mount' => $this->faker->randomFloat(2, 0, 9999.99),
-            'image' => $this->faker->image($dir = '/tmp', $width = 100, $height = 200),
-            'description' => $this->faker->text(),
+            'name' => $this->faker->name,
+            'mount' => $this->faker->randomFloat(2, 0, 999999.99),
+            'image' => $this->faker->word,
+            'description' => $this->faker->text,
             'category_id' => Category::factory(),
         ];
     }

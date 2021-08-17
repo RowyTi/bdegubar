@@ -21,11 +21,11 @@ class TableFactory extends Factory
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => $this->faker->firstName(),
-            'qr' => $this->faker->ean13(),
+            'name' => $this->faker->name,
+            'qr' => $this->faker->word,
             'state' => $this->faker->randomElement(["activo","inactivo"]),
             'branch_id' => Branch::factory(),
         ];

@@ -21,15 +21,15 @@ class ProfileFactory extends Factory
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => $this->faker->firstName(),
-            'secondName' => $this->faker->name(),
-            'lastName' => $this->faker->lastName(),
-            'avatar' => $this->faker->image($dir = '/tmp', $width = 30, $height = 30),
+            'name' => $this->faker->name,
+            'secondName' => $this->faker->word,
+            'lastName' => $this->faker->word,
+            'avatar' => $this->faker->word,
             'dateOfBirth' => $this->faker->date(),
-            'phone' => $this->faker->phoneNumber(),
+            'phone' => $this->faker->phoneNumber,
             'address_id' => Address::factory(),
         ];
     }

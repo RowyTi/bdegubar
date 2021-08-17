@@ -28,11 +28,11 @@ class Address extends Model
 
     public function profile()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasOne(\App\Models\Profile::class);
     }
 
     public function branch()
     {
-        return $this->hasOne(Branch::class);
+        return $this->hasOne(\App\Models\Branch::class);
     }
 }

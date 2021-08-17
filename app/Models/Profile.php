@@ -30,16 +30,16 @@ class Profile extends Model
 
     public function staff()
     {
-        return $this->hasOne(Staff::class);
+        return $this->hasOne(\App\Models\Staff::class);
     }
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(\App\Models\User::class);
     }
 
     public function address()
     {
-        return $this->belongsTo(Address::class);
+        return $this->belongsTo(\App\Models\Address::class);
     }
 }

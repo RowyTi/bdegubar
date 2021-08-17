@@ -22,13 +22,13 @@ class BranchFactory extends Factory
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->slug(),
-            'latitud' => $this->faker->latitude(),
-            'longitud' => $this->faker->longitude(),
+            'name' => $this->faker->name,
+            'slug' => $this->faker->slug,
+            'latitud' => $this->faker->word,
+            'longitud' => $this->faker->word,
             'customer_id' => Customer::factory(),
             'address_id' => Address::factory(),
         ];
