@@ -20,14 +20,14 @@ class AddressFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'street' => $this->faker->streetName,
-            'number' => $this->faker->numberBetween(-10000, 10000),
-            'piso' => $this->faker->numberBetween(-10000, 10000),
-            'dpto' => $this->faker->regexify('[A-Za-z0-9]{3}'),
-            'cp' => $this->faker->regexify('[A-Za-z0-9]{12}'),
+            'street' => $this->faker->streetName(),
+            'number' => $this->faker->numberBetween(1, 10000),
+            'piso' => $this->faker->numberBetween(1, 100),
+            'dpto' => $this->faker->randomLetter(),
+            'cp' => $this->faker->postcode(),
         ];
     }
 }

@@ -24,7 +24,11 @@ JsonApi::register('v1')->routes(function ($api){
 
     $api->resource('categories')->relationships(function ($api){
         $api->hasMany('products');
+        $api->hasMany('menus');
     });
 
-    $api->resource('menus');
+    $api->resource('menus')->relationships(function ($api){
+        $api->hasMany('categories');
+        $api->hasOne('customers');
+    });
 });

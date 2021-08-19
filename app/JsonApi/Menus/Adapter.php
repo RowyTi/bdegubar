@@ -9,7 +9,12 @@ use Illuminate\Support\Collection;
 
 class Adapter extends AbstractAdapter
 {
+    protected $guarded = ['id'];
 
+    protected $includePaths = [
+        'categories'    => 'category',
+        'customers'     => 'customer'
+    ];
     /**
      * Mapping of JSON API attribute field names to model keys.
      *
@@ -42,6 +47,16 @@ class Adapter extends AbstractAdapter
     protected function filter($query, Collection $filters)
     {
         $this->filterWithScopes($query, $filters);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany();
+    }
+
+    public function customers()
+    {
+        return $this->belongsTo('customer');
     }
 
 }

@@ -14,17 +14,31 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::factory()
-            ->create([
-                'name' => 'Bebidas'
-            ]);
-        Category::factory()
-            ->create([
-                'name' => 'Ensaladas'
-            ]);
-        Category::factory()
-            ->create([
-                'name' => 'Hamburguesas'
-            ]);
+       $categories = [
+           [
+               'name' => 'Entradas',
+           ],
+           [
+               'name' => 'Pastas'
+           ],
+           [
+               'name' => 'Carnes'
+           ],
+           [
+               'name' => 'Hamburguesas'
+           ],
+           [
+               'name' => 'Bebidas sin alcohol'
+           ],
+           [
+               'name' => 'Bebidas con alcohol'
+           ],
+           [
+               'name' => 'Tragos'
+           ]
+       ];
+        foreach ($categories as $category){
+            Category::factory()->create($category);
+        }
     }
 }

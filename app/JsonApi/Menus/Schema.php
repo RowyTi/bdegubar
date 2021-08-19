@@ -36,4 +36,27 @@ class Schema extends SchemaProvider
             'updatedAt' =>  $menu->updated_at->format('d-m-Y H:i:s'),
         ];
     }
+
+    public function getRelationships($menu, $isPrimary, array $includeRelationships): array
+    {
+//       dd($menu->has('customer')->exists());
+        return [
+            'categories' => [
+                self::SHOW_RELATED  =>  $menu->has('categories')->exists(),
+                self::SHOW_SELF     =>  $menu->has('categories')->exists(),
+                self::SHOW_DATA     =>  isset($includeRelationships['categories']),
+                self::DATA          =>  function() use ($menu){
+                    return $menu->categories;
+                }
+            ],
+            'customers' => [
+                self::SHOW_RELATED  =>  $menu->has('customer')->exists(),
+                self::SHOW_SELF     =>  $menu->has('customer')->exists(),
+                self::SHOW_DATA     =>  isset($includeRelationships['customers']),
+                self::DATA          =>  function() use ($menu){
+                    return $menu->customer;
+                }
+            ]
+        ];
+    }
 }

@@ -25,24 +25,28 @@ class Customer extends Model
         'id' => 'integer',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     public function paymentKey()
     {
-        return $this->hasOne(\App\Models\PaymentKey::class);
+        return $this->hasOne(PaymentKey::class);
     }
 
     public function staff()
     {
-        return $this->hasMany(\App\Models\Staff::class);
+        return $this->hasMany(Staff::class);
     }
 
     public function branches()
     {
-        return $this->hasMany(\App\Models\Branch::class);
+        return $this->hasMany(Branch::class);
     }
 
     public function menus()
     {
-        return $this->hasMany(\App\Models\Menu::class);
+        return $this->hasMany(Menu::class);
     }
 }

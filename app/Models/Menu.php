@@ -29,11 +29,11 @@ class Menu extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(\App\Models\Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function customer()
     {
-        return $this->belongsTo(\App\Models\Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 }
