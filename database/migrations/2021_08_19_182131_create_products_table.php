@@ -19,7 +19,6 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('mount', 8, 2);
-            $table->string('image')->nullable();
             $table->string('description')->nullable();
             $table->foreignId('category_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

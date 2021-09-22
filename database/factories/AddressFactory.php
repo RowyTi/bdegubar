@@ -24,8 +24,8 @@ class AddressFactory extends Factory
     {
         return [
             'street' => $this->faker->streetName(),
-            'number' => $this->faker->numberBetween(1, 10000),
-            'piso' => $this->faker->numberBetween(1, 100),
+            'number' => $this->faker->numberBetween(0, 10000),
+            'piso' => $this->faker->numberBetween(0, 10000),
             'dpto' => $this->faker->randomLetter(),
             'cp' => $this->faker->postcode(),
         ];

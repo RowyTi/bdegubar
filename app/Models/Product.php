@@ -30,6 +30,11 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsTo(\App\Models\Category::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    // Relation Polimórfica
+    public function images(){
+        return $this->morphMany(Image::class, "imageable");
     }
 }

@@ -40,11 +40,11 @@ class User extends Model
 
     public function socialNetworks()
     {
-        return $this->hasMany(SocialNetwork::class);
+        return $this->hasMany(\App\Models\SocialNetwork::class);
     }
 
     public function profile()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(\App\Models\Profile::class);
     }
 }

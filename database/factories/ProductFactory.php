@@ -25,8 +25,7 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'mount' => $this->faker->randomFloat(2, 0, 999.99),
-            'image' => $this->faker->word(),
+            'mount' => $this->faker->randomFloat(2, 100, 999.99),
             'description' => $this->faker->text(),
             'category_id' => Category::factory(),
         ];

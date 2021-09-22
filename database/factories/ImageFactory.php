@@ -4,27 +4,29 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Customer;
+use App\Models\Image;
+use App\Models\Imageable;
 
-class CustomerFactory extends Factory
+class ImageFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Customer::class;
+    protected $model = Image::class;
 
     /**
      * Define the model's default state.
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->slug(),
+            'url' => $this->faker->url,
+            'imageable_id' => Imageable::factory(),
+            'imageable_type' => $this->faker->word,
         ];
     }
 }
