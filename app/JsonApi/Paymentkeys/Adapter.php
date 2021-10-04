@@ -1,8 +1,8 @@
 <?php
 
-namespace App\JsonApi\Customers;
+namespace App\JsonApi\Paymentkeys;
 
-use App\Models\Customer;
+use App\Models\PaymentKey;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,7 +10,6 @@ use Illuminate\Support\Collection;
 
 class Adapter extends AbstractAdapter
 {
-    protected $guarded = ['id'];
 
     /**
      * Mapping of JSON API attribute field names to model keys.
@@ -18,6 +17,9 @@ class Adapter extends AbstractAdapter
      * @var array
      */
     protected $attributes = [];
+
+//    protected $includePaths = [ 'payment_keys' => 'paymentkeys'];
+//    protected $includePaths = [ 'paymentkeys'=>'payment_keys'];
 
     /**
      * Mapping of JSON API filter names to model scopes.
@@ -33,7 +35,7 @@ class Adapter extends AbstractAdapter
      */
     public function __construct(StandardStrategy $paging)
     {
-        parent::__construct(new Customer(), $paging);
+        parent::__construct(new PaymentKey(), $paging);
     }
 
     /**
@@ -46,11 +48,7 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
-    public function branches(){
-        return $this->hasMany();
-    }
-
-    public function paymentKey(){
-        return $this->hasOne();
+    public function customer(){
+        return $this->belongsTo('customer');
     }
 }

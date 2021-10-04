@@ -23,6 +23,11 @@ JsonApi::register('v1')->routes(function ($api){
             $api->hasMany('branches')->except('replace', 'add', 'remove');
     });
 
+    $api->resource('paymentkeys')->only('index', 'read')
+        ->relationships(function ($api){
+            $api->hasOne('customer')->except('replace', 'add', 'remove');
+        });
+
     $api->resource('products')->only('index', 'read')
         ->relationships(function ($api){
             $api->hasOne('branches')->except('replace', 'add', 'remove');

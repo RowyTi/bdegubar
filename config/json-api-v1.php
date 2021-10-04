@@ -5,6 +5,7 @@ use App\Models\Branch;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Menu;
+use App\Models\PaymentKey;
 use App\Models\Product;
 use App\Models\Table;
 use App\Post;
@@ -83,7 +84,7 @@ return [
         'customers'     =>  Customer::class,
         'products'      =>  Product::class,
         'categories'    =>  Category::class,
-        'menus'         =>  Menu::class,
+        'paymentkeys'   =>  PaymentKey::class
     ],
 
     /*

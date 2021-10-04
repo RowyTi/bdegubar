@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Table;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             CustomerSeeder::class,
+            PaymentkeySeeder::class,
             BranchSeeder::class,
             CategorySeeder::class,
             TableSeeder::class,
