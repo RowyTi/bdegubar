@@ -31,18 +31,8 @@ class Customer extends Model
         return $this->hasOne(PaymentKey::class);
     }
 
-    public function staff()
-    {
-        return $this->hasMany(Staff::class);
-    }
-
     public function branches()
     {
         return $this->hasMany(Branch::class);
-    }
-
-    public function menus()
-    {
-        return $this->hasMany(Menu::class);
     }
 }

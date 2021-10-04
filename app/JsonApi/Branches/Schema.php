@@ -18,7 +18,7 @@ class Schema extends SchemaProvider
      *      the domain record being serialized.
      * @return string
      */
-    public function getId($resource)
+    public function getId($resource): string
     {
         return (string) $resource->getRouteKey();
     }
@@ -28,18 +28,20 @@ class Schema extends SchemaProvider
      *      the domain record being serialized.
      * @return array
      */
-    public function getAttributes($branch)
+    public function getAttributes($branch): array
     {
         return [
             'name'      => $branch->name,
+            'slug'      => $branch->slug,
             'latitud'   => $branch->latitud,
             'longitud'  => $branch->longitud,
+            'state'     => $branch->state,
             'createdAt' => $branch->created_at->format('d-m-Y H:i:s'),
             'updatedAt' => $branch->updated_at->format('d-m-Y H:i:s'),
         ];
     }
 
-    public function getRelationships($branch, $isPrimary, array $includeRelationships)
+    public function getRelationships($branch, $isPrimary, array $includeRelationships): array
     {
         return [
             'tables' => [
@@ -50,6 +52,14 @@ class Schema extends SchemaProvider
                     return $branch->tables;
                 }
             ],
+            'products' => [
+                self::SHOW_RELATED  => true,
+                self::SHOW_SELF     => true,
+                self::SHOW_DATA     => isset($includeRelationships['products']),
+                self::DATA          => function() use ($branch){
+                    return $branch->products;
+                }
+            ],
             'addresses' => [
                 self::SHOW_RELATED  => true,
                 self::SHOW_SELF     => true,
@@ -57,8 +67,15 @@ class Schema extends SchemaProvider
                 self::DATA          => function() use ($branch){
                     return $branch->addresses;
                 }
+            ],
+            'categories' => [
+                self::SHOW_RELATED  => true,
+                self::SHOW_SELF     => true,
+                self::SHOW_DATA     => isset($includeRelationships['categories']),
+                self::DATA          => function() use ($branch){
+                    return $branch->categories;
+                }
             ]
-
         ];
     }
 }

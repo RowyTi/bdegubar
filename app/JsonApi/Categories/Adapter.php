@@ -48,7 +48,7 @@ class Adapter extends AbstractAdapter
         return $this->hasMany('products');
     }
 
-    public function menus(){
-        return $this->hasMany('menus');
+    public function branches(){
+        return $this->hasMany();
     }
 }

@@ -48,7 +48,7 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
-    public function categories(){
-        return $this->belongsTo('category');
+    public function branches(){
+        return $this->belongsTo('branch');
     }
 }

@@ -18,7 +18,7 @@ class Schema extends SchemaProvider
      *      the domain record being serialized.
      * @return string
      */
-    public function getId($resource)
+    public function getId($resource): string
     {
         return (string) $resource->getRouteKey();
     }
@@ -28,7 +28,7 @@ class Schema extends SchemaProvider
      *      the domain record being serialized.
      * @return array
      */
-    public function getAttributes($table)
+    public function getAttributes($table): array
     {
         return [
             'name'  =>  $table->name,

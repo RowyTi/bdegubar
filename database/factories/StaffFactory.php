@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Customer;
+use App\Models\Branch;
 use App\Models\Profile;
 use App\Models\Staff;
 
@@ -22,12 +22,13 @@ class StaffFactory extends Factory
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'password' => $this->faker->password(),
-            'userName' => $this->faker->userName(),
-            'customer_id' => Customer::factory(),
+            'password' => $this->faker->password,
+            'username' => $this->faker->userName,
+            'state' => $this->faker->randomElement(["activo","inactivo"]),
+            'branch_id' => Branch::factory(),
             'profile_id' => Profile::factory(),
         ];
     }

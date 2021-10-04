@@ -5,7 +5,6 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Image;
-use App\Models\Imageable;
 
 class ImageFactory extends Factory
 {
@@ -25,7 +24,7 @@ class ImageFactory extends Factory
     {
         return [
             'url' => $this->faker->url,
-            'imageable_id' => Imageable::factory(),
+            'imageable_id' => $this->faker->randomNumber(),
             'imageable_type' => $this->faker->word,
         ];
     }

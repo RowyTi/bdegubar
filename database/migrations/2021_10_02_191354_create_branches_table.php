@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTablesTable extends Migration
+class CreateBranchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,12 +15,15 @@ class CreateTablesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('tables', function (Blueprint $table) {
+        Schema::create('branches', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 4);
-            $table->string('qr');
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('latitud');
+            $table->string('longitud');
             $table->enum('state', ["activo","inactivo"]);
-            $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('customer_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('address_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 
@@ -34,6 +37,6 @@ class CreateTablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tables');
+        Schema::dropIfExists('branches');
     }
 }

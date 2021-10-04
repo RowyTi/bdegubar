@@ -27,19 +27,38 @@ class Branch extends Model
         'address_id' => 'integer',
     ];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     public function tables()
     {
-        return $this->hasMany(\App\Models\Table::class);
+        return $this->hasMany(Table::class);
+    }
+
+    public function staff()
+    {
+        return $this->hasMany(Staff::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 
     public function customer()
     {
-        return $this->belongsTo(\App\Models\Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function address()
     {
-        return $this->belongsTo(\App\Models\Address::class);
+        return $this->belongsTo(Address::class);
     }
 }

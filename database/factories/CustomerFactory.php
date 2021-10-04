@@ -20,11 +20,13 @@ class CustomerFactory extends Factory
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->slug(),
+            'name' => $this->faker->name,
+            'slug' => $this->faker->slug,
+            'logo' => $this->faker->word,
+            'state' => $this->faker->randomElement(["activo","inactivo"]),
         ];
     }
 }

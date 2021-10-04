@@ -3,32 +3,43 @@
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 
 JsonApi::register('v1')->routes(function ($api){
-    $api->resource('tables')->relationships(function ($api){
-        $api->hasOne('branches');
+    $api->resource('addresses')->only('index', 'read');
+
+    $api->resource('branches')->only('index', 'read')
+        ->relationships(function ($api){
+            $api->hasMany('products')->except('replace', 'add', 'remove');
+            $api->hasMany('tables')->except('replace', 'add', 'remove');
+            $api->hasMany('categories')->except('replace', 'add', 'remove');
+            $api->hasOne('addresses')->except('replace', 'add', 'remove');
     });
 
-    $api->resource('branches')->relationships(function ($api){
-        $api->hasMany('tables');
-        $api->hasOne('addresses');
+    $api->resource('categories')->only('index', 'read')
+        ->relationships(function ($api){
+            $api->hasMany('branches')->except('replace', 'add', 'remove');
     });
 
-    $api->resource('customers')->relationships(function ($api){
-        $api->hasMany('branches');
+    $api->resource('customers')->only('index', 'read')
+        ->relationships(function ($api){
+            $api->hasMany('branches')->except('replace', 'add', 'remove');
     });
 
-    $api->resource('addresses');
-
-    $api->resource('products')->relationships(function ($api){
-        $api->hasOne('categories');
+    $api->resource('products')->only('index', 'read')
+        ->relationships(function ($api){
+            $api->hasOne('branches')->except('replace', 'add', 'remove');
     });
 
-    $api->resource('categories')->relationships(function ($api){
-        $api->hasMany('products');
-        $api->hasMany('menus');
+    $api->resource('tables')->only('index', 'read')
+        ->relationships(function ($api){
+            $api->hasOne('branches')->except('replace', 'add', 'remove');
     });
 
-    $api->resource('menus')->relationships(function ($api){
-        $api->hasMany('categories');
-        $api->hasOne('customers');
-    });
+
+
+
+
+
+
+
+
+
 });

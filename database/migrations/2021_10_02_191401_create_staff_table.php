@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateImagesTable extends Migration
+class CreateStaffTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,13 @@ class CreateImagesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('images', function (Blueprint $table) {
+        Schema::create('staff', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->unsignedBigInteger('imageable_id');
-            $table->string('imageable_type');
+            $table->string('password');
+            $table->string('username')->unique();
+            $table->enum('state', ["activo","inactivo"]);
+            $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('profile_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 
@@ -33,6 +35,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('staff');
     }
 }

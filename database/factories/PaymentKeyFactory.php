@@ -21,12 +21,12 @@ class PaymentKeyFactory extends Factory
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'access_token' => $this->faker->word(),
-            'public_token' => $this->faker->word(),
+            'name' => $this->faker->name,
+            'access_token' => $this->faker->word,
+            'public_token' => $this->faker->word,
             'customer_id' => Customer::factory(),
         ];
     }

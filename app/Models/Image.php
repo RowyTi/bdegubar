@@ -14,11 +14,15 @@ class Image extends Model
      *
      * @var array
      */
-    protected $fillable = ['url', 'imageable_id', 'imageable_type'];
+    protected $guarded = [];
 
-
-    public function imageable()
-    {
-        return $this->morphTo();
-    }
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'imageable_id' => 'integer',
+    ];
 }

@@ -25,14 +25,13 @@ class Category extends Model
         'id' => 'integer',
     ];
 
-
-    public function products()
+    public function getRouteKeyName(): string
     {
-        return $this->hasMany(\App\Models\Product::class);
+        return 'slug';
     }
 
-    public function menus()
+    public function branches()
     {
-        return $this->belongsToMany(\App\Models\Menu::class);
+        return $this->belongsToMany(Branch::class);
     }
 }

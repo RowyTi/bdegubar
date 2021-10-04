@@ -32,14 +32,14 @@ class Staff extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'customer_id' => 'integer',
+        'branch_id' => 'integer',
         'profile_id' => 'integer',
     ];
 
 
-    public function customer()
+    public function branch()
     {
-        return $this->belongsTo(\App\Models\Customer::class);
+        return $this->belongsTo(\App\Models\Branch::class);
     }
 
     public function profile()

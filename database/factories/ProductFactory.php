@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use App\Models\Category;
+use App\Models\Branch;
 use App\Models\Product;
 
 class ProductFactory extends Factory
@@ -21,13 +21,14 @@ class ProductFactory extends Factory
      *
      * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'mount' => $this->faker->randomFloat(2, 100, 999.99),
-            'description' => $this->faker->text(),
-            'category_id' => Category::factory(),
+            'name' => $this->faker->name,
+            'amount' => $this->faker->randomFloat(2, 0, 999999.99),
+            'description' => $this->faker->text,
+            'state' => $this->faker->randomElement(["activo","inactivo"]),
+            'branch_id' => Branch::all()->random()->id,
         ];
     }
 }

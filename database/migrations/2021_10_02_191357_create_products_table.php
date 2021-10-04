@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenusTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,10 +15,13 @@ class CreateMenusTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('customer_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->decimal('amount', 8, 2);
+            $table->string('description')->nullable();
+            $table->enum('state', ["activo","inactivo"]);
+            $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 
@@ -32,6 +35,6 @@ class CreateMenusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('products');
     }
 }

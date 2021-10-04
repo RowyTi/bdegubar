@@ -32,6 +32,7 @@ class Schema extends SchemaProvider
     {
         return [
             'name'      =>  $category->name,
+            'slug'      =>  $category->slug,
             'createdAt' =>  $category->created_at->format('d-m-Y H:i:s'),
             'updatedAt' =>  $category->updated_at->format('d-m-Y H:i:s'),
         ];
@@ -40,20 +41,12 @@ class Schema extends SchemaProvider
     public function getRelationships($category, $isPrimary, array $includeRelationships): array
     {
         return [
-            'products' => [
-                self::SHOW_RELATED  =>  isset($category->products),
-                self::SHOW_SELF     =>  isset($category->products),
-                self::SHOW_DATA     =>  isset($includeRelationships['products']),
+            'branches' => [
+                self::SHOW_RELATED  =>  isset($category->branches),
+                self::SHOW_SELF     =>  isset($category->branches),
+                self::SHOW_DATA     =>  isset($includeRelationships['branches']),
                 self::DATA          =>  function() use ($category){
-                    return $category->products;
-                }
-            ],
-            'menus' => [
-                self::SHOW_RELATED  =>  isset($category->menus),
-                self::SHOW_SELF     =>  isset($category->menus),
-                self::SHOW_DATA     =>  isset($includeRelationships['menus']),
-                self::DATA          =>  function() use ($category){
-                    return $category->menus;
+                    return $category->branches;
                 }
             ]
         ];

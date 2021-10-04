@@ -50,7 +50,18 @@ class Adapter extends AbstractAdapter
         return $this->hasMany();
     }
 
+    protected function products(){
+        return $this->hasMany();
+    }
+
     public function addresses(){
         return $this->belongsTo('address');
     }
+
+    protected function categories()
+    {
+        return $this->hasMany();
+    }
+
+
 }

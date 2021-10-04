@@ -23,18 +23,13 @@ class Product extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'mount' => 'decimal:2',
-        'category_id' => 'integer',
+        'amount' => 'decimal:2',
+        'branch_id' => 'integer',
     ];
 
 
-    public function category()
+    public function branch()
     {
-        return $this->belongsTo(Category::class);
-    }
-
-    // Relation Polimórfica
-    public function images(){
-        return $this->morphMany(Image::class, "imageable");
+        return $this->belongsTo(Branch::class);
     }
 }
