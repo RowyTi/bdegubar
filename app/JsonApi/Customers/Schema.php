@@ -49,6 +49,14 @@ class Schema extends SchemaProvider
                 self::DATA          => function() use ($customer){
                     return $customer->branches;
                 }
+            ],
+            'paymentKey' => [
+                self::SHOW_RELATED  => $customer->has('paymentKey')->exists(),
+                self::SHOW_SELF     => $customer->has('paymentKey')->exists(),
+                self::SHOW_DATA     => isset($includeRelationships['paymentKey']),
+                self::DATA          => function() use ($customer){
+                    return $customer->paymentKey;
+                }
             ]
         ];
     }

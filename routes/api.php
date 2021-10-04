@@ -21,6 +21,7 @@ JsonApi::register('v1')->routes(function ($api){
     $api->resource('customers')->only('index', 'read')
         ->relationships(function ($api){
             $api->hasMany('branches')->except('replace', 'add', 'remove');
+            $api->hasOne('paymentKey')->except('replace', 'add', 'remove');
     });
 
     $api->resource('paymentkeys')->only('index', 'read')
