@@ -34,6 +34,10 @@ JsonApi::register('v1')->routes(function ($api){
             $api->hasOne('branches')->except('replace', 'add', 'remove');
     });
 
+    $api->resource('profiles')->only('index', 'read');
+
+    $api->resource('staff')->only('index', 'read');
+
     $api->resource('tables')->only('index', 'read')
         ->relationships(function ($api){
             $api->hasOne('branches')->except('replace', 'add', 'remove');

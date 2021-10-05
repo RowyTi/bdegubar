@@ -28,11 +28,11 @@ class Customer extends Model
 
     public function paymentKey()
     {
-        return $this->hasOne(PaymentKey::class);
+        return $this->hasOne(\App\Models\PaymentKey::class);
     }
 
     public function branches()
     {
-        return $this->hasMany(Branch::class);
+        return $this->hasMany(\App\Models\Branch::class);
     }
 }

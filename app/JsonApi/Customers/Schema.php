@@ -34,8 +34,8 @@ class Schema extends SchemaProvider
             'name'      =>  $customer->name,
             'logo'      =>  $customer->logo,
             'state'     =>  $customer->state,
-            'createdAt' =>  $customer->created_at->format('d-m-Y H:i:s'),
-            'updatedAt' =>  $customer->updated_at->format('d-m-Y H:i:s'),
+            'created-at' =>  $customer->created_at->format('d-m-Y H:i:s'),
+            'updated-at' =>  $customer->updated_at->format('d-m-Y H:i:s'),
         ];
     }
     public function getRelationships($customer, $isPrimary, array $includeRelationships): array

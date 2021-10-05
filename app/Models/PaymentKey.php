@@ -14,7 +14,7 @@ class PaymentKey extends Model
      *
      * @var array
      */
-    protected $guarded = ['id'];
+    protected $guarded = [];
 
     /**
      * The attributes that should be cast to native types.
@@ -29,6 +29,6 @@ class PaymentKey extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(\App\Models\Customer::class);
     }
 }

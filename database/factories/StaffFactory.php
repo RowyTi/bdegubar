@@ -22,14 +22,14 @@ class StaffFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'password' => $this->faker->password,
             'username' => $this->faker->userName,
             'state' => $this->faker->randomElement(["activo","inactivo"]),
-            'branch_id' => Branch::factory(),
-            'profile_id' => Profile::factory(),
+            'branch_id' => Branch::all()->random()->id,
+            'profile_id' => Profile::all()->random()->id,
         ];
     }
 }

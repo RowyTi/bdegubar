@@ -31,11 +31,11 @@ class Schema extends SchemaProvider
     public function getAttributes($table): array
     {
         return [
-            'name'  =>  $table->name,
-            'qr'    =>  $table->qr,
-            'state' =>  $table->state,
-            'createdAt' => $table->created_at->format('d-m-Y H:i:s'),
-            'updatedAt' => $table->updated_at->format('d-m-Y H:i:s'),
+            'name'          =>  $table->name,
+            'qr'            =>  $table->qr,
+            'state'         =>  $table->state,
+            'created-at'    => $table->created_at->format('d-m-Y H:i:s'),
+            'updated-at'    => $table->updated_at->format('d-m-Y H:i:s'),
         ];
     }
 

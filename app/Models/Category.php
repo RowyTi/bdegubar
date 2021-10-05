@@ -25,13 +25,9 @@ class Category extends Model
         'id' => 'integer',
     ];
 
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
 
     public function branches()
     {
-        return $this->belongsToMany(Branch::class);
+        return $this->belongsToMany(\App\Models\Branch::class);
     }
 }

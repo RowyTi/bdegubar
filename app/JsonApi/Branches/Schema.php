@@ -36,8 +36,8 @@ class Schema extends SchemaProvider
             'latitud'   => $branch->latitud,
             'longitud'  => $branch->longitud,
             'state'     => $branch->state,
-            'createdAt' => $branch->created_at->format('d-m-Y H:i:s'),
-            'updatedAt' => $branch->updated_at->format('d-m-Y H:i:s'),
+            'created-at' => $branch->created_at->format('d-m-Y H:i:s'),
+            'updated-at' => $branch->updated_at->format('d-m-Y H:i:s'),
         ];
     }
 

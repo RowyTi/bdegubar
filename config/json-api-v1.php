@@ -7,6 +7,8 @@ use App\Models\Customer;
 use App\Models\Menu;
 use App\Models\PaymentKey;
 use App\Models\Product;
+use App\Models\Profile;
+use App\Models\Staff;
 use App\Models\Table;
 use App\Post;
 use CloudCreativity\LaravelJsonApi\Queue\ClientJob;
@@ -84,7 +86,9 @@ return [
         'customers'     =>  Customer::class,
         'products'      =>  Product::class,
         'categories'    =>  Category::class,
-        'paymentkeys'   =>  PaymentKey::class
+        'paymentkeys'   =>  PaymentKey::class,
+        'staff'         =>  Staff::class,
+        'profiles'      =>  Profile::class,
     ],
 
     /*
