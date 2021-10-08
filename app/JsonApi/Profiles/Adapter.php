@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\Profiles;
 
+use App\Models\Profile;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,7 +32,7 @@ class Adapter extends AbstractAdapter
      */
     public function __construct(StandardStrategy $paging)
     {
-        parent::__construct(new \App\Models\Profile(), $paging);
+        parent::__construct(new Profile(), $paging);
     }
 
     /**
@@ -42,6 +43,18 @@ class Adapter extends AbstractAdapter
     protected function filter($query, Collection $filters)
     {
         $this->filterWithScopes($query, $filters);
+    }
+
+    public function staff(){
+        return $this->hasOne();
+    }
+
+    public function user(){
+        return $this->hasOne();
+    }
+
+    public function address(){
+        return $this->belongsTo('address');
     }
 
 }

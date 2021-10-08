@@ -40,4 +40,18 @@ class Schema extends SchemaProvider
             'updated-at'    => $profile->updated_at->format('d-m-Y H:i:s'),
         ];
     }
+
+    public function getRelationships($profile, $isPrimary, array $includeRelationships): array
+    {
+        return [
+            'address' => [
+                self::SHOW_RELATED  => $profile->has('address')->exists(),
+                self::SHOW_SELF     => $profile->has('address')->exists(),
+                self::SHOW_DATA     => isset($includeRelationships['address']),
+                self::DATA          => function() use ($profile){
+                    return $profile->address;
+                }
+            ],
+        ];
+    }
 }
