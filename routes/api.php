@@ -52,13 +52,9 @@ JsonApi::register('v1')->routes(function ($api){
             $api->hasOne('branches')->except('replace', 'add', 'remove');
     });
 
-
-
-
-
-
-
-
-
+    $api->resource('users')->readOnly()
+        ->relationships(function ($api){
+            $api->hasOne('profile')->except('replace', 'add', 'remove');
+        });
 
 });

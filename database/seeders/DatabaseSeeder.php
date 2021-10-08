@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             TableSeeder::class,
             ProductSeeder::class,
             ProfileSeeder::class,
-            StaffSeeder::class
+            StaffSeeder::class,
+            UserSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
     }

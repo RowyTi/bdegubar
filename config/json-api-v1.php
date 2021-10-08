@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Profile;
 use App\Models\Staff;
 use App\Models\Table;
+use App\Models\User;
 use App\Post;
 use CloudCreativity\LaravelJsonApi\Queue\ClientJob;
 use CloudCreativity\LaravelJsonApi\Resolver\ResolverFactory;
@@ -89,6 +90,7 @@ return [
         'paymentkeys'   =>  PaymentKey::class,
         'staff'         =>  Staff::class,
         'profiles'      =>  Profile::class,
+        'users'         =>  User::class,
     ],
 
     /*
