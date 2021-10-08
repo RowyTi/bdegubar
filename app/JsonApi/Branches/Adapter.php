@@ -46,6 +46,10 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
+    public function staff(){
+        return $this->hasMany();
+    }
+
     public function tables(){
         return $this->hasMany();
     }

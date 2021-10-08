@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\Staff;
 
+use App\Models\Staff;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,7 +32,7 @@ class Adapter extends AbstractAdapter
      */
     public function __construct(StandardStrategy $paging)
     {
-        parent::__construct(new \App\Models\Staff(), $paging);
+        parent::__construct(new Staff(), $paging);
     }
 
     /**
@@ -42,6 +43,14 @@ class Adapter extends AbstractAdapter
     protected function filter($query, Collection $filters)
     {
         $this->filterWithScopes($query, $filters);
+    }
+
+    public function branch(){
+       return $this->belongsTo('branch');
+    }
+
+    public function profile(){
+       return $this->belongsTo('profile');
     }
 
 }

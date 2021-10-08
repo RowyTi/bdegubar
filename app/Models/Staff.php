@@ -39,11 +39,11 @@ class Staff extends Model
 
     public function branch()
     {
-        return $this->belongsTo(\App\Models\Branch::class);
+        return $this->belongsTo(Branch::class);
     }
 
     public function profile()
     {
-        return $this->belongsTo(\App\Models\Profile::class);
+        return $this->belongsTo(Profile::class);
     }
 }

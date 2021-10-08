@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\Products;
 
+use App\Models\Product;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,7 +36,7 @@ class Adapter extends AbstractAdapter
      */
     public function __construct(StandardStrategy $paging)
     {
-        parent::__construct(new \App\Models\Product(), $paging);
+        parent::__construct(new Product(), $paging);
     }
 
     /**
