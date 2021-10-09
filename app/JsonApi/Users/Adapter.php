@@ -47,4 +47,8 @@ class Adapter extends AbstractAdapter
     public function profile(){
         return $this->belongsTo('profile');
     }
+
+    public function socialNetworks(){
+        return $this->hasMany();
+    }
 }

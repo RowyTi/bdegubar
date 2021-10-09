@@ -18,7 +18,7 @@ class Schema extends SchemaProvider
      *      the domain record being serialized.
      * @return string
      */
-    public function getId($resource)
+    public function getId($resource): string
     {
         return (string) $resource->getRouteKey();
     }
@@ -47,7 +47,7 @@ class Schema extends SchemaProvider
                 self::SHOW_SELF     => $paymentkey->has('customer')->exists(),
                 self::SHOW_DATA     => isset($includeRelationships['customer']),
                 self::DATA          => function() use ($paymentkey){
-                    return $paymentkey->vustomer;
+                    return $paymentkey->customer;
                 }
             ]
         ];

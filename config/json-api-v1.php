@@ -8,6 +8,7 @@ use App\Models\Menu;
 use App\Models\PaymentKey;
 use App\Models\Product;
 use App\Models\Profile;
+use App\Models\SocialNetwork;
 use App\Models\Staff;
 use App\Models\Table;
 use App\Models\User;
@@ -81,16 +82,17 @@ return [
     | `'posts' => App\Post::class`
     */
     'resources' => [
-        'tables'        =>  Table::class,
-        'branches'      =>  Branch::class,
-        'addresses'     =>  Address::class,
-        'customers'     =>  Customer::class,
-        'products'      =>  Product::class,
-        'categories'    =>  Category::class,
-        'paymentkeys'   =>  PaymentKey::class,
-        'staff'         =>  Staff::class,
-        'profiles'      =>  Profile::class,
-        'users'         =>  User::class,
+        'tables'            =>  Table::class,
+        'branches'          =>  Branch::class,
+        'addresses'         =>  Address::class,
+        'customers'         =>  Customer::class,
+        'products'          =>  Product::class,
+        'categories'        =>  Category::class,
+        'paymentkeys'       =>  PaymentKey::class,
+        'staff'             =>  Staff::class,
+        'profiles'          =>  Profile::class,
+        'users'             =>  User::class,
+        'socialnetworks'    =>  SocialNetwork::class,
     ],
 
     /*

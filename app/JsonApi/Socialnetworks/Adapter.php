@@ -1,8 +1,8 @@
 <?php
 
-namespace App\JsonApi\Paymentkeys;
+namespace App\JsonApi\Socialnetworks;
 
-use App\Models\PaymentKey;
+use App\Models\Socialnetwork;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,9 +18,7 @@ class Adapter extends AbstractAdapter
      */
     protected $attributes = [];
 
-//    protected $includePaths = [ 'payment_keys' => 'paymentkeys'];
- //   protected $includePaths = [ 'paymentkeys'=>'payment_keys'];
-
+//    protected $includePaths = ['social-networks' => 'socialNetworks'];
     /**
      * Mapping of JSON API filter names to model scopes.
      *
@@ -35,7 +33,7 @@ class Adapter extends AbstractAdapter
      */
     public function __construct(StandardStrategy $paging)
     {
-        parent::__construct(new PaymentKey(), $paging);
+        parent::__construct(new Socialnetwork(), $paging);
     }
 
     /**
@@ -48,7 +46,4 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
-    public function customer(){
-        return $this->belongsTo('customer');
-    }
 }
