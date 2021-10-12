@@ -43,6 +43,11 @@ class Branch extends Model
         return $this->hasMany(\App\Models\Product::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(\App\Models\Comment::class);
+    }
+
     public function categories()
     {
         return $this->belongsToMany(\App\Models\Category::class);

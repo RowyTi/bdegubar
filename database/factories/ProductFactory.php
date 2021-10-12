@@ -25,8 +25,10 @@ class ProductFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'amount' => $this->faker->randomFloat(2, 0, 999999.99),
-            'description' => $this->faker->text,
+            'image' => $this->faker->imageUrl(200, 200, 'food'),
+            'price' => $this->faker->randomFloat(2, 100, 999.),
+            'quantity' => $this->faker->numberBetween(0, 1000),
+            'description' => $this->faker->text(),
             'state' => $this->faker->randomElement(["activo","inactivo"]),
             'branch_id' => Branch::all()->random()->id,
         ];

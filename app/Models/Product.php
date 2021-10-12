@@ -23,7 +23,7 @@ class Product extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'amount' => 'decimal:2',
+        'price' => 'float',
         'branch_id' => 'integer',
     ];
 

@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LoginController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 JsonApi::register('v1')->routes(function ($api){
     $api->resource('addresses')->readOnly();
@@ -62,5 +65,19 @@ JsonApi::register('v1')->routes(function ($api){
             $api->hasOne('profile')->except('replace', 'add', 'remove');
             $api->hasMany('socialnetworks')->except('replace', 'add', 'remove');
         });
+
+    //Login para miembros del staff [Clientes y Empleados]
+    Route::post('login', [LoginController::class, 'loginStaff'])->middleware('guest:sanctum');
+    Route::post('logout', [LoginController::class, 'logoutStaff'])->middleware('auth:sanctum');
+    Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
+        if(Auth::check()){
+            return Auth::user();
+        }
+        return $request->staff();
+    });
+
+    //Login para usuarios finales con redes sociales [facebook, google]
+    Route::get('login/{driver}', [LoginController::class, 'redirectToDriver'])->middleware('guest:sanctum');
+    Route::get('login/{driver}/callback', [LoginController::class, 'handleDriverCallback']);
 
 });

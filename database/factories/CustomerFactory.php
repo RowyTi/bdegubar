@@ -25,7 +25,7 @@ class CustomerFactory extends Factory
         return [
             'name' => $this->faker->name,
             'slug' => $this->faker->slug,
-            'logo' => $this->faker->word,
+            'image' => $this->faker->word,
             'state' => $this->faker->randomElement(["activo","inactivo"]),
         ];
     }

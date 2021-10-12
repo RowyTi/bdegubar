@@ -27,6 +27,7 @@ class BranchFactory extends Factory
         return [
             'name' => $this->faker->name,
             'slug' => $this->faker->slug,
+            'image' => $this->faker->word,
             'latitud' => $this->faker->word,
             'longitud' => $this->faker->word,
             'state' => $this->faker->randomElement(["activo","inactivo"]),

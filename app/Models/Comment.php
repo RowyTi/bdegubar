@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Comment extends Model
 {
     use HasFactory;
 
@@ -23,6 +23,19 @@ class Image extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'imageable_id' => 'integer',
+        'rating' => 'float',
+        'branch_id' => 'integer',
+        'user_id' => 'integer',
     ];
+
+
+    public function branch()
+    {
+        return $this->belongsTo(\App\Models\Branch::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class);
+    }
 }

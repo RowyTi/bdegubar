@@ -24,8 +24,10 @@ class SocialNetworkFactory extends Factory
     public function definition()
     {
         return [
-            'access_token' => Str::random(32),
-            'user_id' => User::all()->random()->id,
+            'social_id' => $this->faker->word,
+            'social_avatar' => $this->faker->word,
+            'social_name' => $this->faker->word,
+            'user_id' => User::factory(),
         ];
     }
 }
