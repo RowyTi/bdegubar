@@ -21,7 +21,7 @@ class CreateProfilesTable extends Migration
             $table->string('lastName');
             $table->string('avatar')->nullable();
             $table->date('dateOfBirth');
-            $table->string('phone', 13);
+            $table->string('phone', 20);
             $table->foreignId('address_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

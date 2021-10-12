@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,8 +24,10 @@ class DatabaseSeeder extends Seeder
             ProfileSeeder::class,
             StaffSeeder::class,
             UserSeeder::class,
-            SocialNetworkSeed::class
+            SocialNetworkSeed::class,
+
         ]);
         // \App\Models\User::factory(10)->create();
+        \App\Models\Comment::factory(100)->create();
     }
 }

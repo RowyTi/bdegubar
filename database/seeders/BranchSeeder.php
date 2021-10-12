@@ -17,28 +17,28 @@ class BranchSeeder extends Seeder
     {
         $branches = [
             [
-                'name'        => 'Sucursal Palermo Hollywood',
-                'slug'        => Str::slug('Cervelar Sucursal Palermo Hollywood'),
+                'name'        => 'Cervelar Palermo Hollywood',
+                'slug'        => Str::slug('Cervelar Palermo Hollywood'),
                 'customer_id' => 1
             ],
             [
-                'name'        => 'Sucursal Villa Urquiza',
-                'slug'        => Str::slug('Cervelar Sucursal Villa Urquiza'),
+                'name'        => 'Cervelar Villa Urquiza',
+                'slug'        => Str::slug('Cervelar Villa Urquiza'),
                 'customer_id' => 1
             ],
             [
-                'name'        => 'Sucursal Palermo',
-                'slug'        => Str::slug('Antares Sucursal Palermo'),
+                'name'        => 'Antares Palermo',
+                'slug'        => Str::slug('Antares Palermo'),
                 'customer_id' => 2
             ],
             [
-                'name'        => 'Sucursal Belgrano R',
-                'slug'        => Str::slug('Antares Sucursal Belgrano R'),
+                'name'        => 'Antares Belgrano R',
+                'slug'        => Str::slug('Antares Belgrano R'),
                 'customer_id' => 2
             ],
             [
-                'name'        => 'Sucursal San Telmo',
-                'slug'        => Str::slug('La esquina Sucursal San Telmo'),
+                'name'        => 'La Esquina San Telmo',
+                'slug'        => Str::slug('La esquina San Telmo'),
                 'customer_id' => 3
             ]
         ];

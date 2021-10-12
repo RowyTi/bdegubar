@@ -24,10 +24,10 @@ class PaymentKeyFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'access_token' => $this->faker->word,
-            'public_token' => $this->faker->word,
-            'customer_id' => Customer::factory(),
+            'name' => $this->faker->name(),
+            'access_token' => Str::random(30),
+            'public_token' => Str::random(30),
+            'customer_id' => Customer::all()->random()->id,
         ];
     }
 }

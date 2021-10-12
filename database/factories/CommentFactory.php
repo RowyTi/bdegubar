@@ -26,10 +26,10 @@ class CommentFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(4),
-            'message' => $this->faker->word,
-            'rating' => $this->faker->randomFloat(0, 0, 9999999999.),
-            'branch_id' => Branch::factory(),
-            'user_id' => User::factory(),
+            'message' => $this->faker->word(),
+            'rating' => $this->faker->randomFloat(1, 3, 5.),
+            'branch_id' => Branch::all()->random()->id,
+            'user_id' => User::all()->random()->id,
         ];
     }
 }

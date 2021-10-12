@@ -25,11 +25,11 @@ class BranchFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'slug' => $this->faker->slug,
-            'image' => $this->faker->word,
-            'latitud' => $this->faker->word,
-            'longitud' => $this->faker->word,
+            'name' => $this->faker->name(),
+            'slug' => $this->faker->slug(),
+            'image' => $this->faker->imageUrl(200,200, 'abstract'),
+            'latitud' => $this->faker->latitude(),
+            'longitud' => $this->faker->longitude(),
             'state' => $this->faker->randomElement(["activo","inactivo"]),
             'customer_id' => Customer::factory(),
             'address_id' => Address::factory(),
