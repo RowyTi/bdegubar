@@ -13,6 +13,7 @@ JsonApi::register('v1')->routes(function ($api){
             $api->hasMany('products')->except('replace', 'add', 'remove');
             $api->hasMany('tables')->except('replace', 'add', 'remove');
             $api->hasMany('categories')->except('replace', 'add', 'remove');
+            $api->hasMany('comments')->except('replace', 'add', 'remove');
             $api->hasMany('staff')->except('replace', 'add', 'remove');
             $api->hasOne('addresses')->except('replace', 'add', 'remove');
         });
@@ -21,6 +22,12 @@ JsonApi::register('v1')->routes(function ($api){
         ->relationships(function ($api){
             $api->hasMany('branches')->except('replace', 'add', 'remove');
         });
+
+    $api->resource('comments')->readOnly()
+        ->relationships(function ($api){
+            $api->hasOne('branch')->except('replace', 'add', 'remove');
+            $api->hasOne('user')->except('replace', 'add', 'remove');
+        });;
 
     $api->resource('customers')->readOnly()
         ->relationships(function ($api){
@@ -64,6 +71,7 @@ JsonApi::register('v1')->routes(function ($api){
         ->relationships(function ($api){
             $api->hasOne('profile')->except('replace', 'add', 'remove');
             $api->hasMany('socialnetworks')->except('replace', 'add', 'remove');
+            $api->hasMany('comments')->except('replace', 'add', 'remove');
         });
 
     //Login para miembros del staff [Clientes y Empleados]

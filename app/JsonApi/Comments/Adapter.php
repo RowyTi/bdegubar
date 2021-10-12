@@ -1,7 +1,8 @@
 <?php
 
-namespace App\JsonApi\Users;
+namespace App\JsonApi\Comments;
 
+use App\Models\Comment;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
@@ -31,7 +32,7 @@ class Adapter extends AbstractAdapter
      */
     public function __construct(StandardStrategy $paging)
     {
-        parent::__construct(new \App\Models\User(), $paging);
+        parent::__construct(new Comment(), $paging);
     }
 
     /**
@@ -44,15 +45,11 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
-    public function profile(){
-        return $this->belongsTo('profile');
+    public function user(){
+        return $this->belongsTo('user');
     }
 
-    public function socialNetworks(){
-        return $this->hasMany();
-    }
-
-    public function comments(){
-        return $this->hasMany();
+    public function branch(){
+        return $this->belongsTo('branch');
     }
 }

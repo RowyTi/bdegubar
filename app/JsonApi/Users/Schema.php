@@ -56,8 +56,17 @@ class Schema extends SchemaProvider
                 self::SHOW_DATA     => isset($includeRelationships['socialnetworks']),
                 self::DATA          => function() use ($user){
                     return $user->socialnetworks;
-            }
-        ]
+                }
+            ],
+            'comments'  => [
+                self::SHOW_RELATED  => $user->has('comments')->exists(),
+                self::SHOW_SELF     => $user->has('comments')->exists(),
+                self::SHOW_DATA     => isset($includeRelationships['comments']),
+                self::DATA          => function() use ($user){
+                    return $user->comments;
+                }
+            ]
+
         ];
     }
 }

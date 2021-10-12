@@ -3,6 +3,7 @@
 use App\Models\Address;
 use App\Models\Branch;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Customer;
 use App\Models\Menu;
 use App\Models\PaymentKey;
@@ -93,6 +94,7 @@ return [
         'profiles'          =>  Profile::class,
         'users'             =>  User::class,
         'socialnetworks'    =>  SocialNetwork::class,
+        'comments'          =>  Comment::class,
     ],
 
     /*
