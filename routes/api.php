@@ -5,7 +5,7 @@ use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-JsonApi::register('v1')->routes(function ($api){
+JsonApi::register('v1')->routes(function ($api, $router){
     $api->resource('addresses')->readOnly();
 
     $api->resource('branches')->readOnly()

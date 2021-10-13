@@ -3,6 +3,7 @@
 namespace App\JsonApi\Branches;
 
 use App\Models\Branch;
+use App\Models\Comment;
 use Neomerx\JsonApi\Schema\SchemaProvider;
 
 class Schema extends SchemaProvider
@@ -23,11 +24,28 @@ class Schema extends SchemaProvider
         return (string) $resource->getRouteKey();
     }
 
+    public function obtenerRating($id){
+//        cantidad total de comentarios correspondientes a un branch
+        $total = Comment::where('branch_id', $id)->count();
+        $comments = Comment::where('branch_id', $id)->get();
+//        se inicializa r [rating] en 0
+        $r = 0;
+//        se suma la valoracion correspondiente de cada comentario perteneciente al branch
+        foreach ($comments as $c){
+           $r = $r+$c->rating;
+        }
+//        se divide por el total de comentarios
+        $r = $r/$total;
+
+        return round($r, 1);
+    }
+
     /**
      * @param Branch $branch
      *      the domain record being serialized.
      * @return array
      */
+
     public function getAttributes($branch): array
     {
         return [
@@ -36,6 +54,7 @@ class Schema extends SchemaProvider
             'latitud'   => $branch->latitud,
             'longitud'  => $branch->longitud,
             'state'     => $branch->state,
+            'rating'    => $this->obtenerRating($branch->id),
             'created-at' => $branch->created_at->format('d-m-Y H:i:s'),
             'updated-at' => $branch->updated_at->format('d-m-Y H:i:s'),
         ];

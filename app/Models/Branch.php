@@ -26,40 +26,42 @@ class Branch extends Model
         'customer_id' => 'integer',
         'address_id' => 'integer',
     ];
-
+    public function ranking(){
+        return '5';
+    }
 
     public function tables()
     {
-        return $this->hasMany(\App\Models\Table::class);
+        return $this->hasMany(Table::class);
     }
 
     public function staff()
     {
-        return $this->hasMany(\App\Models\Staff::class);
+        return $this->hasMany(Staff::class);
     }
 
     public function products()
     {
-        return $this->hasMany(\App\Models\Product::class);
+        return $this->hasMany(Product::class);
     }
 
     public function comments()
     {
-        return $this->hasMany(\App\Models\Comment::class);
+        return $this->hasMany(Comment::class);
     }
 
     public function categories()
     {
-        return $this->belongsToMany(\App\Models\Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function customer()
     {
-        return $this->belongsTo(\App\Models\Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function address()
     {
-        return $this->belongsTo(\App\Models\Address::class);
+        return $this->belongsTo(Address::class);
     }
 }

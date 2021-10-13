@@ -37,7 +37,7 @@ class LoginController extends Controller
             ]);
         }
         return response()->json([
-            'token' => $staff->createToken($request->username)->plainTextToken
+            'token' => $staff->createToken($request->username, ['create:user'])->plainTextToken
         ]);
     }
 

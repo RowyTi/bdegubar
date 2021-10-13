@@ -33,10 +33,12 @@ class Schema extends SchemaProvider
         return [
             'name'          =>  $product->name,
             'description'   =>  $product->description,
-            'price'         =>  $product->amount,
+            'price'         =>  $product->price,
+            'quantity'      =>  $product->quantity,
             'image'         =>  $product->image,
-            'created-at'     =>  $product->created_at->format('d-m-Y H:i:s'),
-            'updated-at'     =>  $product->updated_at->format('d-m-Y H:i:s'),
+            'state'         =>  $product->state,
+            'created-at'    =>  $product->created_at->format('d-m-Y H:i:s'),
+            'updated-at'    =>  $product->updated_at->format('d-m-Y H:i:s'),
         ];
     }
 
