@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\StaffController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
         ->relationships(function ($api){
             $api->hasOne('branch')->except('replace', 'add', 'remove');
             $api->hasOne('user')->except('replace', 'add', 'remove');
-        });;
+        });
 
     $api->resource('customers')->readOnly()
         ->relationships(function ($api){
@@ -75,17 +76,17 @@ JsonApi::register('v1')->routes(function ($api, $router){
         });
 
     //Login para miembros del staff [Clientes y Empleados]
-    Route::post('login', [LoginController::class, 'loginStaff'])->middleware('guest:sanctum');
-    Route::post('logout', [LoginController::class, 'logoutStaff'])->middleware('auth:sanctum');
-    Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
-        if(Auth::check()){
-            return Auth::user();
-        }
-        return $request->staff();
-    });
+    Route::post('login', [LoginController::class, 'loginStaff'])
+        ->middleware('guest:sanctum');
+    Route::post('logout', [LoginController::class, 'logoutStaff'])
+        ->middleware('auth:sanctum');
+    Route::get('me', StaffController::class)
+        ->middleware('auth:sanctum')
+        ->name('me');
 
     //Login para usuarios finales con redes sociales [facebook, google]
-    Route::get('login/{driver}', [LoginController::class, 'redirectToDriver'])->middleware('guest:sanctum');
+    Route::get('login/{driver}', [LoginController::class, 'redirectToDriver'])
+        ->middleware('guest:sanctum');
     Route::get('login/{driver}/callback', [LoginController::class, 'handleDriverCallback']);
 
 });

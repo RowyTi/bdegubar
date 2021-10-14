@@ -18,8 +18,9 @@ class LoginController extends Controller
 
     public function handleDriverCallback($driver){
        $user = Socialite::driver($driver)->stateless()->user();
-
-       dd($user);
+       return response()->json([
+           'data' => $user
+       ]);
     }
 
     public function loginStaff(Request $request){

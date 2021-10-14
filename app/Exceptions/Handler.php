@@ -2,19 +2,23 @@
 
 namespace App\Exceptions;
 
+
+use CloudCreativity\LaravelJsonApi\Exceptions\HandlesErrors;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Neomerx\JsonApi\Exceptions\JsonApiException;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    /**
-     * A list of the exception types that are not reported.
-     *
-     * @var array
-     */
+
+    use HandlesErrors;
+
     protected $dontReport = [
-        //
+        JsonApiException::class,
     ];
+
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
@@ -28,14 +32,33 @@ class Handler extends ExceptionHandler
     ];
 
     /**
-     * Register the exception handling callbacks for the application.
+     * Report or log an exception.
      *
+     * @param Throwable $exception
      * @return void
+     *
+     * @throws Throwable
      */
-    public function register()
+    public function report(Throwable $exception)
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
+        parent::report($exception);
+    }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param  Request  $request
+     * @param Throwable $exception
+     * @return Response
+     *
+     * @throws Throwable
+     */
+    public function render($request, Throwable $exception)
+    {
+        if($this->isJsonApi($request, $exception)){
+            return $this->renderJsonApi($request, $exception);
+        }
+
+        return parent::render($request, $exception);
     }
 }
