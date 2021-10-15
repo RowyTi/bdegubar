@@ -16,6 +16,8 @@ class SocialNetwork extends Model
      */
     protected $guarded = [];
 
+    public static $allowed = ['facebook', 'google'];
+
     /**
      * The attributes that should be cast to native types.
      *

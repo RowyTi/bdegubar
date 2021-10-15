@@ -85,8 +85,9 @@ JsonApi::register('v1')->routes(function ($api, $router){
         ->name('me');
 
     //Login para usuarios finales con redes sociales [facebook, google]
-    Route::get('login/{driver}', [LoginController::class, 'redirectToDriver'])
-        ->middleware('guest:sanctum');
-    Route::get('login/{driver}/callback', [LoginController::class, 'handleDriverCallback']);
+    Route::get('login/{socialNetwork}', [LoginController::class, 'redirectToDriver'])
+        ->middleware('guest:sanctum', 'social_network');
+    Route::get('login/{socialNetwork}/callback', [LoginController::class, 'handleDriverCallback'])
+        ->middleware('guest:sanctum');;
 
 });
