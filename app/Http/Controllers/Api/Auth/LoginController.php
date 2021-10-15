@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\SocialNetwork;
 use App\Models\Staff;
+use App\Models\User;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -12,15 +15,72 @@ use Laravel\Socialite\Facades\Socialite;
 class LoginController extends Controller
 {
     //Login redes sociales
-    public function redirectToDriver($driver){
-        return Socialite::driver($driver)->stateless()->redirect();
+    public function redirectToDriver($socialNetwork)
+    {
+        return Socialite::driver($socialNetwork)->stateless()->redirect();
+
     }
 
-    public function handleDriverCallback($driver){
-       $user = Socialite::driver($driver)->stateless()->user();
-       return response()->json([
-           'data' => $user
-       ]);
+    public function handleDriverCallback($socialNetwork){
+        try {
+            $socialUser = Socialite::driver($socialNetwork)->stateless()->user();
+        } catch (ClientException $exception) {
+            return response()->json(['error' => 'Hubo un error al intentar loguear'], 422);
+        }
+
+        $socialProfile = SocialNetwork::firstOrNew([
+            'social_name'    =>  $socialNetwork,
+            'social_id'      =>  $socialUser->getId()
+        ]);
+
+        if( ! $socialProfile->exists)
+        {
+            // Verifico si existe un usuario con el email de la red social
+            $user = User::firstOrNew([
+                'email' =>  $socialUser->getEmail()
+            ]);
+
+            if (! $user->exists)
+            {
+                $user->name = $socialUser->getName();
+                $user->email_verified_at = now();
+                $user->save();
+            }
+
+            $socialProfile->social_avatar = $socialUser->getAvatar();
+
+            $user->socialNetworks()->save($socialProfile);
+        }
+
+        $token = $user->createToken($socialNetwork, ['user:public'])->plainTextToken;
+
+        return response()->json([
+            ['token' => $token]
+        ]);
+
+//        $userCreated = User::firstOrCreate(
+//            [
+//                'email'=>$user->getEmail()
+//            ],
+//            [
+//                'email_verified_at' => now(),
+//            ]
+//        );
+//        $userCreated->socialNetworks()->updateOrCreate(
+//            [
+//                'social_name'   => $socialNetwork,
+//                'social_id'     => $user->getId()
+//            ],
+//            [
+//                'social_avatar' => $user->getAvatar()
+//            ]
+//        );
+//
+//        $token = $userCreated->createToken($socialNetwork)->plainTextToken;
+//
+//        return response()->json([
+//            ['token' => $token]
+//        ]);
     }
 
     public function loginStaff(Request $request){
