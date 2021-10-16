@@ -32,7 +32,6 @@ class Schema extends SchemaProvider
     {
         return [
             'name'      =>  $customer->name,
-            'logo'      =>  $customer->logo,
             'state'     =>  $customer->state,
             'created-at' =>  $customer->created_at->format('d-m-Y H:i:s'),
             'updated-at' =>  $customer->updated_at->format('d-m-Y H:i:s'),

@@ -19,14 +19,17 @@ class CustomerSeeder extends Seeder
             [
                 'name' => 'Cervelar',
                 'slug' => Str::slug('cervelar'),
+                'state'       =>  'activo',
             ],
             [
                 'name' => 'Antares',
-                'slug' => Str::slug('antares')
+                'slug' => Str::slug('antares'),
+                'state'       =>  'activo',
             ],
             [
                 'name' => 'La Esquina',
-                'slug' => Str::slug('La Esquina')
+                'slug' => Str::slug('La Esquina'),
+                'state'       =>  'activo',
             ]
         ];
 

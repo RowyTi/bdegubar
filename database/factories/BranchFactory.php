@@ -27,7 +27,7 @@ class BranchFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'slug' => $this->faker->slug(),
-            'image' => $this->faker->imageUrl(200,200, 'abstract'),
+            'logo' => $this->faker->imageUrl(30,30, 'abstract'),
             'latitud' => $this->faker->latitude(),
             'longitud' => $this->faker->longitude(),
             'state' => $this->faker->randomElement(["activo","inactivo"]),

@@ -23,8 +23,8 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             ProfileSeeder::class,
             StaffSeeder::class,
-            UserSeeder::class,
-            SocialNetworkSeed::class,
+            //UserSeeder::class,
+            //SocialNetworkSeed::class,
 
         ]);
         // \App\Models\User::factory(10)->create();

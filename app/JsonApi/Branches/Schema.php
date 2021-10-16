@@ -51,6 +51,7 @@ class Schema extends SchemaProvider
         return [
             'name'      => $branch->name,
             'slug'      => $branch->slug,
+            'logo'      => $branch->logo,
             'latitud'   => $branch->latitud,
             'longitud'  => $branch->longitud,
             'state'     => $branch->state,

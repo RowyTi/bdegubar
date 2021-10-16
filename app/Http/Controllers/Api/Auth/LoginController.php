@@ -54,7 +54,9 @@ class LoginController extends Controller
         $token = $socialProfile->createToken($socialNetwork, ['user:public'])->plainTextToken;
 
         return response()->json([
-            ['token' => $token]
+            [
+                'token' => $token
+            ]
         ]);
     }
 

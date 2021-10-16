@@ -16,6 +16,11 @@ class Branch extends Model
      */
     protected $guarded = [];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -26,42 +31,40 @@ class Branch extends Model
         'customer_id' => 'integer',
         'address_id' => 'integer',
     ];
-    public function ranking(){
-        return '5';
-    }
+
 
     public function tables()
     {
-        return $this->hasMany(Table::class);
+        return $this->hasMany(\App\Models\Table::class);
     }
 
     public function staff()
     {
-        return $this->hasMany(Staff::class);
+        return $this->hasMany(\App\Models\Staff::class);
     }
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(\App\Models\Product::class);
     }
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(\App\Models\Comment::class);
     }
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(\App\Models\Category::class);
     }
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(\App\Models\Customer::class);
     }
 
     public function address()
     {
-        return $this->belongsTo(Address::class);
+        return $this->belongsTo(\App\Models\Address::class);
     }
 }

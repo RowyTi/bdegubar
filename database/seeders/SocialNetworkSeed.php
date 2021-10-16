@@ -14,6 +14,6 @@ class SocialNetworkSeed extends Seeder
      */
     public function run()
     {
-        SocialNetwork::factory(30)->create();
+     //
     }
 }
