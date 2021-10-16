@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             ProductSeeder::class,
             ProfileSeeder::class,
             StaffSeeder::class,
-            //UserSeeder::class,
+            UserSeeder::class,
             //SocialNetworkSeed::class,
 
         ]);
