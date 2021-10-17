@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class Staff extends Authenticatable
 {
-    use Notifiable, HasApiTokens, HasFactory;
+    use Notifiable, HasApiTokens, HasFactory, HasRoles;
 
     /**
      * The attributes that aren't mass assignable.
@@ -41,11 +42,11 @@ class Staff extends Authenticatable
 
     public function branch()
     {
-        return $this->belongsTo(\App\Models\Branch::class);
+        return $this->belongsTo(Branch::class);
     }
 
     public function profile()
     {
-        return $this->belongsTo(\App\Models\Profile::class);
+        return $this->belongsTo(Profile::class);
     }
 }

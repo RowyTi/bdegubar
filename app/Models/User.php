@@ -3,14 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens, HasFactory;
+    use Notifiable, HasApiTokens, HasFactory, HasRoles;
 
     /**
      * The attributes that aren't mass assignable.
@@ -43,16 +43,16 @@ class User extends Authenticatable
 
     public function socialNetworks()
     {
-        return $this->hasMany(\App\Models\SocialNetwork::class);
+        return $this->hasMany(SocialNetwork::class);
     }
 
     public function comments()
     {
-        return $this->hasMany(\App\Models\Comment::class);
+        return $this->hasMany(Comment::class);
     }
 
     public function profile()
     {
-        return $this->belongsTo(\App\Models\Profile::class);
+        return $this->belongsTo(Profile::class);
     }
 }

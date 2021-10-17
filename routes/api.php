@@ -75,19 +75,21 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasMany('comments')->except('replace', 'add', 'remove');
         });
 
-    //Login para miembros del staff [Clientes y Empleados]
-    Route::post('login', [LoginController::class, 'loginStaff'])
-        ->middleware('guest:sanctum');
-    Route::post('logout', [LoginController::class, 'logoutStaff'])
+    // Login para miembros del staff [Clientes y Empleados]
+    Route::post('login', [LoginController::class, 'loginStaff']);
+    Route::post('logout', [LoginController::class, 'logout'])
         ->middleware('auth:sanctum');
+
+    // Login & Register para usuarios form
+
+
+    // Login para usuarios finales con redes sociales [facebook, google]
+    Route::get('login/{socialNetwork}', [LoginController::class, 'redirectToDriver'])
+        ->middleware('social_network');
+    Route::get('login/{socialNetwork}/callback', [LoginController::class, 'handleDriverCallback']);
+
+    // Usuario autenticado
     Route::get('me', StaffController::class)
         ->middleware('auth:sanctum')
         ->name('me');
-
-    //Login para usuarios finales con redes sociales [facebook, google]
-    Route::get('login/{socialNetwork}', [LoginController::class, 'redirectToDriver'])
-        ->middleware('guest:sanctum', 'social_network');
-    Route::get('login/{socialNetwork}/callback', [LoginController::class, 'handleDriverCallback'])
-        ->middleware('guest:sanctum');;
-
 });

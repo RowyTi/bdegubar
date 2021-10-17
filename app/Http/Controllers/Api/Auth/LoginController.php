@@ -14,7 +14,7 @@ use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-    //Login redes sociales
+    // Login redes sociales - users
     public function redirectToDriver($socialNetwork)
     {
         return Socialite::driver($socialNetwork)->stateless()->redirect();
@@ -60,6 +60,7 @@ class LoginController extends Controller
         ]);
     }
 
+    // Login empleados
     public function loginStaff(Request $request){
 
         $request->validate([
@@ -79,7 +80,7 @@ class LoginController extends Controller
         ]);
     }
 
-    public function logoutStaff(Request $request)
+    public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
 

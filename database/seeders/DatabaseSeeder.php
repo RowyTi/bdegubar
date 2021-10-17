@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             ProfileSeeder::class,
             StaffSeeder::class,
             UserSeeder::class,
+            RoleSeeder::class
             //SocialNetworkSeed::class,
 
         ]);

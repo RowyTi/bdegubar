@@ -33,6 +33,6 @@ class Category extends Model
 
     public function branches()
     {
-        return $this->belongsToMany(\App\Models\Branch::class);
+        return $this->belongsToMany(Branch::class);
     }
 }

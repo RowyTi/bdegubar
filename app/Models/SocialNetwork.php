@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class SocialNetwork extends Authenticatable
 {
-    use Notifiable, HasApiTokens, HasFactory;
+    use Notifiable, HasApiTokens, HasFactory, HasRoles;
 
     /**
      * The attributes that aren't mass assignable.
@@ -18,6 +19,7 @@ class SocialNetwork extends Authenticatable
      */
     protected $guarded = [];
 
+    //    Redes sociales permitidas para el login
     public static $allowed = ['facebook', 'google'];
 
     /**
@@ -33,6 +35,6 @@ class SocialNetwork extends Authenticatable
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 }
