@@ -17,11 +17,11 @@ class StaffController extends Controller
     public function __invoke(Request $request)
     {
         $user = $request->user();
-        $permissions = ['super-admin', 'view-usuarios'];
+        $permissions = ['super-admin', 'view:dashboard'];
 
         return [
             $user,
-            'permissions' => $permissions
+            'scope' => $permissions
         ];
     }
 }
