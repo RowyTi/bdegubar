@@ -72,6 +72,14 @@ class Schema extends SchemaProvider
                     return $branch->staff;
                 }
             ],
+            'comments' => [
+                self::SHOW_RELATED  => true,
+                self::SHOW_SELF     => true,
+                self::SHOW_DATA     => isset($includeRelationships['comments']),
+                self::DATA          => function() use ($branch){
+                    return $branch->comments;
+                }
+            ],
             'tables' => [
                 self::SHOW_RELATED  => true,
                 self::SHOW_SELF     => true,

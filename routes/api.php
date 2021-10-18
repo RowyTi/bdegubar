@@ -76,7 +76,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
         });
 
     // Login para miembros del staff [Clientes y Empleados]
-    Route::post('login', [LoginController::class, 'loginStaff']);
+    Route::post('login/staff', [LoginController::class, 'loginStaff']);
     Route::post('logout', [LoginController::class, 'logout'])
         ->middleware('auth:sanctum');
 
@@ -84,11 +84,11 @@ JsonApi::register('v1')->routes(function ($api, $router){
 
 
     // Login para usuarios finales con redes sociales [facebook, google]
-    Route::post('loginMobile', [LoginController::class, 'loginMobile']);
+    Route::post('login/mobile', [LoginController::class, 'loginMobile']);
 
-    Route::get('login/{socialNetwork}', [LoginController::class, 'redirectToDriver'])
-        ->middleware('social_network');
-    Route::get('login/{socialNetwork}/callback', [LoginController::class, 'handleDriverCallback']);
+//    Route::get('login/{socialNetwork}', [LoginController::class, 'redirectToDriver'])
+//        ->middleware('social_network');
+//    Route::get('login/{socialNetwork}/callback', [LoginController::class, 'handleDriverCallback']);
 
     // Usuario autenticado
     Route::get('me', StaffController::class)
