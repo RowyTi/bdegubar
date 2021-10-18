@@ -31,6 +31,7 @@ class Schema extends SchemaProvider
     public function getAttributes($user): array
     {
         return [
+            'name'  => $user->name,
             'email' => $user->email,
             'created-at' => $user->created_at->format('d-m-Y H:i:s'),
             'updated-at' => $user->updated_at->format('d-m-Y H:i:s'),
