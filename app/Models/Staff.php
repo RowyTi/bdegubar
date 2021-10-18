@@ -12,6 +12,7 @@ class Staff extends Authenticatable
 {
     use Notifiable, HasApiTokens, HasFactory, HasRoles;
 
+    protected $guard_name = 'sanctum';
     /**
      * The attributes that aren't mass assignable.
      *

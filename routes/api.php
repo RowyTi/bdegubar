@@ -84,6 +84,8 @@ JsonApi::register('v1')->routes(function ($api, $router){
 
 
     // Login para usuarios finales con redes sociales [facebook, google]
+    Route::post('loginMobile', [LoginController::class, 'loginMobile']);
+
     Route::get('login/{socialNetwork}', [LoginController::class, 'redirectToDriver'])
         ->middleware('social_network');
     Route::get('login/{socialNetwork}/callback', [LoginController::class, 'handleDriverCallback']);

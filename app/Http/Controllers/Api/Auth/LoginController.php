@@ -59,6 +59,48 @@ class LoginController extends Controller
             ]
         ]);
     }
+    // Login Mobile
+    public function loginMobile(Request $request){
+        $request->validate([
+            'email' => ['required'],
+            'socialNetwork' => ['required'],
+            'socialId'  => ['required'],
+            'name' => ['required'],
+            'avatar' => ['required']
+        ]);
+
+        $socialProfile = SocialNetwork::firstOrNew([
+            'social_name' => $request->socialNetwork,
+            'social_id' => $request->socialId
+        ]);
+
+        if (!$socialProfile->exists) {
+            // Verifico si existe un usuario con el email de la red social
+            $user = User::firstOrNew([
+                'email' => $request->email
+            ]);
+
+            if (!$user->exists) {
+                $user->name = $request->name;
+                $user->email_verified_at = now();
+                $user->save();
+            }
+
+            $socialProfile->social_avatar = $request->avatar;
+
+            $user->socialNetworks()->save($socialProfile);
+        }
+
+        $token = $socialProfile->createToken($request->socialNetwork, ['user:public'])->plainTextToken;
+
+        return response()->json([
+            [
+                'token' => $token
+            ]
+        ]);
+
+
+    }
 
     // Login empleados
     public function loginStaff(Request $request){
@@ -76,7 +118,7 @@ class LoginController extends Controller
             ]);
         }
         return response()->json([
-            'token' => $staff->createToken($request->username, ['create:user'])->plainTextToken
+            'token' => $staff->createToken($request->username)->plainTextToken
         ]);
     }
 
