@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\UserController;
 use App\Http\Controllers\Api\StaffController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 use Illuminate\Support\Facades\Auth;
@@ -91,7 +92,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
 //    Route::get('login/{socialNetwork}/callback', [LoginController::class, 'handleDriverCallback']);
 
     // Usuario autenticado
-    Route::get('me', StaffController::class)
+    Route::get('user', UserController::class)
         ->middleware('auth:sanctum')
-        ->name('me');
+        ->name('user');
 });
