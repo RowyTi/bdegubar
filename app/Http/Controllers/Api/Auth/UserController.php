@@ -18,7 +18,7 @@ class UserController extends Controller
     public function __invoke(Request $request): JsonResponse
     {
         $user = $request->user();
-        $user->scope = ['super-admin', 'view:dashboard'];
+        $user->scope = ['super-admin', 'view:dashboard', '*'];
 
         return response()->json($user);
     }

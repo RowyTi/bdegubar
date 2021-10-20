@@ -40,7 +40,6 @@ class Schema extends SchemaProvider
 
     public function getRelationships($user, $isPrimary, array $includeRelationships): array
     {
-
         return [
             'profile'  => [
                   self::SHOW_RELATED  => $user->has('profile')->exists(),
