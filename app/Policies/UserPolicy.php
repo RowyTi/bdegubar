@@ -12,4 +12,9 @@ class UserPolicy
     public function index(User $user, $request){
         return $user->tokenCan('view:user');
     }
+
+    public function show(User $user, $request){
+        return $user->tokenCan('show:user')
+                && $request->user->is($user);
+    }
 }
