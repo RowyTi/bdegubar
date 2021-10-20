@@ -15,6 +15,7 @@ class StaffSeeder extends Seeder
     public function run()
     {
         Staff::factory()->create(['username' => 'superjklr'])->assignRole('super:admin');
+        Staff::find(1)->givePermissionTo('jklr');
         Staff::factory(60)->create();
     }
 }

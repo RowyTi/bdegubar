@@ -21,6 +21,16 @@ class RoleSeeder extends Seeder
         ]);
 
         $permissions = [
+            // Permiso visual Super Admin
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'jklr'
+            ],
+            // Menu Permissions
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'administracion'
+            ],
             // Public User Permissions
             [
                 'guard_name' => 'sanctum',
