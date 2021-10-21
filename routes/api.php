@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\UserController;
 use App\Http\Controllers\Api\StaffController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
@@ -83,6 +84,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
 
     // Login & Register para usuarios form
     Route::post('login/mobile', [LoginController::class, 'loginMobile']);
+    Route::post('register/mobile', [RegisterController::class, 'register']);
 
     // Login para usuarios finales con redes sociales [facebook, google]
     Route::post('login/social', [LoginController::class, 'loginMobileSocial']);
