@@ -6,61 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\SocialNetwork;
 use App\Models\Staff;
 use App\Models\User;
-use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-    // Login redes sociales - users
-    public function redirectToDriver($socialNetwork)
+    // Login Mobile Social
+    public function loginMobileSocial(Request $request): JsonResponse
     {
-        return Socialite::driver($socialNetwork)->stateless()->redirect();
-
-    }
-
-    public function handleDriverCallback($socialNetwork)
-    {
-        try {
-            $socialUser = Socialite::driver($socialNetwork)->stateless()->user();
-        } catch (ClientException $exception) {
-            return response()->json(['error' => 'Hubo un error al intentar loguear'], 422);
-        }
-
-        $socialProfile = SocialNetwork::firstOrNew([
-            'social_name' => $socialNetwork,
-            'social_id' => $socialUser->getId()
-        ]);
-
-        if (!$socialProfile->exists) {
-            // Verifico si existe un usuario con el email de la red social
-            $user = User::firstOrNew([
-                'email' => $socialUser->getEmail()
-            ]);
-
-            if (!$user->exists) {
-                $user->name = $socialUser->getName();
-                $user->email_verified_at = now();
-                $user->save();
-            }
-
-            $socialProfile->social_avatar = $socialUser->getAvatar();
-
-            $user->socialNetworks()->save($socialProfile);
-        }
-
-        $token = $socialProfile->createToken($socialNetwork, ['user:public'])->plainTextToken;
-
-        return response()->json([
-            [
-                'token' => $token
-            ]
-        ]);
-    }
-    // Login Mobile
-    public function loginMobile(Request $request){
         $request->validate([
             'email' => ['required'],
             'socialNetwork' => ['required'],
@@ -73,6 +29,7 @@ class LoginController extends Controller
             'social_name' => $request->socialNetwork,
             'social_id' => $request->socialId
         ]);
+
 
         if (!$socialProfile->exists) {
             // Verifico si existe un usuario con el email de la red social
@@ -98,13 +55,31 @@ class LoginController extends Controller
                 'token' => $token
             ]
         ]);
-
-
     }
 
-    // Login empleados
-    public function loginStaff(Request $request){
+    // Login Mobile tradicional
+     public function loginMobile(Request $request): JsonResponse
+     {
+         $request->validate([
+             'email' => ['required'],
+             'password' => ['required']
+         ]);
 
+         $user = User::where('email', $request->email)->first();
+
+         if (! Hash::check($request->password, optional($user)->password)) {
+             throw ValidationException::withMessages([
+                 'email' => [__('auth.failed')]
+             ]);
+         }
+         return response()->json([
+             'token' => $user->createToken($user->email, ['user:public'])->plainTextToken
+         ]);
+     }
+
+    // Login empleados
+    public function loginStaff(Request $request): JsonResponse
+    {
         $request->validate([
             'username' => ['required'],
             'password' => ['required']
@@ -117,12 +92,14 @@ class LoginController extends Controller
                 'username' => [__('auth.failed')]
             ]);
         }
+        $permissions = $staff->getPermissionNames()->toArray();
         return response()->json([
-            'token' => $staff->createToken($request->username)->plainTextToken
+            'token' => $staff->createToken($staff->username, $permissions )->plainTextToken
         ]);
     }
 
-    public function logout(Request $request)
+    // Logout todos
+    public function logout(Request $request): Response
     {
         $request->user()->currentAccessToken()->delete();
 

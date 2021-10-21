@@ -82,10 +82,10 @@ JsonApi::register('v1')->routes(function ($api, $router){
         ->middleware('auth:sanctum');
 
     // Login & Register para usuarios form
-
+    Route::post('login/mobile', [LoginController::class, 'loginMobile']);
 
     // Login para usuarios finales con redes sociales [facebook, google]
-    Route::post('login/mobile', [LoginController::class, 'loginMobile']);
+    Route::post('login/social', [LoginController::class, 'loginMobileSocial']);
 
 //    Route::get('login/{socialNetwork}', [LoginController::class, 'redirectToDriver'])
 //        ->middleware('social_network');
