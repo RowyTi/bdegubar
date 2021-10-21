@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Comment;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,19 +15,17 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
-            CustomerSeeder::class,
-            PaymentkeySeeder::class,
             BranchSeeder::class,
+            PaymentkeySeeder::class,
             CategorySeeder::class,
             TableSeeder::class,
             ProductSeeder::class,
             ProfileSeeder::class,
             StaffSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            CommentSeeder::class,
             //SocialNetworkSeed::class,
-
         ]);
-        // \App\Models\User::factory(10)->create();
-        \App\Models\Comment::factory(100)->create();
+
     }
 }

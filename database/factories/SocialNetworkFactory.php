@@ -21,13 +21,13 @@ class SocialNetworkFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'social_id' => $this->faker->uuid(),
+            'social_id'     => $this->faker->uuid(),
             'social_avatar' => $this->faker->imageUrl(200,200, 'people'),
-            'social_name' => $this->faker->name(),
-            'user_id' => User::all()->random()->id,
+            'social_name'   => $this->faker->randomElement(['facebook', 'google']),
+            'user_id'       => User::all()->random()->id,
         ];
     }
 }

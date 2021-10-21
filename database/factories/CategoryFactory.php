@@ -20,11 +20,14 @@ class CategoryFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
+        $name = $this->faker->name();
+        $slug = Str::slug($name);
         return [
-            'name' => $this->faker->name,
-            'slug' => $this->faker->slug,
+            'name'      => $name,
+            'slug'      => $slug,
+            'deletedAt' => null,
         ];
     }
 }

@@ -12,15 +12,13 @@ class SocialNetwork extends Authenticatable
 {
     use Notifiable, HasApiTokens, HasFactory, HasRoles;
 
+    protected $guard_name = 'sanctum';
     /**
      * The attributes that aren't mass assignable.
      *
      * @var array
      */
     protected $guarded = [];
-
-    //    Redes sociales permitidas para el login
-    public static $allowed = ['facebook', 'google'];
 
     /**
      * The attributes that should be cast to native types.

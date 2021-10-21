@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Branch;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Customer;
@@ -21,13 +22,13 @@ class PaymentKeyFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'access_token' => Str::random(30),
-            'public_token' => Str::random(30),
-            'customer_id' => Customer::all()->random()->id,
+            'name'          => $this->faker->name(),
+            'access_token'  => Str::random(30),
+            'public_token'  => Str::random(30),
+            'branch_id'     => Branch::all()->random()->id,
         ];
     }
 }

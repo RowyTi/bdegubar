@@ -22,14 +22,15 @@ class CommentFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(4),
-            'message' => $this->faker->word(),
-            'rating' => $this->faker->randomFloat(1, 3, 5.),
+            'title'     => $this->faker->sentence(20),
+            'message'   => $this->faker->word(),
+            'rating'    => $this->faker->randomFloat(1, 3, 5.),
             'branch_id' => Branch::all()->random()->id,
-            'user_id' => User::all()->random()->id,
+            'user_id'   => User::all()->random()->id,
+            'deletedAt' => null,
         ];
     }
 }

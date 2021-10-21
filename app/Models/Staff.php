@@ -36,6 +36,7 @@ class Staff extends Authenticatable
      */
     protected $casts = [
         'id' => 'integer',
+        'deletedAt' => 'date',
         'branch_id' => 'integer',
         'profile_id' => 'integer',
     ];

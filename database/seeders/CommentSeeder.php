@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\PaymentKey;
+use App\Models\Comment;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
 
-class PaymentkeySeeder extends Seeder
+class CommentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +14,6 @@ class PaymentkeySeeder extends Seeder
      */
     public function run()
     {
-        PaymentKey::factory(13)->create();
+        Comment::factory(100)->create();
     }
 }

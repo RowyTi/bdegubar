@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use App\Models\Address;
 use App\Models\Branch;
-use App\Models\Customer;
 
 class BranchFactory extends Factory
 {
@@ -22,17 +21,20 @@ class BranchFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
+        $name = $this->faker->name();
+        $slug = Str::slug($name);
         return [
-            'name' => $this->faker->name(),
-            'slug' => $this->faker->slug(),
-            'logo' => $this->faker->imageUrl(30,30, 'abstract'),
-            'latitud' => $this->faker->latitude(),
-            'longitud' => $this->faker->longitude(),
-            'state' => $this->faker->randomElement(["activo","inactivo"]),
-            'customer_id' => Customer::factory(),
-            'address_id' => Address::factory(),
+            'name'          => $name,
+            'slug'          => $slug,
+            'logo'          => $this->faker->imageUrl(30,30, 'abstract'),
+            'latitud'       => $this->faker->latitude(),
+            'longitud'      => $this->faker->longitude(),
+            'state'         => $this->faker->randomElement(["activo","inactivo"]),
+            'address_id'    => Address::factory(),
+            'deletedAt'     => null,
+
         ];
     }
 }

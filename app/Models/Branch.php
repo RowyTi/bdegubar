@@ -9,6 +9,7 @@ class Branch extends Model
 {
     use HasFactory;
 
+    protected $guard_name = 'sanctum';
     /**
      * The attributes that aren't mass assignable.
      *
@@ -28,10 +29,15 @@ class Branch extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'customer_id' => 'integer',
         'address_id' => 'integer',
+        'deletedAt' => 'date',
     ];
 
+
+    public function paymentkey()
+    {
+        return $this->hasOne(Paymentkey::class);
+    }
 
     public function tables()
     {
@@ -56,11 +62,6 @@ class Branch extends Model
     public function categories()
     {
         return $this->belongsToMany(Category::class);
-    }
-
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class);
     }
 
     public function address()

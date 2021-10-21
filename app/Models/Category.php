@@ -9,6 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $guard_name = 'sanctum';
     /**
      * The attributes that aren't mass assignable.
      *
@@ -28,6 +29,7 @@ class Category extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'deletedAt' => 'date',
     ];
 
 

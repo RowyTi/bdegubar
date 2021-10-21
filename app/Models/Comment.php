@@ -9,6 +9,7 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $guard_name = 'sanctum';
     /**
      * The attributes that aren't mass assignable.
      *
@@ -24,6 +25,7 @@ class Comment extends Model
     protected $casts = [
         'id' => 'integer',
         'rating' => 'float',
+        'deletedAt' => 'date',
         'branch_id' => 'integer',
         'user_id' => 'integer',
     ];

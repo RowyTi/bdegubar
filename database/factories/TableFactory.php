@@ -21,15 +21,15 @@ class TableFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
-        $name = $this->faker->name;
+        $name = $this->faker->name();
         $slug = Str::slug($name);
         return [
-            'name' => $name,
-            'slug' => $slug,
-            'qr' => $this->faker->word,
-            'state' => $this->faker->randomElement(["libre","ocupado","inactivo"]),
+            'name'      => $name,
+            'slug'      => $slug,
+            'qr'        => $this->faker->word(),
+            'state'     => $this->faker->randomElement(["libre","ocupado","inactivo"]),
             'branch_id' => Branch::all()->random()->id,
         ];
     }

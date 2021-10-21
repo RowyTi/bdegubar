@@ -12,6 +12,7 @@ class User extends Authenticatable
 {
     use Notifiable, HasApiTokens, HasFactory, HasRoles;
 
+    protected $guard_name = 'sanctum';
     /**
      * The attributes that aren't mass assignable.
      *
@@ -38,6 +39,7 @@ class User extends Authenticatable
         'id' => 'integer',
         'email_verified_at' => 'timestamp',
         'profile_id' => 'integer',
+        'deletedAt' => 'date',
     ];
 
 

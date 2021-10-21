@@ -83,27 +83,6 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'sanctum',
                 'name' => 'delete:category'
             ],
-            // Customer Permissions
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'view:customer'
-            ],
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'show:customer'
-            ],
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'create:customer'
-            ],
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'edit:customer',
-            ],
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'delete:customer'
-            ],
             // Payment Permissions
             [
                 'guard_name' => 'sanctum',

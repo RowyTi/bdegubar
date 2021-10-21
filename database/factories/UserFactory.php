@@ -21,15 +21,17 @@ class UserFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->safeEmail(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'name'              => $this->faker->firstName(),
+            'email'             => $this->faker->safeEmail(),
+            'password'          => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'email_verified_at' => $this->faker->dateTime(),
-            'remember_token' => Str::random(10),
-            'profile_id' => Profile::factory(),
+            'remember_token'    => Str::random(10),
+            'state'             => $this->faker->randomElement(["activo","inactivo"]),
+            'deletedAt'         => null,
+            'profile_id'        => Profile::factory(),
         ];
     }
 }

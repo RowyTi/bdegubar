@@ -22,14 +22,16 @@ class StaffFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'username' => $this->faker->userName,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'state' => $this->faker->randomElement(["activo","inactivo"]),
-            'branch_id' => Branch::all()->random()->id,
-            'profile_id' => Profile::all()->random()->id,
+            'username'      => $this->faker->userName(),
+            'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'state'         => $this->faker->randomElement(["activo","inactivo"]),
+            'deletedAt'     => null,
+            'branch_id'     => Branch::all()->random()->id,
+            'profile_id'    => Profile::all()->random()->id,
+
         ];
     }
 }

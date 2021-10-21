@@ -20,7 +20,8 @@ class CreateStaffTable extends Migration
             $table->string('password');
             $table->string('username')->unique();
             $table->enum('state', ["activo","inactivo"]);
-            $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->date('deletedAt')->nullable();
+            $table->foreignId('branch_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('profile_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

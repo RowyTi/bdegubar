@@ -9,6 +9,7 @@ class PaymentKey extends Model
 {
     use HasFactory;
 
+    protected $guard_name = 'sanctum';
     /**
      * The attributes that aren't mass assignable.
      *
@@ -27,8 +28,8 @@ class PaymentKey extends Model
     ];
 
 
-    public function customer()
+    public function branch()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Branch::class);
     }
 }

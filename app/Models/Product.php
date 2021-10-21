@@ -9,6 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $guard_name = 'sanctum';
     /**
      * The attributes that aren't mass assignable.
      *
@@ -24,6 +25,7 @@ class Product extends Model
     protected $casts = [
         'id' => 'integer',
         'price' => 'float',
+        'deletedAt' => 'date',
         'branch_id' => 'integer',
     ];
 
