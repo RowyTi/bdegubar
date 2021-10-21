@@ -69,7 +69,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasOne('branches')->except('replace', 'add', 'remove');
     });
 
-    $api->resource('users')->readOnly()
+    $api->resource('users')
         ->relationships(function ($api){
             $api->hasOne('profile')->except('replace', 'add', 'remove');
             $api->hasMany('socialnetworks')->except('replace', 'add', 'remove');
