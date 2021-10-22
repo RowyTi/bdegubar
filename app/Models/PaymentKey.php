@@ -24,7 +24,7 @@ class PaymentKey extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'customer_id' => 'integer',
+        'branch_id' => 'integer',
     ];
 
 

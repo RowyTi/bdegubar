@@ -46,6 +46,10 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
+    public function paymentkey(){
+        return $this->hasOne();
+    }
+
     public function staff(){
         return $this->hasMany();
     }

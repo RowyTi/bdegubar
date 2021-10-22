@@ -33,6 +33,7 @@ class Schema extends SchemaProvider
         return [
             'name'  => $user->name,
             'email' => $user->email,
+            'deleted_at' => $user->deleted_at,
             'created-at' => $user->created_at->format('d-m-Y H:i:s'),
             'updated-at' => $user->updated_at->format('d-m-Y H:i:s'),
         ];
@@ -51,11 +52,11 @@ class Schema extends SchemaProvider
             ],
 
             'socialnetworks'  => [
-                self::SHOW_RELATED  => $user->has('socialnetworks')->exists(),
-                self::SHOW_SELF     => $user->has('socialnetworks')->exists(),
+                self::SHOW_RELATED  => true,
+                self::SHOW_SELF     => true,
                 self::SHOW_DATA     => isset($includeRelationships['socialnetworks']),
                 self::DATA          => function() use ($user){
-                    return $user->socialnetworks;
+                    return $user->socialNetworks;
                 }
             ],
             'comments'  => [

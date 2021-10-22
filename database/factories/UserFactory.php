@@ -30,7 +30,8 @@ class UserFactory extends Factory
             'email_verified_at' => $this->faker->dateTime(),
             'remember_token'    => Str::random(10),
             'state'             => $this->faker->randomElement(["activo","inactivo"]),
-            'deletedAt'         => null,
+            'deleted_at'        => null,
+//            'deletedAt'         => null,
             'profile_id'        => Profile::factory(),
         ];
     }

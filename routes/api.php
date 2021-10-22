@@ -3,9 +3,7 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\UserController;
-use App\Http\Controllers\Api\StaffController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 JsonApi::register('v1')->routes(function ($api, $router){
@@ -19,6 +17,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasMany('comments')->except('replace', 'add', 'remove');
             $api->hasMany('staff')->except('replace', 'add', 'remove');
             $api->hasOne('addresses')->except('replace', 'add', 'remove');
+            $api->hasOne('paymentkey')->except('replace', 'add', 'remove');
         });
 
     $api->resource('categories')->readOnly()
@@ -32,15 +31,9 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasOne('user')->except('replace', 'add', 'remove');
         });
 
-    $api->resource('customers')->readOnly()
-        ->relationships(function ($api){
-            $api->hasMany('branches')->except('replace', 'add', 'remove');
-            $api->hasOne('paymentkeys')->except('replace', 'add', 'remove');
-        });
-
     $api->resource('paymentkeys')->readOnly()
         ->relationships(function ($api){
-            $api->hasOne('customer')->except('replace', 'add', 'remove');
+            $api->hasOne('branch')->except('replace', 'add', 'remove');
         });
 
     $api->resource('products')->readOnly()
@@ -53,11 +46,10 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasOne('address')->except('replace', 'add', 'remove');
         });
 
-    $api->resource('socialnetworks')->readOnly();
-//        ->relationships(function ($api){
-//            $api->hasOne('branch')->except('replace', 'add', 'remove');
-//            $api->hasOne('profile')->except('replace', 'add', 'remove');
-//        });
+    $api->resource('socialnetworks')->readOnly()
+        ->relationships(function ($api){
+            $api->hasMany('users')->except('replace', 'add', 'remove');
+        });
 
     $api->resource('staff')->readOnly()
         ->relationships(function ($api){

@@ -18,7 +18,6 @@ class Adapter extends AbstractAdapter
      */
     protected $attributes = [];
 
-//    protected $includePaths = ['social-networks' => 'socialNetworks'];
     /**
      * Mapping of JSON API filter names to model scopes.
      *
@@ -44,6 +43,10 @@ class Adapter extends AbstractAdapter
     protected function filter($query, Collection $filters)
     {
         $this->filterWithScopes($query, $filters);
+    }
+
+    public function user(){
+        return $this->belongsTo('user');
     }
 
 }

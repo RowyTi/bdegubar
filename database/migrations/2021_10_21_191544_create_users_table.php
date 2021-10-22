@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->foreignId('profile_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->date('deletedAt')->nullable();
+            $table->softDeletes()->nullable();
             $table->timestamps();
         });
 

@@ -10,7 +10,6 @@ use Illuminate\Support\Collection;
 
 class Adapter extends AbstractAdapter
 {
-
     /**
      * Mapping of JSON API attribute field names to model keys.
      *
@@ -23,7 +22,7 @@ class Adapter extends AbstractAdapter
      *
      * @var array
      */
-    protected $filterScopes = [];
+    protected $filterScopes = ['onlyTrashed', 'withTrashed'];
 
     /**
      * Adapter constructor.
@@ -42,7 +41,13 @@ class Adapter extends AbstractAdapter
      */
     protected function filter($query, Collection $filters)
     {
-        $this->filterWithScopes($query, $filters);
+//        dd($filters->get('onlyTrashed'));
+//        $this->filterWithScopes($query, $filters);
+        if (true == $filters->get('withTrashed')) {
+            $query->withTrashed();
+        } else if (true == $filters->get('onlyTrashed')) {
+            $query->onlyTrashed();
+        }
     }
 
     public function profile(){
