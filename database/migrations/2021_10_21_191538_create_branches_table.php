@@ -24,7 +24,7 @@ class CreateBranchesTable extends Migration
             $table->string('longitud');
             $table->enum('state', ["activo","inactivo"]);
             $table->foreignId('address_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->date('deletedAt')->nullable();
+            $table->softDeletes()->nullable();
             $table->timestamps();
         });
 

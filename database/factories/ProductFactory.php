@@ -30,7 +30,7 @@ class ProductFactory extends Factory
             'quantity'      => $this->faker->numberBetween(0, 1000),
             'description'   => $this->faker->text(),
             'state'         => $this->faker->randomElement(["activo","inactivo"]),
-            'deletedAt'     => null,
+            // 'deleted_at'    => null,
             'branch_id'     => Branch::all()->random()->id,
         ];
     }

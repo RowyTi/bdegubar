@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Branch extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guard_name = 'sanctum';
     /**
@@ -30,7 +31,6 @@ class Branch extends Model
     protected $casts = [
         'id' => 'integer',
         'address_id' => 'integer',
-        'deletedAt' => 'date',
     ];
 
 

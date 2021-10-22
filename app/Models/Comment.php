@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guard_name = 'sanctum';
     /**
@@ -25,7 +26,6 @@ class Comment extends Model
     protected $casts = [
         'id' => 'integer',
         'rating' => 'float',
-        'deletedAt' => 'date',
         'branch_id' => 'integer',
         'user_id' => 'integer',
     ];

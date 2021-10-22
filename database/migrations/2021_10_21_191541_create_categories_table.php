@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->date('deletedAt')->nullable();
+            $table->softDeletes()->nullable();
             $table->timestamps();
         });
 

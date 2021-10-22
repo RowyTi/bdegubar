@@ -23,8 +23,8 @@ class CreateProductsTable extends Migration
             $table->integer('quantity');
             $table->string('description')->nullable();
             $table->enum('state', ["activo","inactivo"]);
-            $table->date('deletedAt')->nullable();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->softDeletes()->nullable();
             $table->timestamps();
         });
 

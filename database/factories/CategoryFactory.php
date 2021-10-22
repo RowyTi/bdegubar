@@ -27,7 +27,7 @@ class CategoryFactory extends Factory
         return [
             'name'      => $name,
             'slug'      => $slug,
-            'deletedAt' => null,
+            // 'deleted_at'=> null,
         ];
     }
 }

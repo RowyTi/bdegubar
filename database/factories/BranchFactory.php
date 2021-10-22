@@ -33,8 +33,6 @@ class BranchFactory extends Factory
             'longitud'      => $this->faker->longitude(),
             'state'         => $this->faker->randomElement(["activo","inactivo"]),
             'address_id'    => Address::factory(),
-            'deletedAt'     => null,
-
         ];
     }
 }

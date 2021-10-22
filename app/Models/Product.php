@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guard_name = 'sanctum';
     /**
@@ -25,7 +26,6 @@ class Product extends Model
     protected $casts = [
         'id' => 'integer',
         'price' => 'float',
-        'deletedAt' => 'date',
         'branch_id' => 'integer',
     ];
 

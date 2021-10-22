@@ -20,9 +20,9 @@ class CreateCommentsTable extends Migration
             $table->string('title');
             $table->string('message');
             $table->float('rating');
-            $table->date('deletedAt')->nullable();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->softDeletes()->nullable();
             $table->timestamps();
         });
 

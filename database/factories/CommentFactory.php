@@ -30,7 +30,7 @@ class CommentFactory extends Factory
             'rating'    => $this->faker->randomFloat(1, 3, 5.),
             'branch_id' => Branch::all()->random()->id,
             'user_id'   => User::all()->random()->id,
-            'deletedAt' => null,
+            // 'deleted_at'=> null,
         ];
     }
 }
