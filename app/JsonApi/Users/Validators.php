@@ -24,7 +24,8 @@ class Validators extends AbstractValidators
 
     protected $allowedSortParameters = [
         'name',
-        'email'
+        'email',
+        'state'
     ];
 
     /**

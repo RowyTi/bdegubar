@@ -4,7 +4,6 @@ use App\Models\Address;
 use App\Models\Branch;
 use App\Models\Category;
 use App\Models\Comment;
-use App\Models\Customer;
 use App\Models\Menu;
 use App\Models\PaymentKey;
 use App\Models\Product;
@@ -13,7 +12,6 @@ use App\Models\SocialNetwork;
 use App\Models\Staff;
 use App\Models\Table;
 use App\Models\User;
-use App\Post;
 use CloudCreativity\LaravelJsonApi\Queue\ClientJob;
 use CloudCreativity\LaravelJsonApi\Resolver\ResolverFactory;
 
@@ -86,7 +84,6 @@ return [
         'tables'            =>  Table::class,
         'branches'          =>  Branch::class,
         'addresses'         =>  Address::class,
-        'customers'         =>  Customer::class,
         'products'          =>  Product::class,
         'categories'        =>  Category::class,
         'paymentkeys'       =>  PaymentKey::class,

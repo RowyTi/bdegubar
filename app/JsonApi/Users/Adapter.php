@@ -7,6 +7,7 @@ use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
 
 class Adapter extends AbstractAdapter
 {
@@ -48,6 +49,14 @@ class Adapter extends AbstractAdapter
         } else if (true == $filters->get('onlyTrashed')) {
             $query->onlyTrashed();
         }
+    }
+
+    protected function saved(User $user, $request){
+        if(isset($request->password)){
+            $user->password=Hash::make($request->password);
+            $user->save();
+        }
+      
     }
 
     public function profile(){

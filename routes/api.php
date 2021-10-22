@@ -5,10 +5,9 @@ use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\UserController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 use Illuminate\Support\Facades\Route;
-
 JsonApi::register('v1')->routes(function ($api, $router){
+    // Resource Data
     $api->resource('addresses')->readOnly();
-
     $api->resource('branches')->readOnly()
         ->relationships(function ($api){
             $api->hasMany('products')->except('replace', 'add', 'remove');
@@ -20,6 +19,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasOne('paymentkey')->except('replace', 'add', 'remove');
         });
 
+   
     $api->resource('categories')->readOnly()
         ->relationships(function ($api){
             $api->hasMany('branches')->except('replace', 'add', 'remove');
@@ -60,8 +60,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
     $api->resource('tables')->readOnly()
         ->relationships(function ($api){
             $api->hasOne('branches')->except('replace', 'add', 'remove');
-    });
-
+        });
     $api->resource('users')
         ->relationships(function ($api){
             $api->hasOne('profile')->except('replace', 'add', 'remove');
@@ -77,14 +76,8 @@ JsonApi::register('v1')->routes(function ($api, $router){
     // Login & Register para usuarios form
     Route::post('login/mobile', [LoginController::class, 'loginMobile']);
     Route::post('register/mobile', [RegisterController::class, 'register']);
-
     // Login para usuarios finales con redes sociales [facebook, google]
     Route::post('login/social', [LoginController::class, 'loginMobileSocial']);
-
-//    Route::get('login/{socialNetwork}', [LoginController::class, 'redirectToDriver'])
-//        ->middleware('social_network');
-//    Route::get('login/{socialNetwork}/callback', [LoginController::class, 'handleDriverCallback']);
-
     // Usuario autenticado
     Route::get('user', UserController::class)
         ->middleware('auth:sanctum')

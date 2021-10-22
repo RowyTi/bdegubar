@@ -31,9 +31,10 @@ class Schema extends SchemaProvider
     public function getAttributes($user): array
     {
         return [
-            'name'  => $user->name,
-            'email' => $user->email,
-            'deleted_at' => $user->deleted_at,
+            'name'       => $user->name,
+            'email'      => $user->email,
+            'state'      => $user->state,
+            'deleted_at' => ($user->deleted_at != null) ? $user->deleted_at->format('d-m-Y H:i:s') : $user->deleted_at,
             'created-at' => $user->created_at->format('d-m-Y H:i:s'),
             'updated-at' => $user->updated_at->format('d-m-Y H:i:s'),
         ];
@@ -67,7 +68,6 @@ class Schema extends SchemaProvider
                     return $user->comments;
                 }
             ]
-
         ];
     }
 }
