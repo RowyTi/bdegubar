@@ -39,16 +39,16 @@ class RoleSeeder extends Seeder
             // Dashboard Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:dashboard'
+                'name' => 'index:dashboard'
             ],
             // Branch Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:branch'
+                'name' => 'index:branch'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'show:branch'
+                'name' => 'read:branch'
             ],
             [
                 'guard_name' => 'sanctum',
@@ -56,7 +56,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'edit:branch',
+                'name' => 'update:branch',
             ],
             [
                 'guard_name' => 'sanctum',
@@ -65,11 +65,11 @@ class RoleSeeder extends Seeder
             // Category Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:category'
+                'name' => 'index:category'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'show:category'
+                'name' => 'read:category'
             ],
             [
                 'guard_name' => 'sanctum',
@@ -77,7 +77,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'edit:category',
+                'name' => 'update:category',
             ],
             [
                 'guard_name' => 'sanctum',
@@ -86,11 +86,11 @@ class RoleSeeder extends Seeder
             // Payment Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:payment'
+                'name' => 'index:payment'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'show:payment'
+                'name' => 'read:payment'
             ],
             [
                 'guard_name' => 'sanctum',
@@ -98,7 +98,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'edit:payment',
+                'name' => 'update:payment',
             ],
             [
                 'guard_name' => 'sanctum',
@@ -107,11 +107,11 @@ class RoleSeeder extends Seeder
             // Product Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:product'
+                'name' => 'index:product'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'show:product'
+                'name' => 'read:product'
             ],
             [
                 'guard_name' => 'sanctum',
@@ -119,7 +119,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'edit:product',
+                'name' => 'update:product',
             ],
             [
                 'guard_name' => 'sanctum',
@@ -128,11 +128,11 @@ class RoleSeeder extends Seeder
             // Profile Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:profile'
+                'name' => 'index:profile'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'show:profile'
+                'name' => 'read:profile'
             ],
             [
                 'guard_name' => 'sanctum',
@@ -140,7 +140,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'edit:profile',
+                'name' => 'update:profile',
             ],
             [
                 'guard_name' => 'sanctum',
@@ -149,11 +149,11 @@ class RoleSeeder extends Seeder
             // Role Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:role'
+                'name' => 'index:role'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'show:role'
+                'name' => 'read:role'
             ],
             [
                 'guard_name' => 'sanctum',
@@ -161,7 +161,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'edit:role',
+                'name' => 'update:role',
             ],
             [
                 'guard_name' => 'sanctum',
@@ -170,11 +170,11 @@ class RoleSeeder extends Seeder
             // SocialNetwork Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:socialNetwork'
+                'name' => 'index:socialNetwork'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'show:socialNetwork'
+                'name' => 'read:socialNetwork'
             ],
             [
                 'guard_name' => 'sanctum',
@@ -182,7 +182,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'edit:socialNetwork',
+                'name' => 'update:socialNetwork',
             ],
             [
                 'guard_name' => 'sanctum',
@@ -191,11 +191,11 @@ class RoleSeeder extends Seeder
             // Staff Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:staff'
+                'name' => 'index:staff'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'show:staff'
+                'name' => 'read:staff'
             ],
             [
                 'guard_name' => 'sanctum',
@@ -203,7 +203,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'edit:staff',
+                'name' => 'update:staff',
             ],
             [
                 'guard_name' => 'sanctum',
@@ -212,11 +212,11 @@ class RoleSeeder extends Seeder
             // Table Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:table'
+                'name' => 'index:table'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'show:table'
+                'name' => 'read:table'
             ],
             [
                 'guard_name' => 'sanctum',
@@ -224,7 +224,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'edit:table',
+                'name' => 'update:table',
             ],
             [
                 'guard_name' => 'sanctum',
@@ -233,11 +233,11 @@ class RoleSeeder extends Seeder
             // User Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'view:user'
+                'name' => 'index:user'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'show:user'
+                'name' => 'read:user'
             ],
             [
                 'guard_name' => 'sanctum',
@@ -245,7 +245,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'edit:user',
+                'name' => 'update:user',
             ],
             [
                 'guard_name' => 'sanctum',
