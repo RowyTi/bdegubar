@@ -26,7 +26,6 @@ class Authorizer extends AbstractAuthorizer
      */
     public function index($type, $request)
     {
-        $branch = Branch::find(5);
         $this->can('index',$type, $request);
     }
 
