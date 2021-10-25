@@ -72,6 +72,9 @@ class LoginController extends Controller
                  'email' => [__('auth.failed')]
              ]);
          }
+
+         $user->tokens()->delete();
+
          return response()->json([
              'token' => $user->createToken($user->email, ['user:public'])->plainTextToken
          ]);
@@ -92,9 +95,22 @@ class LoginController extends Controller
                 'username' => [__('auth.failed')]
             ]);
         }
+
+        $staff->tokens()->delete();
+
         $permissions = $staff->getPermissionNames()->toArray();
         return response()->json([
             'token' => $staff->createToken($staff->username, $permissions )->plainTextToken
+        ]);
+    }
+
+    public function refresh(Request $request): JsonResponse
+    {
+        $user = $request->user();
+        $user->tokens()->delete();
+        $permissions = $user->getPermissionNames()->toArray();
+        return response()->json([
+            'token' => $user->createToken($user->username, $permissions)->plainTextToken
         ]);
     }
 

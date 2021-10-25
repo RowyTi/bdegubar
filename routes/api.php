@@ -19,13 +19,13 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasOne('paymentkey')->except('replace', 'add', 'remove');
         });
 
-   
+
     $api->resource('categories')->readOnly()
         ->relationships(function ($api){
             $api->hasMany('branches')->except('replace', 'add', 'remove');
         });
 
-    $api->resource('comments')->readOnly()
+    $api->resource('comments')
         ->relationships(function ($api){
             $api->hasOne('branch')->except('replace', 'add', 'remove');
             $api->hasOne('user')->except('replace', 'add', 'remove');
@@ -69,7 +69,9 @@ JsonApi::register('v1')->routes(function ($api, $router){
         });
 
     // Login para miembros del staff [Clientes y Empleados]
-    Route::post('login/staff', [LoginController::class, 'loginStaff']);
+    Route::post('login/staff', [LoginController::class, 'loginStaff'])->name('login.staff');
+    Route::get('refresh/staff', [LoginController::class, 'refresh'])->name('refresh.token.staff')
+        ->middleware('auth:sanctum');
     Route::post('logout', [LoginController::class, 'logout'])
         ->middleware('auth:sanctum');
 

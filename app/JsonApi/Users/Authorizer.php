@@ -14,7 +14,7 @@ class Authorizer extends AbstractAuthorizer
     /**
      * Authorize a resource index request.
      *
-     * @param string $user
+     * @param string $type
      *      the domain record type.
      * @param Request $request
      *      the inbound request.
@@ -22,9 +22,9 @@ class Authorizer extends AbstractAuthorizer
      * @throws AuthenticationException|AuthorizationException
      *      if the request is not authorized.
      */
-    public function index($user, $request)
+    public function index($type, $request)
     {
-//        $this->can('view:user', $user);
+        $this->can('index', $type);
     }
 
     /**
@@ -40,7 +40,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function create($type, $request)
     {
-//         $this->can()
+         $this->can('create', $type);
     }
 
     /**
@@ -56,7 +56,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function read($record, $request)
     {
-//       $this->can('show:user', $record);
+        $this->can('read', $record);
     }
 
     /**
@@ -72,7 +72,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function update($record, $request)
     {
-        // TODO: Implement update() method.
+        $this->can('update', $record);
     }
 
     /**
@@ -88,7 +88,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function delete($record, $request)
     {
-        // TODO: Implement delete() method.
+        $this->can('delete', $record);
     }
 
 }

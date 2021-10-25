@@ -33,6 +33,7 @@ class Schema extends SchemaProvider
         return [
             'username'      => $staff->username,
             'state'         => $staff->state,
+            'roles'         => $staff->getRoleNames(),
             'created-at'    => $staff->created_at->format('d-m-Y H:i:s'),
             'updated-at'    => $staff->updated_at->format('d-m-Y H:i:s'),
         ];

@@ -28,7 +28,8 @@ class StaffFactory extends Factory
             'username'      => $this->faker->userName(),
             'password'      => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'state'         => $this->faker->randomElement(["activo","inactivo"]),
-            // 'deleted_at'    => null,
+//            'branch_id'     => Branch::factory(),
+//            'profile_id'    => Profile::factory(),
             'branch_id'     => Branch::all()->random()->id,
             'profile_id'    => Profile::all()->random()->id,
 

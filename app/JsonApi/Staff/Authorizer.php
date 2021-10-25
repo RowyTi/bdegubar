@@ -2,10 +2,12 @@
 
 namespace App\JsonApi\Staff;
 
+use App\Models\Branch;
 use CloudCreativity\LaravelJsonApi\Auth\AbstractAuthorizer;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Authorizer extends AbstractAuthorizer
 {
@@ -24,7 +26,8 @@ class Authorizer extends AbstractAuthorizer
      */
     public function index($type, $request)
     {
-        // TODO: Implement index() method.
+        $branch = Branch::find(5);
+        $this->can('index',$type, $request);
     }
 
     /**
