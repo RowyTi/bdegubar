@@ -32,12 +32,12 @@ class Schema extends SchemaProvider
     {
         return [
             'street'    =>  $address->street,
-            'number'    =>  $address->number,
-            'piso'      =>  $address->piso,
+            'number'    =>  (string)$address->number,
+            'piso'      =>  (string)$address->piso,
             'dpto'      =>  $address->dpto,
             'cp'        =>  $address->cp,
-            'created-at' =>  $address->created_at->format('d-m-Y H:i:s'),
-            'updated-at' =>  $address->updated_at->format('d-m-Y H:i:s'),
+            'createdAt' =>  $address->created_at->format('d-m-Y H:i:s'),
+            'updatedAt' =>  $address->updated_at->format('d-m-Y H:i:s'),
         ];
     }
 }
