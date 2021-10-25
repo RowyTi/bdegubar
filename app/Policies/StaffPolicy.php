@@ -12,11 +12,10 @@ class StaffPolicy
     public function index($staff, $request)
     {
         $branch = $request->query->get('filter');
-//        $article->user->is($staff);
-//        $branch = Branch::find(4);
+        $current_branch = (int)$branch['branch_id'];
 //        dd($user->branch_id === $branch->id);
-//        $request->query->get('foo[bar]', null, true);
-        dd((int)$branch['branch_id'] === $staff->branch_id);
-        return $staff->tokenCan('index:staff');
+//        dd((int)$branch['branch_id'] === $staff->branch_id);
+        return $staff->tokenCan('index:staff')
+        && $current_branch === $staff->branch_id;
     }
 }
