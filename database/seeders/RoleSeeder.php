@@ -191,6 +191,10 @@ class RoleSeeder extends Seeder
             // Staff Permissions
             [
                 'guard_name' => 'sanctum',
+                'name' => 'admin:staff'
+            ],
+            [
+                'guard_name' => 'sanctum',
                 'name' => 'index:staff'
             ],
             [

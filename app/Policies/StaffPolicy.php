@@ -21,7 +21,7 @@ class StaffPolicy
         if ($type->tokenCan('admin:staff')){
             return $type->branch_id === $staff->branch_id;
         }else{
-            return $type->tokenCan('read:staff') && $type->is($staff);
+            return $type->tokenCan('read:staff') && $type->id===$staff->id;
         }
     }
 
@@ -36,7 +36,7 @@ class StaffPolicy
         if ($type->tokenCan('admin:staff')){
             return $type->branch_id === $staff->branch_id;
         }else{
-            return $type->tokenCan('read:staff') && $type->is($staff);
+            return $type->tokenCan('update:staff') && $type->is($staff);
         }
     }
 
@@ -45,7 +45,7 @@ class StaffPolicy
         if ($type->tokenCan('admin:staff')){
             return $type->branch_id === $staff->branch_id;
         }else{
-            return $type->tokenCan('read:staff') && $type->is($staff);
+            return $type->tokenCan('delete:staff') && $type->is($staff);
         }
     }
 }
