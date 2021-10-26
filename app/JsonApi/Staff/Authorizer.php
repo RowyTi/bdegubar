@@ -42,7 +42,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function create($type, $request)
     {
-        // TODO: Implement create() method.
+        $this->can('create', $type);
     }
 
     /**
@@ -58,7 +58,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function read($record, $request)
     {
-        // TODO: Implement read() method.
+        $this->can('read', $record);
     }
 
     /**
@@ -74,7 +74,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function update($record, $request)
     {
-        // TODO: Implement update() method.
+        $this->can('update', $record);
     }
 
     /**
@@ -90,7 +90,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function delete($record, $request)
     {
-        // TODO: Implement delete() method.
+        $this->can('delete', $record);
     }
 
 }
