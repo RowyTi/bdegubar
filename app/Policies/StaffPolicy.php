@@ -12,8 +12,12 @@ class StaffPolicy
     {
         $branch = $request->query->get('filter');
         $current_branch = (int)$branch['branch_id'];
-        return $staff->tokenCan('index:staff') || $staff->tokenCan('admin:staff')
-        && $current_branch === $staff->branch_id;
+        if ($staff->tokenCan('index:staff')){
+            return $current_branch === $staff->branch_id;
+        }else{
+            return $staff->tokenCan('admin:staff') &&
+                $current_branch === $staff->branch_id;
+        }
     }
 
     public function read($type, Staff $staff): bool
@@ -21,7 +25,7 @@ class StaffPolicy
         if ($type->tokenCan('admin:staff')){
             return $type->branch_id === $staff->branch_id;
         }else{
-            return $type->tokenCan('read:staff') && $type->id===$staff->id;
+            return $type->tokenCan('read:staff') && $type->is($staff);
         }
     }
 

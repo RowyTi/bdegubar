@@ -25,10 +25,11 @@ class ListStaffTest extends TestCase
     }
 
     /** @test */
-    // se verifica que un usuario del de otro branch no pueda ver los empleados de otra sucursal
+    // se verifica que un usuario de una sucursal no pueda ver los empleados de otra sucursal
     public function un_usuario_no_puede_listar_staff_de_otro_branch()
     {
         $staff = Staff::factory()->create();
+        Staff::factory(20)->create();
 
         Sanctum::actingAs($staff, ['index:staff']);
 
@@ -48,6 +49,19 @@ class ListStaffTest extends TestCase
     }
 
     /** @test */
+    public function un_usuario_no_puede_ver_los_datos_de_otro_usuario(){
+        $staff = Staff::factory()->create();
+
+        $other_user = Staff::factory()->create(['id'=>'123']);
+        Sanctum::actingAs($staff, ['read:staff']);
+
+        $this->jsonApi()
+            ->get(route('v1.staff.read', $other_user))
+            ->assertStatus(403);
+    }
+
+
+    /** @test */
     public function un_administrador_de_puede_ver_los_datos_de_sus_empleados(){
         $staff = Staff::factory()->create(); // me logueo como adm
         $staff2 = Staff::factory()->create(['branch_id'=> $staff->branch_id]); // creo otro usuario dentro del branch
@@ -62,7 +76,7 @@ class ListStaffTest extends TestCase
     /** @test */
     public function un_administrador_no_puede_ver_los_datos_de_empleados_de_otro_branch(){
         $staff = Staff::factory()->create(); // me logueo como adm
-        $staff2 = Staff::factory()->create(); // creo otro usuario dentro del branch
+        $staff2 = Staff::factory()->create(); // creo otro usuario de otro branch
 
         Sanctum::actingAs($staff, ['admin:staff']);
 
@@ -72,14 +86,27 @@ class ListStaffTest extends TestCase
     }
 
     /** @test */
-    public function un_usuario_no_puede_ver_los_datos_de_otro_usuario(){
-        $staff = Staff::factory()->create();
+    public function un_administrador_puede_ver_los_empleado_de_su_sucursal(){
+        $staff = Staff::factory()->create(); // me logueo como adm
+        Staff::factory(20)->create([
+            'branch_id' => $staff->branch_id
+        ]); // creo otros usuarios de otro branch d
+        Sanctum::actingAs($staff, ['admin:staff']);
+        $this->jsonApi()
+            ->get(route('v1.staff.index', ['filter[branch_id]='.$staff->branch_id]))
+            ->assertStatus(200);
+    }
 
-        $other_user = Staff::factory()->create(['id'=>'123']);
-        Sanctum::actingAs($staff, ['read:staff']);
+    /** @test */
+    public function un_administrador_no_puede_ver_los_empleado_de_otra_sucursal(){
+        $staff = Staff::factory()->create(); // me logueo como adm
+         Staff::factory(20)->create(); // creo otros usuarios de otro branch
+
+        Sanctum::actingAs($staff, ['admin:staff']);
 
         $this->jsonApi()
-            ->get(route('v1.staff.read', $other_user))
+            ->get(route('v1.staff.index', ['filter[branch_id]=4']))
             ->assertStatus(403);
     }
+
 }
