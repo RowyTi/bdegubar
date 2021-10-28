@@ -51,7 +51,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasMany('users')->except('replace', 'add', 'remove');
         });
 
-    $api->resource('staff')->readOnly()
+    $api->resource('staff')
         ->relationships(function ($api){
             $api->hasOne('branch')->except('replace', 'add', 'remove');
             $api->hasOne('profile')->except('replace', 'add', 'remove');

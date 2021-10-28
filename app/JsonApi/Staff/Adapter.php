@@ -2,11 +2,14 @@
 
 namespace App\JsonApi\Staff;
 
+use App\Models\Address;
+use App\Models\Profile;
 use App\Models\Staff;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Hash;
 
 class Adapter extends AbstractAdapter
 {
@@ -35,6 +38,33 @@ class Adapter extends AbstractAdapter
         parent::__construct(new Staff(), $paging);
     }
 
+    protected function creating(Staff $staff, $request){
+        $direccion = $request->profile['address'];
+        $staff->password=Hash::make($request->password);
+        $staff->foto($request->profile['avatar']);
+        $staff->save();
+        $profile = $staff->profile()->create([
+            'name'          =>  $request->profile['name'],
+            'lastName'      =>  $request->profile['lastName'],
+            'dateOfBirth'   =>  $request->profile['dateOfBirth'],
+            'phone'         =>  $request->profile['phone'],
+            'avatar'        =>  $request->profile['avatar']
+        ]);
+
+        $address = $profile->address()->create([
+            'street'    =>  $direccion['street'],
+            'number'    =>  $direccion['number'],
+            'piso'      =>  $direccion['piso'],
+            'dpto'      =>  $direccion['dpto'],
+            'cp'        =>  $direccion['cp']
+        ]);
+
+        $profile->address()->associate($address);
+        $profile->save();
+
+        $staff->profile()->associate($profile);
+        $staff->save();
+    }
     /**
      * @param Builder $query
      * @param Collection $filters

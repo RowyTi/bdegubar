@@ -41,6 +41,9 @@ class Staff extends Authenticatable
         'profile_id' => 'integer',
     ];
 
+    public function foto($request){
+        dd($request);
+    }
 
     public function branch()
     {
