@@ -20,6 +20,26 @@ class RoleSeeder extends Seeder
             'name' => 'super:admin'
         ]);
 
+        Role::create([
+            'guard_name' => 'sanctum',
+            'name' => 'mozo'
+        ]);
+
+        Role::create([
+            'guard_name' => 'sanctum',
+            'name' => 'cocinero'
+        ]);
+
+        Role::create([
+            'guard_name' => 'sanctum',
+            'name' => 'caja'
+        ]);
+
+        Role::create([
+            'guard_name' => 'sanctum',
+            'name' => 'administrativo'
+        ]);
+
         $permissions = [
             // Permiso visual Super Admin
             [
