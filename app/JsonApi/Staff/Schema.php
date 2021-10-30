@@ -42,12 +42,12 @@ class Schema extends SchemaProvider
     public function getRelationships($staff, $isPrimary, array $includeRelationships): array
     {
         return [
-            'branch' => [
+            'branches' => [
                 self::SHOW_RELATED  => true,
                 self::SHOW_SELF     => true,
-                self::SHOW_DATA     => isset($includeRelationships['branch']),
+                self::SHOW_DATA     => isset($includeRelationships['branches']),
                 self::DATA          => function() use ($staff){
-                    return $staff->branch;
+                    return $staff->branches;
                 }
             ],
             'profile' => [

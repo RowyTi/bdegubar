@@ -39,9 +39,10 @@ class Adapter extends AbstractAdapter
     }
 
     protected function creating(Staff $staff, $request){
+        // dd($request);
         $direccion = $request->profile['address'];
         $staff->password=Hash::make($request->password);
-        $staff->foto($request->profile['avatar']);
+        // $staff->foto($request->profile['avatar']);
         $staff->save();
         $profile = $staff->profile()->create([
             'name'          =>  $request->profile['name'],
@@ -75,7 +76,7 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
-    public function branch(){
+    public function branches(){
        return $this->belongsTo('branch');
     }
 
