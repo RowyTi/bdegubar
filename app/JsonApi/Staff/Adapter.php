@@ -42,7 +42,6 @@ class Adapter extends AbstractAdapter
         // dd($request);
         $direccion = $request->profile['address'];
         $staff->password=Hash::make($request->password);
-        // $staff->foto($request->profile['avatar']);
         $staff->save();
         $profile = $staff->profile()->create([
             'name'          =>  $request->profile['name'],
@@ -65,6 +64,13 @@ class Adapter extends AbstractAdapter
 
         $staff->profile()->associate($profile);
         $staff->save();
+    }
+
+    protected function updating(Staff $staff, $record){
+        // dd($record);
+        if(isset($record->password)){
+            $staff->password=Hash::make($record->password);
+        }
     }
     /**
      * @param Builder $query
