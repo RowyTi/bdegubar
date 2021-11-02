@@ -67,10 +67,32 @@ class Adapter extends AbstractAdapter
     }
 
     protected function updating(Staff $staff, $record){
-        // dd($record);
+        // dd($record->profile['id']);
+        $direccion = $record->profile['address'];
         if(isset($record->password)){
             $staff->password=Hash::make($record->password);
+            $staff->save();
         }
+
+       $profile = Profile::findOrFail($record->profile['id']);
+       $profile->update([
+            'name'          =>  $record->profile['name'],
+            'lastName'      =>  $record->profile['lastName'],
+            'dateOfBirth'   =>  $record->profile['dateOfBirth'],
+            'phone'         =>  $record->profile['phone'],
+            'avatar'        =>  $record->profile['avatar']
+        ]);
+
+       $address = Address::findOrFail($profile['address_id']);
+       $address->update([
+            'street'    =>  $direccion['street'],
+            'number'    =>  $direccion['number'],
+            'piso'      =>  $direccion['piso'],
+            'dpto'      =>  $direccion['dpto'],
+            'cp'        =>  $direccion['cp']
+        ]);
+    //    dd($address);
+
     }
     /**
      * @param Builder $query
