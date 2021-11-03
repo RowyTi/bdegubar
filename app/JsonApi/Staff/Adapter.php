@@ -91,9 +91,8 @@ class Adapter extends AbstractAdapter
             'dpto'      =>  $direccion['dpto'],
             'cp'        =>  $direccion['cp']
         ]);
-    //    dd($address);
-
     }
+    
     /**
      * @param Builder $query
      * @param Collection $filters
