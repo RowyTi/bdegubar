@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 JsonApi::register('v1')->routes(function ($api, $router){
     // Resource Data
     $api->resource('addresses')->readOnly();
-    $api->resource('branches')->readOnly()
+    $api->resource('branches')
         ->relationships(function ($api){
             $api->hasMany('products')->except('replace', 'add', 'remove');
             $api->hasMany('tables')->except('replace', 'add', 'remove');

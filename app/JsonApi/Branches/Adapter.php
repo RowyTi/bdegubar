@@ -36,6 +36,11 @@ class Adapter extends AbstractAdapter
         parent::__construct(new Branch(), $paging);
     }
 
+    protected function creating(Branch $branch, $request)
+    {
+       dd($request);
+    }
+
     /**
      * @param Builder $query
      * @param Collection $filters
