@@ -15,7 +15,7 @@ class Validators extends AbstractValidators
      */
     protected $allowedIncludePaths = ['tables', 'address', 'staff', 'comments'];
 
-    protected $allowedFieldSets = ['name'];
+    // protected $allowedFieldSets = ['name'];
     /**
      * The sort field names a client is allowed send.
      *

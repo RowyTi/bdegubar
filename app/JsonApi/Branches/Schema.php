@@ -25,19 +25,25 @@ class Schema extends SchemaProvider
     }
 
     public function obtenerRating($id){
-//        cantidad total de comentarios correspondientes a un branch
+        // verifica cantidad total de comentarios correspondientes a un branch
         $total = Comment::where('branch_id', $id)->count();
-        $comments = Comment::where('branch_id', $id)->get();
-//        se inicializa r [rating] en 0
-        $r = 0;
-//        se suma la valoracion correspondiente de cada comentario perteneciente al branch
-        foreach ($comments as $c){
-           $r = $r+$c->rating;
-        }
-//        se divide por el total de comentarios
-        $r = $r/$total;
+        if($total > 0){
+            $comments = Comment::where('branch_id', $id)->get();
+            //        se inicializa r [rating] en 0
+            $r = 0;
+            //        se suma la valoracion correspondiente de cada comentario perteneciente al branch
+            foreach ($comments as $c){
+            $r = $r+$c->rating;
+            }
+            //        se divide por el total de comentarios
+            $r = $r/$total;
 
-        return round($r, 1);
+            return round($r, 1);
+        }else {
+            return $total;
+        }
+        
+
     }
 
     /**

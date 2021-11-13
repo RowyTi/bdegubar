@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 JsonApi::register('v1')->routes(function ($api, $router){
     // Resource Data
     $api->resource('addresses')->readOnly();
+
     $api->resource('branches')
         ->relationships(function ($api){
             $api->hasMany('products')->except('replace', 'add', 'remove');
@@ -72,14 +73,14 @@ JsonApi::register('v1')->routes(function ($api, $router){
     Route::post('login/staff', [LoginController::class, 'loginStaff'])->name('login.staff');
     Route::get('refresh/staff', [LoginController::class, 'refresh'])->name('refresh.token.staff')
         ->middleware('auth:sanctum');
-    Route::post('logout', [LoginController::class, 'logout'])
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout')
         ->middleware('auth:sanctum');
 
     // Login & Register para usuarios form
-    Route::post('login/mobile', [LoginController::class, 'loginMobile']);
-    Route::post('register/mobile', [RegisterController::class, 'register']);
+    Route::post('login/mobile', [LoginController::class, 'loginMobile'])->name('login.user.mobile');
+    Route::post('register/mobile', [RegisterController::class, 'register'])->name('register.user.staff');
     // Login para usuarios finales con redes sociales [facebook, google]
-    Route::post('login/social', [LoginController::class, 'loginMobileSocial']);
+    Route::post('login/social', [LoginController::class, 'loginMobileSocial'])->name('login.user.social');
     // Usuario autenticado
     Route::get('user', UserController::class)
         ->middleware('auth:sanctum')

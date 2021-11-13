@@ -36,9 +36,9 @@ class Adapter extends AbstractAdapter
         parent::__construct(new Branch(), $paging);
     }
 
-    protected function creating(Branch $branch, $request)
+    protected function saving(Branch $branch, $request)
     {
-       dd($request);
+        dd($request);
     }
 
     /**
