@@ -36,19 +36,19 @@ class Adapter extends AbstractAdapter
         parent::__construct(new Branch(), $paging);
     }
 
-//    protected function creating(Branch $branch, $request)
-//    {
-////        dd($request->all());
-//        $address = $branch->address()->create([
-//            'street'    =>  $request->address['street'],
-//            'number'    =>  $request->address['number'],
-//            'piso'      =>  $request->address['piso'],
-//            'dpto'      =>  $request->address['dpto'],
-//            'cp'        =>  $request->address['cp']
-//        ]);
-//        $branch->address()->associate($address);
-//        $branch->save();
-//    }
+    protected function creating(Branch $branch, $request)
+    {
+//        dd($request->all());
+        $address = $branch->address()->create([
+            'street'    =>  $request->addresses['street'],
+            'number'    =>  $request->addresses['number'],
+            'piso'      =>  $request->addresses['piso'],
+            'dpto'      =>  $request->addresses['dpto'],
+            'cp'        =>  $request->addresses['cp']
+        ]);
+        $branch->address()->associate($address);
+        $branch->save();
+    }
 
     /**
      * @param Builder $query
