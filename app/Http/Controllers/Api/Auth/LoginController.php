@@ -9,9 +9,12 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isFalse;
 
 class LoginController extends Controller
 {
@@ -53,7 +56,9 @@ class LoginController extends Controller
 
         return response()->json([
             [
-                'token' => $token
+                'user'          => $user,
+                'perfil'        => $user->profile()->first(),
+                'token'         => $token
             ]
         ]);
     }
@@ -77,8 +82,9 @@ class LoginController extends Controller
          $user->tokens()->delete();
 
          return response()->json([
-             'user'     => Auth::user(),
-             'token'    => $user->createToken($user->email, ['user:public'])->plainTextToken
+             'user'          => $user,
+             'perfil'        => $user->profile()->first(),
+             'token'         => $user->createToken($user->email, ['user:public'])->plainTextToken
          ]);
      }
 
