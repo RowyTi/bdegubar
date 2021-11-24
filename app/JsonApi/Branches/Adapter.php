@@ -2,6 +2,7 @@
 
 namespace App\JsonApi\Branches;
 
+use App\Models\Address;
 use App\Models\Branch;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
@@ -48,6 +49,19 @@ class Adapter extends AbstractAdapter
         ]);
         $branch->address()->associate($address);
         $branch->save();
+    }
+
+    protected function updating(Branch $branch, $record){
+//        dd($record->all());
+        $address = Address::findOrFail($record->addresses['id']);
+//        dd($record->addresses['street']);
+        $address->update([
+            'street'    =>  $record->addresses['street'],
+            'number'    =>  $record->addresses['number'],
+            'piso'      =>  $record->addresses['piso'],
+            'dpto'      =>  $record->addresses['dpto'],
+            'cp'        =>  $record->addresses['cp']
+        ]);
     }
 
     /**

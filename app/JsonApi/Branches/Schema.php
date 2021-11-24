@@ -42,7 +42,7 @@ class Schema extends SchemaProvider
         }else {
             return $total;
         }
-        
+
 
     }
 
@@ -110,12 +110,12 @@ class Schema extends SchemaProvider
                     return $branch->products;
                 }
             ],
-            'addresses' => [
+            'address' => [
                 self::SHOW_RELATED  => true,
                 self::SHOW_SELF     => true,
-                self::SHOW_DATA     => isset($includeRelationships['addresses']),
+                self::SHOW_DATA     => isset($includeRelationships['address']),
                 self::DATA          => function() use ($branch){
-                    return $branch->addresses;
+                    return $branch->address;
                 }
             ],
             'categories' => [
