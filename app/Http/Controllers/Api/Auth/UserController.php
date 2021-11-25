@@ -25,6 +25,7 @@ class UserController extends Controller
             'scope'     => $user->getPermissionNames()->toArray(),
             'state'     => $user->state,
             'branch_id' => $user->branch_id,
+            'branch'    => $user->branch()->first(),
             'profile_id'=> $user->profile_id
         ]);
     }
