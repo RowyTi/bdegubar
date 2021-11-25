@@ -21,7 +21,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
         });
 
 
-    $api->resource('categories')->readOnly()
+    $api->resource('categories')
         ->relationships(function ($api){
             $api->hasMany('branches')->except('replace', 'add', 'remove');
         });
