@@ -50,7 +50,11 @@ class LoginController extends Controller
             $socialProfile->social_avatar = $request->avatar;
 
             $user->socialNetworks()->save($socialProfile);
+        } else {
+            $user = $socialProfile->user()->first();
         }
+
+        $user->tokens()->delete();
 
         $token = $socialProfile->createToken($request->socialNetwork, ['user:public'])->plainTextToken;
 
