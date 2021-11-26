@@ -31,21 +31,22 @@ class Schema extends SchemaProvider
     public function getAttributes($table): array
     {
         return [
-            'name'          =>  $table->name,
-            'qr'            =>  $table->qr,
-            'state'         =>  $table->state,
-            'created-at'    => $table->created_at->format('d-m-Y H:i:s'),
-            'updated-at'    => $table->updated_at->format('d-m-Y H:i:s'),
+            'name'      => $table->name,
+            'qr'        => $table->qr,
+            'state'     => $table->state,
+            'branchId'  => $table->branch_id,
+            'createdAt' => $table->created_at,
+            'updatedAt' => $table->updated_at,
         ];
     }
 
     public function getRelationships($table, $isPrimary, array $includeRelationships)
     {
         return [
-            'branches' => [
+            'branch' => [
                 self::SHOW_RELATED  => true,
                 self::SHOW_SELF     => true,
-                self::SHOW_DATA     => isset($includeRelationships['branches']),
+                self::SHOW_DATA     => isset($includeRelationships['branch']),
                 self::DATA          => function() use ($table){
                     return $table->branch;
                 }

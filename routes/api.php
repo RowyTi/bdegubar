@@ -60,7 +60,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
 
     $api->resource('tables')->readOnly()
         ->relationships(function ($api){
-            $api->hasOne('branches')->except('replace', 'add', 'remove');
+            $api->hasOne('branch')->except('replace', 'add', 'remove');
         });
     $api->resource('users')
         ->relationships(function ($api){

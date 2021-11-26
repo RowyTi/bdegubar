@@ -12,7 +12,6 @@ class Adapter extends AbstractAdapter
 {
     protected $guarded = ['id'];
 
-    protected $includePaths = [ 'branches' => 'branch'];
     /**
      * Mapping of JSON API attribute field names to model keys.
      *
@@ -47,7 +46,7 @@ class Adapter extends AbstractAdapter
         $this->filterWithScopes($query, $filters);
     }
 
-    public function branches(){
+    public function branch(){
         return $this->belongsTo('branch');
     }
 }
