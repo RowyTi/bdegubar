@@ -35,8 +35,8 @@ class Schema extends SchemaProvider
             'qr'        => $table->qr,
             'state'     => $table->state,
             'branchId'  => $table->branch_id,
-            'createdAt' => $table->created_at,
-            'updatedAt' => $table->updated_at,
+            'createdAt' => $table->created_at->format('d/m/Y H:i'),
+            'updatedAt' => $table->updated_at->format('d/m/Y H:i'),
         ];
     }
 
