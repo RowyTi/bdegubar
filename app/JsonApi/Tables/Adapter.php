@@ -41,13 +41,18 @@ class Adapter extends AbstractAdapter
     }
     public function creating(Table $table, $request)
     {
+        $branch = $table->branch()->first();
         $img = getB64Image($request->qr);
         $img_extension = getB64Extension($request->qr);
-        $img_name = 'mesas/'.$request->slug. '.' . $img_extension;
+        $img_name = 'mesas/'.$branch->id.'/'.$request->slug. '.' . $img_extension;
         Storage::disk('public')->put($img_name, $img);
         $url = Storage::url($img_name);
         $table->qr = $url;
-        dd($url);
+        // dd($url);
+    }
+
+    public function updating(Table $table, $record){
+        // 
     }
 
     /**
