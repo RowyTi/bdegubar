@@ -9,12 +9,8 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use function PHPUnit\Framework\isEmpty;
-use function PHPUnit\Framework\isFalse;
 
 class LoginController extends Controller
 {

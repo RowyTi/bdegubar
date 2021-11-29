@@ -39,19 +39,19 @@ class Schema extends SchemaProvider
             'updatedAt' => $table->updated_at->format('d/m/Y H:i'),
         ];
     }
-
-    public function getRelationships($table, $isPrimary, array $includeRelationships)
-    {
-        return [
-            'branch' => [
-                self::SHOW_RELATED  => true,
-                self::SHOW_SELF     => true,
-                self::SHOW_DATA     => isset($includeRelationships['branch']),
-                self::DATA          => function() use ($table){
-                    return $table->branch;
-                }
-            ]
-
-        ];
-    }
+//
+//    public function getRelationships($table, $isPrimary, array $includeRelationships)
+//    {
+//        return [
+//            'branch' => [
+//                self::SHOW_RELATED  => true,
+//                self::SHOW_SELF     => true,
+//                self::SHOW_DATA     => isset($includeRelationships['branch']),
+//                self::DATA          => function() use ($table){
+//                    return $table->branch;
+//                }
+//            ]
+//
+//        ];
+//    }
 }

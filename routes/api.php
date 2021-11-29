@@ -58,10 +58,10 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasOne('profile')->except('replace', 'add', 'remove');
         });
 
-    $api->resource('tables')->readOnly()
-        ->relationships(function ($api){
-            $api->hasOne('branch')->except('replace', 'add', 'remove');
-        });
+    $api->resource('tables');
+//        ->relationships(function ($api){
+//            $api->hasOne('branch')->except('replace', 'add', 'remove');
+//        });
     $api->resource('users')
         ->relationships(function ($api){
             $api->hasOne('profile')->except('replace', 'add', 'remove');
@@ -85,4 +85,5 @@ JsonApi::register('v1')->routes(function ($api, $router){
     Route::get('user', UserController::class)
         ->middleware('auth:sanctum')
         ->name('user');
+    Route::get('file', [LoginController::class, 'file'])->name('file');
 });

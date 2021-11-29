@@ -6,7 +6,11 @@ use App\Models\Table;
 use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\File;
+use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
+use Neomerx\JsonApi\Contracts\Encoder\Parameters\EncodingParametersInterface;
 
 class Adapter extends AbstractAdapter
 {
@@ -34,6 +38,16 @@ class Adapter extends AbstractAdapter
     public function __construct(StandardStrategy $paging)
     {
         parent::__construct(new Table(), $paging);
+    }
+    public function creating(Table $table, $request)
+    {
+        $img = getB64Image($request->qr);
+        $img_extension = getB64Extension($request->qr);
+        $img_name = 'mesas/'.$request->slug. '.' . $img_extension;
+        Storage::disk('public')->put($img_name, $img);
+        $url = Storage::url($img_name);
+        $table->qr = $url;
+        dd($url);
     }
 
     /**
