@@ -17,13 +17,18 @@ class Table extends Model
      */
     protected $guarded = [];
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
-        'id' => 'integer',
+        'id' => 'string',
         'branch_id' => 'integer',
     ];
 

@@ -39,19 +39,38 @@ class Adapter extends AbstractAdapter
     {
         parent::__construct(new Table(), $paging);
     }
-    public function creating(Table $table, $request)
+    protected function creating(Table $table, $request)
     {
         $img = getB64Image($request->qr);
         $img_extension = getB64Extension($request->qr);
         $img_name = 'mesas/'.$request->branch_id.'/'.$request->slug. '.' . $img_extension;
         Storage::disk('public')->put($img_name, $img);
-        $url = Storage::url($img_name);
-        $table->qr = $url;
+        $table->qr = $img_name;
         // dd($url);
     }
 
-    public function updating(Table $table, $record){
-        //
+    protected function updating(Table $table, $record){
+        $original =  $table->getRawOriginal();
+        
+        if ($original['slug'] !== $record->slug) {
+            // dd($table->qr);
+            Storage::disk('public')->delete($original['qr']);
+            $img = getB64Image($record->qr);
+            $img_extension = getB64Extension($record->qr);
+            $img_name = 'mesas/'.$record->branch_id.'/'.$record->slug. '.' . $img_extension;
+            Storage::disk('public')->put($img_name, $img);
+            // borrar imagen, y guardar la imagen nueva con nuevo nombre
+            $table->qr = $img_name;
+            $table->save();
+        }else {
+            $table->name = $original['name'];
+            $table->slug = $original['slug'];
+            $table->qr = $original['qr'];
+            $table->save();
+        }
+
+
+        
     }
 
     /**
