@@ -34,8 +34,8 @@ class Schema extends SchemaProvider
             'title' => $comment->title,
             'message' => $comment->message,
             'rating' => $comment->rating,
-            'created-at' => $comment->created_at->format('d-m-Y H:i:s'),
-            'updated-at' => $comment->updated_at->format('d-m-Y H:i:s'),
+            'created-at' => $comment->created_at->format('d/m/Y H:i'),
+            'updated-at' => $comment->updated_at->format('d/m/Y H:i'),
         ];
     }
 

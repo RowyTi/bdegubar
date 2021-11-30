@@ -33,8 +33,8 @@ class Schema extends SchemaProvider
         return [
             'name'      =>  $category->name,
             'slug'      =>  $category->slug,
-            'createdAt' =>  $category->created_at->format('d-m-Y H:i:s'),
-            'updatedAt' =>  $category->updated_at->format('d-m-Y H:i:s'),
+            'createdAt' =>  $category->created_at->format('d/m/Y H:i'),
+            'updatedAt' =>  $category->updated_at->format('d/m/Y H:i'),
         ];
     }
 

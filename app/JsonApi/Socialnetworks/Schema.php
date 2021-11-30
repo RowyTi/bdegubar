@@ -32,8 +32,8 @@ class Schema extends SchemaProvider
     {
         return [
             'access_token'  =>  $socialnetwork->access_token,
-            'created-at'    =>  $socialnetwork->created_at->format('d-m-Y H:i:s'),
-            'updated-at'    =>  $socialnetwork->updated_at->format('d-m-Y H:i:s'),
+            'created-at'    =>  $socialnetwork->created_at->format('d/m/Y H:i'),
+            'updated-at'    =>  $socialnetwork->updated_at->format('d/m/Y H:i'),
         ];
     }
 }

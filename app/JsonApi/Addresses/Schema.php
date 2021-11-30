@@ -36,8 +36,8 @@ class Schema extends SchemaProvider
             'piso'      =>  (string)$address->piso,
             'dpto'      =>  $address->dpto,
             'cp'        =>  $address->cp,
-            'createdAt' =>  $address->created_at->format('d-m-Y H:i:s'),
-            'updatedAt' =>  $address->updated_at->format('d-m-Y H:i:s'),
+            'createdAt' =>  $address->created_at->format('d/m/Y H:i'),
+            'updatedAt' =>  $address->updated_at->format('d/m/Y H:i'),
         ];
     }
 }

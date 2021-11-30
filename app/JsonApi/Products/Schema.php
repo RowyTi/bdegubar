@@ -37,8 +37,8 @@ class Schema extends SchemaProvider
             'quantity'      =>  $product->quantity,
             'image'         =>  $product->image,
             'state'         =>  $product->state,
-            'created-at'    =>  $product->created_at->format('d-m-Y H:i:s'),
-            'updated-at'    =>  $product->updated_at->format('d-m-Y H:i:s'),
+            'created-at'    =>  $product->created_at->format('d/m/Y H:i'),
+            'updated-at'    =>  $product->updated_at->format('d/m/Y H:i'),
         ];
     }
 

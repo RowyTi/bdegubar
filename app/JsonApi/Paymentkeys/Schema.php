@@ -34,8 +34,8 @@ class Schema extends SchemaProvider
             'name'          => $paymentkey->name,
             'access_token'  => $paymentkey->access_token,
             'public_token'  => $paymentkey->public_token,
-            'created-at'    => $paymentkey->created_at->format('d-m-Y H:i:s'),
-            'updated-at'    => $paymentkey->updated_at->format('d-m-Y H:i:s'),
+            'created-at'    => $paymentkey->created_at->format('d/m/Y H:i'),
+            'updated-at'    => $paymentkey->updated_at->format('d/m/Y H:i'),
         ];
     }
 

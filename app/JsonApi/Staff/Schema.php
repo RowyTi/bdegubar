@@ -34,8 +34,8 @@ class Schema extends SchemaProvider
             'username'      => $staff->username,
             'state'         => $staff->state,
             'roles'         => $staff->getRoleNames(),
-            'createdAt'     => $staff->created_at->format('d-m-Y H:i:s'),
-            'updatedAt'     => $staff->updated_at->format('d-m-Y H:i:s'),
+            'createdAt'     => $staff->created_at->format('d/m/Y H:i'),
+            'updatedAt'     => $staff->updated_at->format('d/m/Y H:i'),
         ];
     }
 
