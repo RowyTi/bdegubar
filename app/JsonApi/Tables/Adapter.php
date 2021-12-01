@@ -51,7 +51,7 @@ class Adapter extends AbstractAdapter
 
     protected function updating(Table $table, $record){
         $original =  $table->getRawOriginal();
-        
+
         if ($original['slug'] !== $record->slug) {
             // dd($table->qr);
             Storage::disk('public')->delete($original['qr']);
@@ -69,8 +69,6 @@ class Adapter extends AbstractAdapter
             $table->save();
         }
 
-
-        
     }
 
     /**

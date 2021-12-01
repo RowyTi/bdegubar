@@ -3,10 +3,10 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\UserController;
+use App\Http\Controllers\Api\StateController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 use Illuminate\Support\Facades\Route;
 JsonApi::register('v1')->routes(function ($api, $router){
-    // Resource Data
     $api->resource('addresses')->readOnly();
 
     $api->resource('branches')
@@ -19,7 +19,6 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasOne('addresses')->except('replace', 'add', 'remove');
             $api->hasOne('paymentkey')->except('replace', 'add', 'remove');
         });
-
 
     $api->resource('categories')
         ->relationships(function ($api){
@@ -62,12 +61,16 @@ JsonApi::register('v1')->routes(function ($api, $router){
 //        ->relationships(function ($api){
 //            $api->hasOne('branch')->except('replace', 'add', 'remove');
 //        });
+
     $api->resource('users')
         ->relationships(function ($api){
             $api->hasOne('profile')->except('replace', 'add', 'remove');
             $api->hasMany('socialnetworks')->except('replace', 'add', 'remove');
             $api->hasMany('comments')->except('replace', 'add', 'remove');
         });
+    Route::post('tables/state', [StateController::class, 'tableState'])
+        ->middleware('auth:sanctum')
+        ->name('change.state.table');
 
     // Login para miembros del staff [Clientes y Empleados]
     Route::post('login/staff', [LoginController::class, 'loginStaff'])->name('login.staff');
@@ -84,6 +87,5 @@ JsonApi::register('v1')->routes(function ($api, $router){
     // Usuario autenticado
     Route::get('user', UserController::class)
         ->middleware('auth:sanctum')
-        ->name('user');
-    Route::get('file', [LoginController::class, 'file'])->name('file');
+        ->name('user.auth');
 });
