@@ -39,6 +39,7 @@ class Adapter extends AbstractAdapter
     {
         parent::__construct(new Table(), $paging);
     }
+    
     protected function creating(Table $table, $request)
     {
         $img = getB64Image($request->qr);
@@ -46,7 +47,6 @@ class Adapter extends AbstractAdapter
         $img_name = 'mesas/'.$request->branch_id.'/'.$request->slug. '.' . $img_extension;
         Storage::disk('public')->put($img_name, $img);
         $table->qr = $img_name;
-        // dd($url);
     }
 
     protected function updating(Table $table, $record){

@@ -14,7 +14,7 @@ class UserController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function __invoke(Request $request): JsonResponse
+    public function getAuthUser(Request $request): JsonResponse
     {
         $user = $request->user();
 

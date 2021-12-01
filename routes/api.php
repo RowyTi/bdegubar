@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\Auth\UserController;
 use App\Http\Controllers\Api\StateController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 use Illuminate\Support\Facades\Route;
-JsonApi::register('v1')->routes(function ($api, $router){
+JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
     $api->resource('addresses')->readOnly();
 
     $api->resource('branches')
@@ -68,9 +68,12 @@ JsonApi::register('v1')->routes(function ($api, $router){
             $api->hasMany('socialnetworks')->except('replace', 'add', 'remove');
             $api->hasMany('comments')->except('replace', 'add', 'remove');
         });
-    Route::post('tables/state', [StateController::class, 'tableState'])
-        ->middleware('auth:sanctum')
-        ->name('change.state.table');
+
+    $api->patch('tables/state/{table}', 'StateController@tableState');
+
+    // Route::patch('tables/state/{record}', [StateController::class, 'tableState'])
+    //     ->middleware('auth:sanctum')
+    //     ->name('change.state.table');
 
     // Login para miembros del staff [Clientes y Empleados]
     Route::post('login/staff', [LoginController::class, 'loginStaff'])->name('login.staff');
@@ -85,7 +88,7 @@ JsonApi::register('v1')->routes(function ($api, $router){
     // Login para usuarios finales con redes sociales [facebook, google]
     Route::post('login/social', [LoginController::class, 'loginMobileSocial'])->name('login.user.social');
     // Usuario autenticado
-    Route::get('user', UserController::class)
+    Route::get('user',[ UserController::class, 'getAuthUser'])
         ->middleware('auth:sanctum')
         ->name('user.auth');
 });

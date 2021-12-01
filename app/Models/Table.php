@@ -28,7 +28,7 @@ class Table extends Model
      * @var array
      */
     protected $casts = [
-        'id' => 'string',
+        'id' => 'integer',
         'branch_id' => 'integer',
     ];
 
