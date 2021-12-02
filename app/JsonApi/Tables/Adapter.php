@@ -11,6 +11,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Neomerx\JsonApi\Contracts\Encoder\Parameters\EncodingParametersInterface;
+use Throwable;
 
 class Adapter extends AbstractAdapter
 {
@@ -39,9 +40,10 @@ class Adapter extends AbstractAdapter
     {
         parent::__construct(new Table(), $paging);
     }
-    
+
     protected function creating(Table $table, $request)
     {
+//        dd($request->branch_id);
         $img = getB64Image($request->qr);
         $img_extension = getB64Extension($request->qr);
         $img_name = 'mesas/'.$request->branch_id.'/'.$request->slug. '.' . $img_extension;
@@ -69,6 +71,14 @@ class Adapter extends AbstractAdapter
             $table->save();
         }
 
+    }
+
+    protected function deleting($request){
+        try {
+            Storage::disk('public')->delete($request->qr);
+        }catch (Throwable $th){
+           //
+        }
     }
 
     /**
