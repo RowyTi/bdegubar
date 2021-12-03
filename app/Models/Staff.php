@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class Staff extends Authenticatable
 {
     use Notifiable, HasApiTokens, HasFactory, HasRoles, SoftDeletes;
@@ -40,10 +41,6 @@ class Staff extends Authenticatable
         'branch_id' => 'integer',
         'profile_id' => 'integer',
     ];
-
-    public function foto($request){
-        dd($request);
-    }
 
     public function branch()
     {
