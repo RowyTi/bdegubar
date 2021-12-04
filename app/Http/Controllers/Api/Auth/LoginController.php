@@ -106,7 +106,7 @@ class LoginController extends Controller
 
         $staff->tokens()->delete();
 
-        $permissions = $staff->getPermissionNames()->toArray();
+        $permissions = $staff->getAllPermissions()->pluck('name')->toArray();
         return response()->json([
             'token' => $staff->createToken($staff->username, $permissions )->plainTextToken
         ]);

@@ -15,42 +15,16 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::create([
+     $superAdmin = Role::create([
             'guard_name' => 'sanctum',
-            'name' => 'super:admin'
+            'name' => 'Super Admin'
         ]);
-
-        Role::create([
+    $administrador = Role::create([
             'guard_name' => 'sanctum',
-            'name' => 'mozo'
-        ]);
-
-        Role::create([
-            'guard_name' => 'sanctum',
-            'name' => 'cocinero'
-        ]);
-
-        Role::create([
-            'guard_name' => 'sanctum',
-            'name' => 'caja'
-        ]);
-
-        Role::create([
-            'guard_name' => 'sanctum',
-            'name' => 'administrativo'
+            'name' => 'administrador'
         ]);
 
         $permissions = [
-            // Permiso visual Super Admin
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'jklr'
-            ],
-            // Menu Permissions
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'administracion'
-            ],
             // Public User Permissions
             [
                 'guard_name' => 'sanctum',
@@ -169,23 +143,27 @@ class RoleSeeder extends Seeder
             // Role Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'index:role'
+                'name' => 'assign:permission'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'read:role'
+                'name' => 'index:permission'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'create:role'
+                'name' => 'read:permission'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'update:role',
+                'name' => 'create:permission'
             ],
             [
                 'guard_name' => 'sanctum',
-                'name' => 'delete:role'
+                'name' => 'update:permission',
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'delete:permission'
             ],
             // SocialNetwork Permissions
             [
@@ -254,7 +232,7 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'sanctum',
                 'name' => 'delete:table'
             ],
-            // User Permissions
+            // User Permissions 
             [
                 'guard_name' => 'sanctum',
                 'name' => 'index:user'
@@ -280,5 +258,53 @@ class RoleSeeder extends Seeder
         foreach ($permissions as $permission){
             Permission::create( $permission);
         }
+        $superAdmin->givePermissionTo([
+            'index:dashboard', 
+            'index:branch', 
+            'index:staff',
+            'index:category',
+            'index:permission',
+            'index:user'
+        ]);
+        $administrador->givePermissionTo([
+            'index:dashboard',
+            // BRANCH 
+            'index:branch',
+            'read:branch',
+            'create:branch',
+            'update:branch',
+            'delete:branch', 
+            // STAFF
+            'index:staff',
+            'admin:staff',
+            // CATEGORY
+            'index:category',
+            'read:category',
+            'create:category',
+            'update:category',
+            'delete:category',
+            // PERMISSION
+            'index:permission',
+            'read:permission',
+            'assign:permission',
+            // TABLE
+            'index:table',
+            'read:table',
+            'create:table',
+            'update:table',
+            'delete:table',
+            // PRODUCT
+            'index:product',
+            'read:product',
+            'create:product',
+            'update:product',
+            'delete:product',
+            // PAYMENT
+            'index:payment',
+            'read:payment',
+            'create:payment',
+            'update:payment',
+            'delete:payment',
+        ]);
     }
 }

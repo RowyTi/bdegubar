@@ -10,6 +10,7 @@ class StaffPolicy
 
     public function index($staff, $request): bool
     {
+        // dd($staff->tokenCan('index:staff'));
         $branch = $request->query->get('filter');
         $current_branch = (int)$branch['branch_id'];
         if ($staff->tokenCan('index:staff')){
