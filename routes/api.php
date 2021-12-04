@@ -53,7 +53,7 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
 
     $api->resource('staff')
         ->relationships(function ($api){
-            $api->hasOne('branch')->except('replace', 'add', 'remove');
+            $api->hasOne('branches')->except('replace', 'add', 'remove');
             $api->hasOne('profile')->except('replace', 'add', 'remove');
         });
 

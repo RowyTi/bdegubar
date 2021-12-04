@@ -92,7 +92,7 @@ class Adapter extends AbstractAdapter
             'cp'        =>  $direccion['cp']
         ]);
     }
-    
+
     /**
      * @param Builder $query
      * @param Collection $filters
