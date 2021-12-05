@@ -17,15 +17,15 @@ class StaffSeeder extends Seeder
         Staff::factory()->create([
             'username'      => 'superjklr',
             'state'         => 'activo',
-            'branch_id'     => null, 
+            'branch_id'     => null,
             'profile_id'    => null])
             ->assignRole('Super Admin');
-            
+
         Staff::factory()->create([
             'username'  => 'r.tilli',
             'state'     => 'activo'])
         ->assignRole('Administrador');
-     
+
         Staff::factory(60)->create();
     }
 }

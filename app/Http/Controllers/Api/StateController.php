@@ -17,7 +17,9 @@ class StateController extends Controller
      */
     public function tableState(Table $table, Request $request): JsonResponse
     {
-//        dd($request->state);
+        if ($request->user('sanctum')->cannot('update', $table)) {
+            abort(403);
+        }
         try {
             $table->update([
                 "state" => $request->state
@@ -32,6 +34,5 @@ class StateController extends Controller
                 "message" =>  "Ocurrió un error al actualizar."
            ], 500);
         }
-
     }
 }

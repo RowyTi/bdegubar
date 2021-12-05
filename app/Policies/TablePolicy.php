@@ -30,7 +30,11 @@ class TablePolicy
 
     public function update($type, Table $table): bool
     {
-        return $type->tokenCan('update:table') && $type->branch_id === $table->branch_id;
+        if ($type->tokenCan('public:user')){
+            return true;
+        }else {
+            return $type->tokenCan('update:table') && $type->branch_id === $table->branch_id;
+        }
 
     }
 
@@ -38,6 +42,6 @@ class TablePolicy
     {
 //        dd($type->tokenCan('delete:table'));
         return $type->tokenCan('delete:table') && $type->branch_id === $table->branch_id;
-
     }
+
 }

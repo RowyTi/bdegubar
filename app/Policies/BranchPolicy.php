@@ -2,8 +2,9 @@
 
 namespace App\Policies;
 
+use App\Models\Branch;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\User;
+use App\Models\Staff;
 
 class BranchPolicy
 {
@@ -11,43 +12,26 @@ class BranchPolicy
 
     public function index($staff, $request): bool
     {
-        $branch = $request->query->get('filter');
-        $current_branch = (int)$branch['branch_id'];
-        if ($staff->tokenCan('index:branch')){
-            return $current_branch === $staff->branch_id;
-        }
+        return $staff->tokenCan('index:branch');
     }
 
-    public function read($type, Staff $staff): bool
+    public function read($type): bool
     {
-        if ($type->tokenCan('admin:staff')){
-            return $type->branch_id === $staff->branch_id;
-        }else{
-            return $type->tokenCan('read:staff') && $type->is($staff);
-        }
+        return $type->tokenCan('read:branch');
     }
 
     public function create($type): bool
     {
-        return $type->tokenCan('create:staff') ||
-            $type->tokenCan('admin:staff');
+        return $type->tokenCan('create:branch');
     }
 
-    public function update($type, Staff $staff): bool
+    public function update($type, Branch $branch): bool
     {
-        if ($type->tokenCan('admin:staff')){
-            return $type->branch_id === $staff->branch_id;
-        }else{
-            return $type->tokenCan('update:staff') && $type->is($staff);
-        }
+        return $type->tokenCan('update:staff') && $type->branch_id === $branch->id;
     }
 
-    public function delete($type, Staff $staff): bool
+    public function delete($type, Branch $branch): bool
     {
-        if ($type->tokenCan('admin:staff')){
-            return $type->branch_id === $staff->branch_id;
-        }else{
-            return $type->tokenCan('delete:staff') && $type->is($staff);
-        }
+        return $type->tokenCan('delete:branch') && $type->branch_id === $branch->id;
     }
 }
