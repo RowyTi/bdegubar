@@ -21,8 +21,13 @@ class RoleSeeder extends Seeder
         ]);
     $administrador = Role::create([
             'guard_name' => 'sanctum',
-            'name' => 'administrador'
+            'name' => 'Administrador'
         ]);
+
+    $mozo = Role::create([
+       'guard_name' => 'sanctum',
+        'name' => 'Mozo'
+    ]);
 
         $permissions = [
             // Public User Permissions
@@ -34,6 +39,27 @@ class RoleSeeder extends Seeder
             [
                 'guard_name' => 'sanctum',
                 'name' => 'index:dashboard'
+            ],
+            // Customer Permissions
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'index:customer'
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'read:customer'
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'create:customer'
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'update:customer',
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'delete:customer'
             ],
             // Branch Permissions
             [
@@ -232,7 +258,7 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'sanctum',
                 'name' => 'delete:table'
             ],
-            // User Permissions 
+            // User Permissions
             [
                 'guard_name' => 'sanctum',
                 'name' => 'index:user'
@@ -259,8 +285,8 @@ class RoleSeeder extends Seeder
             Permission::create( $permission);
         }
         $superAdmin->givePermissionTo([
-            'index:dashboard', 
-            'index:branch', 
+            'index:dashboard',
+            'index:customer',
             'index:staff',
             'index:category',
             'index:permission',
@@ -268,21 +294,17 @@ class RoleSeeder extends Seeder
         ]);
         $administrador->givePermissionTo([
             'index:dashboard',
-            // BRANCH 
+            // BRANCH
             'index:branch',
             'read:branch',
-            'create:branch',
             'update:branch',
-            'delete:branch', 
             // STAFF
             'index:staff',
             'admin:staff',
             // CATEGORY
             'index:category',
             'read:category',
-            'create:category',
             'update:category',
-            'delete:category',
             // PERMISSION
             'index:permission',
             'read:permission',
@@ -305,6 +327,13 @@ class RoleSeeder extends Seeder
             'create:payment',
             'update:payment',
             'delete:payment',
+        ]);
+
+        $mozo->givePermissionTo([
+            // TABLE
+            'index:table',
+            'read:table',
+            'update:table',
         ]);
     }
 }
