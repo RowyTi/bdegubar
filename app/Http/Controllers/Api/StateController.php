@@ -17,6 +17,7 @@ class StateController extends Controller
      */
     public function tableState(Table $table, Request $request): JsonResponse
     {
+//        dd($request->user('sanctum'));
         if ($request->user('sanctum')->cannot('update', $table)) {
             abort(403);
         }
