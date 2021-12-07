@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Branch;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\Staff;
 
 class BranchPolicy
 {
@@ -27,7 +26,7 @@ class BranchPolicy
 
     public function update($type, Branch $branch): bool
     {
-        return $type->tokenCan('update:staff') && $type->branch_id === $branch->id;
+        return $type->tokenCan('update:branch') && $type->branch_id === $branch->id;
     }
 
     public function delete($type, Branch $branch): bool
