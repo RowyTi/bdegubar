@@ -36,7 +36,7 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
             $api->hasOne('branch')->except('replace', 'add', 'remove');
         });
 
-    $api->resource('products')->readOnly()
+    $api->resource('products')
         ->relationships(function ($api){
             $api->hasOne('branches')->except('replace', 'add', 'remove');
         });
@@ -69,7 +69,9 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
             $api->hasMany('comments')->except('replace', 'add', 'remove');
         });
 
-    $api->patch('tables/state/{table}', 'StateController@tableState');
+    $api->patch('tables/state/{table}', 'StateController@tableState')
+         ->middleware('auth:sanctum')
+         ->name('change.state.table');
 
     // Route::patch('tables/state/{record}', [StateController::class, 'tableState'])
     //     ->middleware('auth:sanctum')
