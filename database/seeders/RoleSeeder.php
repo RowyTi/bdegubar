@@ -38,9 +38,13 @@ class RoleSeeder extends Seeder
             // Dashboard Permissions
             [
                 'guard_name' => 'sanctum',
-                'name' => 'index:dashboard'
+                'name' => 'dashboard'
             ],
             // Customer Permissions
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'dashboard:customer'
+            ],
             [
                 'guard_name' => 'sanctum',
                 'name' => 'index:customer'
@@ -64,6 +68,10 @@ class RoleSeeder extends Seeder
             // Branch Permissions
             [
                 'guard_name' => 'sanctum',
+                'name' => 'dashboard:branch'
+            ],
+            [
+                'guard_name' => 'sanctum',
                 'name' => 'index:branch'
             ],
             [
@@ -83,6 +91,14 @@ class RoleSeeder extends Seeder
                 'name' => 'delete:branch'
             ],
             // Category Permissions
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'dashboard:category'
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'dashboard:assign-category'
+            ],
             [
                 'guard_name' => 'sanctum',
                 'name' => 'index:category'
@@ -106,6 +122,10 @@ class RoleSeeder extends Seeder
             // Payment Permissions
             [
                 'guard_name' => 'sanctum',
+                'name' => 'dashboard:payment'
+            ],
+            [
+                'guard_name' => 'sanctum',
                 'name' => 'index:payment'
             ],
             [
@@ -125,6 +145,10 @@ class RoleSeeder extends Seeder
                 'name' => 'delete:payment'
             ],
             // Product Permissions
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'dashboard:product'
+            ],
             [
                 'guard_name' => 'sanctum',
                 'name' => 'index:product'
@@ -148,6 +172,10 @@ class RoleSeeder extends Seeder
             // Profile Permissions
             [
                 'guard_name' => 'sanctum',
+                'name' => 'dashboard:profile'
+            ],
+            [
+                'guard_name' => 'sanctum',
                 'name' => 'index:profile'
             ],
             [
@@ -167,6 +195,10 @@ class RoleSeeder extends Seeder
                 'name' => 'delete:profile'
             ],
             // Role Permissions
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'dashboard:permission'
+            ],
             [
                 'guard_name' => 'sanctum',
                 'name' => 'assign:permission'
@@ -194,6 +226,10 @@ class RoleSeeder extends Seeder
             // SocialNetwork Permissions
             [
                 'guard_name' => 'sanctum',
+                'name' => 'dashboard:socialNetwork'
+            ],
+            [
+                'guard_name' => 'sanctum',
                 'name' => 'index:socialNetwork'
             ],
             [
@@ -213,6 +249,10 @@ class RoleSeeder extends Seeder
                 'name' => 'delete:socialNetwork'
             ],
             // Staff Permissions
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'dashboard:staff'
+            ],
             [
                 'guard_name' => 'sanctum',
                 'name' => 'admin:staff'
@@ -240,6 +280,10 @@ class RoleSeeder extends Seeder
             // Table Permissions
             [
                 'guard_name' => 'sanctum',
+                'name' => 'dashboard:table'
+            ],
+            [
+                'guard_name' => 'sanctum',
                 'name' => 'index:table'
             ],
             [
@@ -259,6 +303,10 @@ class RoleSeeder extends Seeder
                 'name' => 'delete:table'
             ],
             // User Permissions
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'dashboard:user'
+            ],
             [
                 'guard_name' => 'sanctum',
                 'name' => 'index:user'
@@ -285,43 +333,50 @@ class RoleSeeder extends Seeder
             Permission::create( $permission);
         }
         $superAdmin->givePermissionTo([
-            'index:dashboard',
-            'index:customer',
-            'index:staff',
-            'index:category',
-            'index:permission',
-            'index:user'
+            'dashboard',
+            'dashboard:customer',
+            'dashboard:staff',
+            'dashboard:category',
+            'dashboard:permission',
+            'dashboard:user'
         ]);
         $administrador->givePermissionTo([
-            'index:dashboard',
+            'dashboard',
             // BRANCH
+            'dashboard:branch',
             'index:branch',
             'read:branch',
             'update:branch',
             // STAFF
+            'dashboard:staff',
             'index:staff',
             'admin:staff',
             // CATEGORY
+            'dashboard:assign-category',
             'index:category',
             'read:category',
             'update:category',
             // PERMISSION
+            'dashboard:permission',
             'index:permission',
             'read:permission',
             'assign:permission',
             // TABLE
+            'dashboard:table',
             'index:table',
             'read:table',
             'create:table',
             'update:table',
             'delete:table',
             // PRODUCT
+            'dashboard:product',
             'index:product',
             'read:product',
             'create:product',
             'update:product',
             'delete:product',
             // PAYMENT
+            'dashboard:payment',
             'index:payment',
             'read:payment',
             'create:payment',
