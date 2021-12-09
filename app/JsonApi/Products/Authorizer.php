@@ -23,7 +23,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function index($type, $request)
     {
-        $this->authenticate();
+//        $this->authenticate();
     }
 
     /**

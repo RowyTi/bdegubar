@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class Authorizer extends AbstractAuthorizer
 {
     protected $guards = ['sanctum'];
-    
+
     /**
      * Authorize a resource index request.
      *
@@ -56,7 +56,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function read($record, $request)
     {
-        $this->can('read', $record);
+//        $this->can('read', $record);
     }
 
     /**
@@ -72,7 +72,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function update($record, $request)
     {
-        $this->can('update', $record);
+//        $this->can('update', $record);
     }
 
     /**

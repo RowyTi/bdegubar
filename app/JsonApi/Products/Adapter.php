@@ -40,8 +40,8 @@ class Adapter extends AbstractAdapter
     {
         parent::__construct(new Product(), $paging);
     }
-    protected function creating(Product $product, $request){
 
+    protected function creating(Product $product, $request){
         $img = getB64Image($request->image);
         $nameSlug = Str::slug($request->branch_id .' '. $request->name);
         $img_extension = getB64Extension($request->image);
@@ -49,10 +49,22 @@ class Adapter extends AbstractAdapter
         Storage::disk('public')->put($img_name, $img);
         $product->image = $img_name;
     }
-//
-//    protected function updating(Product $product, $record){
-//
-//    }
+
+    protected function updating(Product $product, $record){
+        $original =  $product->getRawOriginal();
+        if ($original['image'] !== $record->image && $record->image !== null){
+            Storage::disk('public')->delete($original['image']);
+            $img = getB64Image($record->image);
+            $nameSlug = Str::slug($record->branch_id .' '. $record->name);
+            $img_extension = getB64Extension($record->image);
+            $img_name = 'productos/'.$record->branch_id.'/'.$nameSlug. '.' . $img_extension;
+            $product->image = $img_name;
+            Storage::disk('public')->put($img_name, $img);
+        }else {
+            $product->image = $original['image'];
+            $product->save();
+        }
+    }
     /**
      * @param Builder $query
      * @param Collection $filters
