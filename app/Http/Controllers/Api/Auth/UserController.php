@@ -20,10 +20,13 @@ class UserController extends Controller
 
         $permission = $user->getAllPermissions()->pluck('name')->toArray();
 
+        $avatar = $user->profile()->pluck('avatar')->toArray();
+
         return response()->json([
             'id'        => $user->id,
             'username'  => $user->username,
             'sa'        => $user->hasRole('Super Admin'),
+            'avatar'    => $avatar[0],
             'scope'     => $permission,
             'state'     => $user->state,
             'branch'    => $user->branch()->first(),
