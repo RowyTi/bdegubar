@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -41,6 +42,17 @@ class Staff extends Authenticatable
         'branch_id' => 'integer',
         'profile_id' => 'integer',
     ];
+    public function scopeUsername(Builder $query, $value)
+    {
+        $query->where('Username', '!=', $value);
+    }
+
+    public function scopeRole(Builder $query, $values)
+    {
+        $query->whereHas('roles', function($q) use ($values) {
+            $q->whereIn('name', explode(',', $values));
+        });
+    }
 
     public function branch()
     {

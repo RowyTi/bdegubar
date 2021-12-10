@@ -21,7 +21,7 @@ class Validators extends AbstractValidators
      * @var string[]|null
      *      the allowed fields, an empty array for none allowed, or null to allow all fields.
      */
-    protected $allowedSortParameters = ['username', 'state', 'roles'];
+    protected $allowedSortParameters = ['username', 'state'];
 
     /**
      * The filters a client is allowed send.
@@ -29,7 +29,7 @@ class Validators extends AbstractValidators
      * @var string[]|null
      *      the allowed filters, an empty array for none allowed, or null to allow all.
      */
-    protected $allowedFilteringParameters = ['branch_id'];
+    protected $allowedFilteringParameters = ['branch_id', 'username', 'role'];
 
     /**
      * Get resource validation rules.

@@ -20,8 +20,11 @@ class UserController extends Controller
 
         $permission = $user->getAllPermissions()->pluck('name')->toArray();
 
-        $avatar = $user->profile()->pluck('avatar')->toArray();
-
+        if($user->profile_id !== null) {
+            $avatar = $user->profile()->pluck('avatar')->toArray();
+        }else {
+            $avatar = [null];
+        }
         return response()->json([
             'id'        => $user->id,
             'username'  => $user->username,

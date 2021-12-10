@@ -3,9 +3,12 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\UserController;
+use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\StateController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 use Illuminate\Support\Facades\Route;
+use Spatie\Permission\Models\Permission;
+
 JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
     $api->resource('addresses')->readOnly();
 
@@ -72,10 +75,16 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
     $api->patch('tables/state/{table}', 'StateController@tableState')
          ->middleware('auth:sanctum')
          ->name('change.state.table');
+    $api->get('role', 'PermissionController@getRole')
+        ->middleware('auth:sanctum')
+        ->name('all.role');
 
     // Route::patch('tables/state/{record}', [StateController::class, 'tableState'])
     //     ->middleware('auth:sanctum')
     //     ->name('change.state.table');
+
+    // Permissions
+//    Route::get('permission', [PermissionController::class, 'index'])->name('index.permission');
 
     // Login para miembros del staff [Clientes y Empleados]
     Route::post('login/staff', [LoginController::class, 'loginStaff'])->name('login.staff');

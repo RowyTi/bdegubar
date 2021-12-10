@@ -9,11 +9,12 @@ use CloudCreativity\LaravelJsonApi\Eloquent\AbstractAdapter;
 use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class Adapter extends AbstractAdapter
 {
-
+    protected $fillable = ['username', 'password', 'state', 'branch'];
     /**
      * Mapping of JSON API attribute field names to model keys.
      *
@@ -39,7 +40,13 @@ class Adapter extends AbstractAdapter
     }
 
     protected function creating(Staff $staff, $request){
-        // dd($request);
+//        dd($request);
+        $user = Auth::user();
+        if ($user->hasRole('Super Admin')){
+            $staff->assignRole('Administrador');
+        }else {
+            $staff->assignRole($request->role);
+        }
         $direccion = $request->profile['address'];
         $staff->password=Hash::make($request->password);
         $staff->save();
@@ -47,8 +54,7 @@ class Adapter extends AbstractAdapter
             'name'          =>  $request->profile['name'],
             'lastName'      =>  $request->profile['lastName'],
             'dateOfBirth'   =>  $request->profile['dateOfBirth'],
-            'phone'         =>  $request->profile['phone'],
-            'avatar'        =>  $request->profile['avatar']
+            'phone'         =>  $request->profile['phone']
         ]);
 
         $address = $profile->address()->create([

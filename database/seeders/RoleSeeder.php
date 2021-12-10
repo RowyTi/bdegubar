@@ -15,19 +15,30 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-     $superAdmin = Role::create([
+         $superAdmin = Role::create([
             'guard_name' => 'sanctum',
             'name' => 'Super Admin'
         ]);
-    $administrador = Role::create([
+        $administrador = Role::create([
             'guard_name' => 'sanctum',
             'name' => 'Administrador'
         ]);
-
-    $mozo = Role::create([
-       'guard_name' => 'sanctum',
-        'name' => 'Mozo'
-    ]);
+        $encargado = Role::create([
+            'guard_name' => 'sanctum',
+            'name' => 'Encargado'
+        ]);
+        $cocina = Role::create([
+            'guard_name' => 'sanctum',
+            'name' => 'Cocina'
+        ]);
+        $mozo = Role::create([
+            'guard_name' => 'sanctum',
+            'name' => 'Mozo'
+        ]);
+        $staff = Role::create([
+            'guard_name'=> 'sanctum',
+            'name' => 'Staff'
+        ]);
 
         $permissions = [
             // Public User Permissions
@@ -338,7 +349,7 @@ class RoleSeeder extends Seeder
             'dashboard:staff',
             'dashboard:category',
             'dashboard:permission',
-            'dashboard:user'
+            'dashboard:user',
         ]);
         $administrador->givePermissionTo([
             'dashboard',
@@ -382,13 +393,61 @@ class RoleSeeder extends Seeder
             'create:payment',
             'update:payment',
             'delete:payment',
+            // PROFILE
+            'dashboard:profile',
+            'read:profile',
+            'update:profile'
         ]);
-
+        $encargado->givePermissionTo([
+            'dashboard',
+            // BRANCH
+            'dashboard:branch',
+            'index:branch',
+            'read:branch',
+            // STAFF
+            'dashboard:staff',
+            'index:staff',
+            'read:staff',
+            // TABLE
+            'dashboard:table',
+            'index:table',
+            'read:table',
+            'create:table',
+            'update:table',
+            // PRODUCT
+            'dashboard:product',
+            'index:product',
+            'read:product',
+            'update:product',
+            // PROFILE
+            'dashboard:profile',
+            'read:profile',
+            'update:profile'
+        ]);
+        $cocina->givePermissionTo([
+            'dashboard',
+            // PROFILE
+            'dashboard:profile',
+            'read:profile',
+            'update:profile',
+            // COCINA
+        ]);
         $mozo->givePermissionTo([
             // TABLE
             'index:table',
             'read:table',
             'update:table',
+            // PROFILE
+            'dashboard:profile',
+            'read:profile',
+            'update:profile'
+        ]);
+        $staff->givePermissionTo([
+            'dashboard',
+            // PROFILE
+            'dashboard:profile',
+            'read:profile',
+            'update:profile'
         ]);
     }
 }

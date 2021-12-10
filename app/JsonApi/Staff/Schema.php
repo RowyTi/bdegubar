@@ -30,6 +30,7 @@ class Schema extends SchemaProvider
      */
     public function getAttributes($staff): array
     {
+//        dd($staff->roles());
         return [
             'username'      => $staff->username,
             'state'         => $staff->state,
