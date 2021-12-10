@@ -24,7 +24,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function index($type, $request)
     {
-        $this->can('index',$type, $request);
+//        $this->can('index',$type, $request);
     }
 
     /**
@@ -72,7 +72,7 @@ class Authorizer extends AbstractAuthorizer
      */
     public function update($record, $request)
     {
-//        $this->can('update', $record);
+        $this->can('update', $record);
     }
 
     /**
