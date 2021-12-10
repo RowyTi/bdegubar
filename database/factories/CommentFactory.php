@@ -25,8 +25,8 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'     => $this->faker->sentence(20),
-            'message'   => $this->faker->word(),
+            'title'     => $this->faker->text(25),
+            'message'   => $this->faker->text(199),
             'rating'    => $this->faker->randomFloat(1, 3, 5.),
             'branch_id' => Branch::all()->random()->id,
             'user_id'   => User::all()->random()->id,

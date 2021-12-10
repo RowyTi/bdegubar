@@ -15,6 +15,6 @@ class PaymentkeySeeder extends Seeder
      */
     public function run()
     {
-        PaymentKey::factory(13)->create();
+//        PaymentKey::factory(13)->create();
     }
 }

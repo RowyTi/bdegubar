@@ -25,7 +25,5 @@ class StaffSeeder extends Seeder
             'username'  => 'r.tilli',
             'state'     => 'activo'])
         ->assignRole('Administrador');
-
-        Staff::factory(60)->create();
     }
 }

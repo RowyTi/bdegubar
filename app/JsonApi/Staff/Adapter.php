@@ -76,7 +76,6 @@ class Adapter extends AbstractAdapter
     protected function updating(Staff $staff, $record){
         $user = Auth::user();
         $staffRol = $staff->getRoleNames();
-
         if (count($staffRol)=== 0) {
             $staff->assignRole($record->role);
             return;
@@ -87,6 +86,7 @@ class Adapter extends AbstractAdapter
         }else {
             if ($staffRol[0] === $record->role) {
                 $staff->syncRoles($staffRol[0]);
+                return;
             }
             $staff->removeRole($staffRol[0]);
             $staff->syncRoles($record->role);
@@ -102,8 +102,7 @@ class Adapter extends AbstractAdapter
             'name'          =>  $record->profile['name'],
             'lastName'      =>  $record->profile['lastName'],
             'dateOfBirth'   =>  $record->profile['dateOfBirth'],
-            'phone'         =>  $record->profile['phone'],
-            'avatar'        =>  $record->profile['avatar']
+            'phone'         =>  $record->profile['phone']
         ]);
 
        $address = Address::findOrFail($profile['address_id']);
