@@ -47,7 +47,7 @@ class Staff extends Authenticatable
         $query->where('Username', '!=', $value);
     }
 
-    public function scopeRole(Builder $query, $values)
+    public function scopeRol(Builder $query, $values)
     {
         $query->whereHas('roles', function($q) use ($values) {
             $q->whereIn('name', explode(',', $values));

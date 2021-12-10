@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class Adapter extends AbstractAdapter
 {
@@ -73,7 +74,23 @@ class Adapter extends AbstractAdapter
     }
 
     protected function updating(Staff $staff, $record){
-        // dd($record->profile['id']);
+        $user = Auth::user();
+        $staffRol = $staff->getRoleNames();
+
+        if (count($staffRol)=== 0) {
+            $staff->assignRole($record->role);
+            return;
+        }
+        if ($user->hasRole('Super Admin')){
+            $staff->assignRole('Administrador');
+            return;
+        }else {
+            if ($staffRol[0] === $record->role) {
+                $staff->syncRoles($staffRol[0]);
+            }
+            $staff->removeRole($staffRol[0]);
+            $staff->syncRoles($record->role);
+        }
         $direccion = $record->profile['address'];
         if(isset($record->password)){
             $staff->password=Hash::make($record->password);

@@ -29,7 +29,7 @@ class Validators extends AbstractValidators
      * @var string[]|null
      *      the allowed filters, an empty array for none allowed, or null to allow all.
      */
-    protected $allowedFilteringParameters = ['branch_id', 'username', 'role'];
+    protected $allowedFilteringParameters = ['branch_id', 'username', 'rol'];
 
     /**
      * Get resource validation rules.
