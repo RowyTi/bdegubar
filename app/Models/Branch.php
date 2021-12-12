@@ -31,7 +31,7 @@ class Branch extends Model
 
     public function paymentkey()
     {
-        return $this->hasOne(Paymentkey::class);
+        return $this->hasOne(PaymentKey::class);
     }
 
     public function tables()

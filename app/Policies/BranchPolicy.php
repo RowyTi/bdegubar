@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Branch;
+use App\Models\Staff;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class BranchPolicy
@@ -32,5 +33,11 @@ class BranchPolicy
     public function delete($type, Branch $branch): bool
     {
         return $type->tokenCan('delete:branch') && $type->branch_id === $branch->id;
+    }
+
+    public function modifyRelationshipPaymentkey(Staff $staff, $branch){
+
+        return $staff->tokenCan('update:payment') &&
+            $branch->id === $staff->branch_id;
     }
 }

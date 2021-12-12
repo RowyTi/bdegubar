@@ -52,7 +52,7 @@ class LoginController extends Controller
 
         $user->tokens()->delete();
 
-        $token = $socialProfile->createToken($request->socialNetwork, ['user:public'])->plainTextToken;
+        $token = $socialProfile->createToken($request->socialNetwork, ['public:user'])->plainTextToken;
 
         return response()->json([
             [
@@ -84,7 +84,7 @@ class LoginController extends Controller
          return response()->json([
              'user'          => $user,
              'perfil'        => $user->profile()->first(),
-             'token'         => $user->createToken($user->email, ['user:public'])->plainTextToken
+             'token'         => $user->createToken($user->email, ['public:user'])->plainTextToken
          ]);
      }
 

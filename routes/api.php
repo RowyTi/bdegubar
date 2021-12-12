@@ -34,10 +34,11 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
             $api->hasOne('user')->except('replace', 'add', 'remove');
         });
 
-    $api->resource('paymentkeys')->readOnly()
-        ->relationships(function ($api){
-            $api->hasOne('branch')->except('replace', 'add', 'remove');
-        });
+    $api->resource('paymentkeys');
+//        ->readOnly()
+//        ->relationships(function ($api){
+//            $api->hasOne('branch')->except('replace', 'add', 'remove');
+//        });
 
     $api->resource('products')
         ->relationships(function ($api){

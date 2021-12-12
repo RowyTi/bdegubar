@@ -39,17 +39,17 @@ class Schema extends SchemaProvider
         ];
     }
 
-    public function getRelationships($paymentkey, $isPrimary, array $includeRelationships): array
-    {
-        return [
-            'branch' => [
-                self::SHOW_RELATED  => $paymentkey->has('branch')->exists(),
-                self::SHOW_SELF     => $paymentkey->has('branch')->exists(),
-                self::SHOW_DATA     => isset($includeRelationships['branch']),
-                self::DATA          => function() use ($paymentkey){
-                    return $paymentkey->branch;
-                }
-            ]
-        ];
-    }
+//    public function getRelationships($paymentkey, $isPrimary, array $includeRelationships): array
+//    {
+//        return [
+//            'branch' => [
+//                self::SHOW_RELATED  => $paymentkey->has('branch')->exists(),
+//                self::SHOW_SELF     => $paymentkey->has('branch')->exists(),
+//                self::SHOW_DATA     => isset($includeRelationships['branch']),
+//                self::DATA          => function() use ($paymentkey){
+//                    return $paymentkey->branch;
+//                }
+//            ]
+//        ];
+//    }
 }
