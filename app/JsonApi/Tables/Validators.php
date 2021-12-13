@@ -2,7 +2,9 @@
 
 namespace App\JsonApi\Tables;
 
+use App\Rules\Slug;
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
+use Illuminate\Validation\Rule;
 
 class Validators extends AbstractValidators
 {
@@ -43,7 +45,15 @@ class Validators extends AbstractValidators
     protected function rules($record, array $data): array
     {
         return [
-            //
+            'name'      => ['required', 'max:100'],
+            'qr'        => ['required'],
+            'state'     => ['required'],
+            'slug' => [
+                'required',
+                'alpha_dash',
+                new Slug,
+                Rule::unique('tables')->ignore($record)
+            ],
         ];
     }
 

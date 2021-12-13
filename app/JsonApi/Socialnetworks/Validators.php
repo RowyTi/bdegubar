@@ -3,6 +3,7 @@
 namespace App\JsonApi\Socialnetworks;
 
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
+use Illuminate\Validation\Rule;
 
 class Validators extends AbstractValidators
 {
@@ -43,7 +44,11 @@ class Validators extends AbstractValidators
     protected function rules($record, array $data): array
     {
         return [
-            //
+            'social_id' => [
+                'required',
+                Rule::unique('social_networks')->ignore($record)
+            ],
+            'social_name' => ['required'],
         ];
     }
 
