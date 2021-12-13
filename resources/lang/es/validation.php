@@ -133,4 +133,8 @@ return [
             'min' => 'La :attribute debe contener más de :min caracteres',
         ],
     ],
+
+    'no_underscores' => 'El :attribute no debe contener guiones bajos.',
+    'no_starting_dashes' => 'El :attribute no debe comenzar con guiones.',
+    'no_ending_dashes' => 'El :attribute no debe terminar con guiones.',
 ];

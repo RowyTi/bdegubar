@@ -20,8 +20,6 @@ class CreateBranchesTable extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('logo')->nullable();
-            $table->string('latitud');
-            $table->string('longitud');
             $table->enum('state', ["activo","inactivo"]);
             $table->foreignId('address_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->softDeletes()->nullable();

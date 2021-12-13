@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStaffTable extends Migration
+class CreateProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,14 +15,16 @@ class CreateStaffTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('staff', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('password');
-            $table->string('username')->unique();
+            $table->string('name');
+            $table->string('image')->nullable();
+            $table->float('price');
+            $table->integer('quantity');
+            $table->string('description')->nullable();
             $table->enum('state', ["activo","inactivo"]);
-            $table->foreignId('branch_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('profile_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->softDeletes()->nullable();
+            $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
 
@@ -36,6 +38,6 @@ class CreateStaffTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('staff');
+        Schema::dropIfExists('products');
     }
 }

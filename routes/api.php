@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Permission;
 
 JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
-    $api->resource('addresses')->readOnly();
+    $api->resource('addresses')->except('index');
 
     $api->resource('branches')
         ->relationships(function ($api){
             $api->hasMany('products')->except('replace', 'add', 'remove');
             $api->hasMany('tables')->except('replace', 'add', 'remove');
-            $api->hasMany('categories')->except('replace', 'add', 'remove');
+            $api->hasMany('categories')->except('add', 'remove');
             $api->hasMany('comments')->except('replace', 'add', 'remove');
             $api->hasMany('staff')->except('replace', 'add', 'remove');
             $api->hasOne('addresses')->except('replace', 'add', 'remove');

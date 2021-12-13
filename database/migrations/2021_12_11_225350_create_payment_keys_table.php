@@ -17,7 +17,6 @@ class CreatePaymentKeysTable extends Migration
 
         Schema::create('payment_keys', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('access_token')->nullable();
             $table->string('public_token')->nullable();
             $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();

@@ -23,11 +23,13 @@ class AddressFactory extends Factory
     public function definition(): array
     {
         return [
-            'street' => $this->faker->streetName(),
-            'number' => $this->faker->buildingNumber(),
-            'piso' => $this->faker->randomNumber(1),
-            'dpto' => $this->faker->randomLetter(),
-            'cp' => $this->faker->postcode(),
+            'street'    => $this->faker->streetName(),
+            'number'    => $this->faker->buildingNumber(),
+            'piso'      => $this->faker->randomNumber(1),
+            'dpto'      => $this->faker->randomLetter(),
+            'cp'        => $this->faker->postcode(),
+            'latitude'   => $this->faker->latitude(),
+            'longitude'  => $this->faker->longitude(),
         ];
     }
 }

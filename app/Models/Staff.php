@@ -44,6 +44,7 @@ class Staff extends Authenticatable
     ];
     public function scopeUsername(Builder $query, $value)
     {
+//        $query->whereNotIn('Username', $value);
         $query->where('Username', '!=', $value);
     }
 
