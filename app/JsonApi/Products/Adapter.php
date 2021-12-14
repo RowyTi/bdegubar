@@ -12,7 +12,16 @@ use Illuminate\Support\Str;
 
 class Adapter extends AbstractAdapter
 {
-    protected $fillable = ['name', 'slug', 'image', 'description', 'price', 'quantity', 'state', 'branch_id'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'image',
+        'description',
+        'price',
+        'quantity',
+        'state',
+        'branch_id'
+    ];
 
     protected $includePaths = [
         'categories' => 'category'
