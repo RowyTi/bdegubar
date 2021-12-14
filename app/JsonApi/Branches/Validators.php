@@ -53,7 +53,6 @@ class Validators extends AbstractValidators
                 new Slug,
                 Rule::unique('branches')->ignore($record)
                 ],
-            'logo' => ['required'],
             'state'=> ['required'],
         ];
     }

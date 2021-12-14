@@ -92,10 +92,10 @@ class Authorizer extends AbstractAuthorizer
         $this->can('delete', $record);
     }
 
-    public function modifyRelationship($record, $field, $request){
-        $ability = Str::camel('modify-relationship-'.$field);
-//        dd($ability);
-        $this->can($ability, $record);
-    }
+//    public function modifyRelationship($record, $field, $request){
+//        $ability = Str::camel('modify-relationship-'.$field);
+////        dd($ability);
+//        $this->can($ability, $record);
+//    }
 
 }

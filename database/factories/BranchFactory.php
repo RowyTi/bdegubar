@@ -28,11 +28,11 @@ class BranchFactory extends Factory
         return [
             'name'          => $name,
             'slug'          => $slug,
-            'logo'          => $this->faker->imageUrl(30,30, 'abstract'),
+
 //            'latitud'       => $this->faker->latitude(),
 //            'longitud'      => $this->faker->longitude(),
             'state'         => $this->faker->randomElement(["activo","inactivo"]),
-            'address_id'    => Address::all()->random()->id,
+//            'address_id'    => Address::all()->al()->id,
         ];
     }
 }

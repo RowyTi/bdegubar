@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class Adapter extends AbstractAdapter
 {
-    protected $guarded = ['id'];
+    protected $fillable = ['name', 'slug', 'image', 'description', 'price', 'quantity', 'state', 'branch_id'];
 
     protected $includePaths = [
         'categories' => 'category'
@@ -48,6 +48,7 @@ class Adapter extends AbstractAdapter
         $img_name = 'productos/'.$request->branch_id.'/'.$nameSlug. '.' . $img_extension;
         Storage::disk('public')->put($img_name, $img);
         $product->image = $img_name;
+        $product->slug = $nameSlug;
     }
 
     protected function updating(Product $product, $record){
@@ -59,6 +60,7 @@ class Adapter extends AbstractAdapter
             $img_extension = getB64Extension($record->image);
             $img_name = 'productos/'.$record->branch_id.'/'.$nameSlug. '.' . $img_extension;
             $product->image = $img_name;
+            $product->slug = $nameSlug;
             Storage::disk('public')->put($img_name, $img);
         }else {
             $product->image = $original['image'];

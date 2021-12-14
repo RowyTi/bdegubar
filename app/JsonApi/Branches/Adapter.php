@@ -46,7 +46,9 @@ class Adapter extends AbstractAdapter
             'number'    =>  $request->addresses['number'],
             'piso'      =>  $request->addresses['piso'],
             'dpto'      =>  $request->addresses['dpto'],
-            'cp'        =>  $request->addresses['cp']
+            'cp'        =>  $request->addresses['cp'],
+            'latitude'  =>  $request->addresses['latitude'],
+            'longitude' =>  $request->addresses['longitude']
         ]);
         $branch->address()->associate($address);
         $branch->save();
@@ -61,7 +63,9 @@ class Adapter extends AbstractAdapter
             'number'    =>  $record->addresses['number'],
             'piso'      =>  $record->addresses['piso'],
             'dpto'      =>  $record->addresses['dpto'],
-            'cp'        =>  $record->addresses['cp']
+            'cp'        =>  $record->addresses['cp'],
+            'latitude'  =>  $record->addresses['latitude'],
+            'longitude' =>  $record->addresses['longitude']
         ]);
     }
 

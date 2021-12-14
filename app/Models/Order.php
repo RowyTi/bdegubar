@@ -3,14 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class Comment extends Model
+class Order extends Model
 {
     use HasFactory;
 
-    protected $guard_name = 'sanctum';
     /**
      * The attributes that aren't mass assignable.
      *
@@ -25,19 +23,21 @@ class Comment extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'rating' => 'float',
-        'branch_id' => 'integer',
+        'content' => 'array',
+        'take_away' => 'boolean',
+        'total' => 'float',
         'user_id' => 'integer',
+        'branch_id' => 'integer',
     ];
 
 
-    public function branch()
-    {
-        return $this->belongsTo(Branch::class);
-    }
-
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\Models\User::class);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(\App\Models\Branch::class);
     }
 }
