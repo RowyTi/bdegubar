@@ -76,7 +76,7 @@ class Adapter extends AbstractAdapter
     protected function updating(Staff $staff, $record){
         $user = Auth::user();
         $staffRol = $staff->getRoleNames();
-        if (count($staffRol)=== 0) {
+        if (count($staffRol) === 0) {
             $staff->assignRole($record->role);
             return;
         }
