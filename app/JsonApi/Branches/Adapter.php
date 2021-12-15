@@ -9,11 +9,17 @@ use CloudCreativity\LaravelJsonApi\Pagination\StandardStrategy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Adapter extends AbstractAdapter
 {
-    protected $guarded = ['id'];
-
+//    protected $guarded = ['id'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'logo',
+        'state'
+    ];
     /**
      * Mapping of JSON API attribute field names to model keys.
      *
@@ -55,18 +61,32 @@ class Adapter extends AbstractAdapter
     }
 
     protected function updating(Branch $branch, $record){
-//        dd($record->all());
-        $address = Address::findOrFail($record->addresses['id']);
-//        dd($record->addresses['street']);
-        $address->update([
-            'street'    =>  $record->addresses['street'],
-            'number'    =>  $record->addresses['number'],
-            'piso'      =>  $record->addresses['piso'],
-            'dpto'      =>  $record->addresses['dpto'],
-            'cp'        =>  $record->addresses['cp'],
-            'latitude'  =>  $record->addresses['latitude'],
-            'longitude' =>  $record->addresses['longitude']
-        ]);
+        if(isset($record->logo)){
+            $original =  $branch->getRawOriginal();
+            if ($original['logo'] !== $record->logo && $record->logo !== null){
+                if($original['logo'] !== 'logos/logo-default.png')
+                {
+                    Storage::disk('public')->delete($original['logo']);
+                }
+                $img = getB64Image($record->logo);
+                $img_extension = getB64Extension($record->logo);
+                $img_name = 'logos/'.$record->id.'/'. $record->slug . '.' . $img_extension;
+                $branch->logo = $img_name;
+                Storage::disk('public')->put($img_name, $img);
+            }
+        }
+        if (isset($record->addresses)){
+            $address = Address::findOrFail($record->addresses['id']);
+            $address->update([
+                'street'    =>  $record->addresses['street'],
+                'number'    =>  $record->addresses['number'],
+                'piso'      =>  $record->addresses['piso'],
+                'dpto'      =>  $record->addresses['dpto'],
+                'cp'        =>  $record->addresses['cp'],
+                'latitude'  =>  $record ->addresses['latitude'],
+                'longitude' =>  $record ->addresses['longitude']
+            ]);
+        }
     }
 
     /**

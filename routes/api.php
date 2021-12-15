@@ -61,10 +61,10 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
             $api->hasOne('profile')->except('replace', 'add', 'remove');
         });
 
-    $api->resource('tables');
-//        ->relationships(function ($api){
-//            $api->hasOne('branch')->except('replace', 'add', 'remove');
-//        });
+    $api->resource('tables')
+        ->relationships(function ($api){
+            $api->hasOne('branch')->except('replace', 'add', 'remove');
+        });
 
     $api->resource('users')
         ->relationships(function ($api){
