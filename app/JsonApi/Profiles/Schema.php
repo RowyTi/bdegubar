@@ -34,10 +34,11 @@ class Schema extends SchemaProvider
             'name'          => $profile->name,
             'lastName'      => $profile->lastName,
             'avatar'        => $profile->avatar,
-            'dateOfBirth'   => $profile->dateOfBirth->format('d/m/Y'),
+            'dateOfBirth'   => $profile->dateOfBirth->format('Y-m-d'),
+            'codArea'       => $profile->cod_area,
             'phone'         => $profile->phone,
-            'created-at'    => $profile->created_at->format('d/m/Y H:i'),
-            'updated-at'    => $profile->updated_at->format('d/m/Y H:i'),
+            'createdAt'     => $profile->created_at->format('d/m/Y H:i'),
+            'updatedAt'     => $profile->updated_at->format('d/m/Y H:i'),
         ];
     }
 

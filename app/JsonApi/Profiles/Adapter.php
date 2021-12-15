@@ -10,7 +10,15 @@ use Illuminate\Support\Collection;
 
 class Adapter extends AbstractAdapter
 {
-
+    protected $fillable = [
+            'name',
+            'lastName',
+            'avatar',
+            'dateOfBirth',
+            'codArea',
+            'phone',
+            'address_id'
+    ];
     /**
      * Mapping of JSON API attribute field names to model keys.
      *

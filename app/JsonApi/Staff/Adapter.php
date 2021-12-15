@@ -55,6 +55,7 @@ class Adapter extends AbstractAdapter
             'name'          =>  $request->profile['name'],
             'lastName'      =>  $request->profile['lastName'],
             'dateOfBirth'   =>  $request->profile['dateOfBirth'],
+            'cod_area'      =>  $request->profile['codArea'],
             'phone'         =>  $request->profile['phone']
         ]);
 
@@ -78,15 +79,12 @@ class Adapter extends AbstractAdapter
         $staffRol = $staff->getRoleNames();
         if (count($staffRol) === 0) {
             $staff->assignRole($record->role);
-            return;
         }
         if ($user->hasRole('Super Admin')){
             $staff->assignRole('Administrador');
-            return;
         }else {
             if ($staffRol[0] === $record->role) {
                 $staff->syncRoles($staffRol[0]);
-                return;
             }
             $staff->removeRole($staffRol[0]);
             $staff->syncRoles($record->role);
@@ -98,10 +96,12 @@ class Adapter extends AbstractAdapter
         }
 
        $profile = Profile::findOrFail($record->profile['id']);
+    //    dd($profile);
        $profile->update([
             'name'          =>  $record->profile['name'],
             'lastName'      =>  $record->profile['lastName'],
             'dateOfBirth'   =>  $record->profile['dateOfBirth'],
+            'cod_area'      =>  $record->profile['codArea'],
             'phone'         =>  $record->profile['phone']
         ]);
 

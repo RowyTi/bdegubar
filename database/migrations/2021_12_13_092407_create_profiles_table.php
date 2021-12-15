@@ -19,9 +19,10 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastName');
-            $table->string('avatar');
+            $table->string('avatar')->default('avatar/avatar-default.png');
             $table->date('dateOfBirth');
-            $table->string('phone', 40);
+            $table->string('cod_area', 10);
+            $table->string('phone', 20);
             $table->foreignId('address_id')->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
