@@ -27,8 +27,9 @@ class ProfileFactory extends Factory
             'name'          => $this->faker->firstName(),
             'lastName'      => $this->faker->lastName(),
             'avatar'        => $this->faker->imageUrl(30,30, 'people'),
+            'cod_area'      => '011',
             'dateOfBirth'   => $this->faker->date(),
-            'phone'         => $this->faker->phoneNumber(),
+            'phone'         => '2233-3344',
             'address_id'    => Address::factory(),
         ];
     }
