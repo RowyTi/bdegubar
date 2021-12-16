@@ -39,13 +39,13 @@ class Adapter extends AbstractAdapter
         foreach ($request->content as $item) {
            $product = Product::find($item['id'])->first();
            if ($product->quantity >= $item['quantity']){
-            $product->quantity = $product->quantity - $item['quantity'];
+            $product->quantity -= $item['quantity'];
             if ($product->quantity === 0.0){
                 $product->state = 'inactivo';
             }
             $product->save();
            }else{
-               abort(406, 'El producto ' . $product['name'] . ' se encuentra sin stock disponible');
+               abort(406,'El producto ' . $product['name'] . ' se encuentra sin stock disponible');
            }
         }
 //        dd($request->content);

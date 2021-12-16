@@ -13,13 +13,17 @@ use Illuminate\Support\Str;
 
 class Adapter extends AbstractAdapter
 {
-//    protected $guarded = ['id'];
     protected $fillable = [
         'name',
         'slug',
         'logo',
         'state'
     ];
+
+    // DEFAULT PAGINATION
+    protected $defaultPagination = ['number' => 1, 'size' => 10];
+    protected $defaultSort = '-updatedAt';
+
     /**
      * Mapping of JSON API attribute field names to model keys.
      *
@@ -64,6 +68,7 @@ class Adapter extends AbstractAdapter
         if(isset($record->logo)){
             $original =  $branch->getRawOriginal();
             if ($original['logo'] !== $record->logo && $record->logo !== null){
+                // si en logo original tiene imagen default no va a ser eliminada
                 if($original['logo'] !== 'logos/logo-default.png')
                 {
                     Storage::disk('public')->delete($original['logo']);
@@ -83,8 +88,8 @@ class Adapter extends AbstractAdapter
                 'piso'      =>  $record->addresses['piso'],
                 'dpto'      =>  $record->addresses['dpto'],
                 'cp'        =>  $record->addresses['cp'],
-                'latitude'  =>  $record ->addresses['latitude'],
-                'longitude' =>  $record ->addresses['longitude']
+                'latitude'  =>  $record->addresses['latitude'],
+                'longitude' =>  $record->addresses['longitude']
             ]);
         }
     }

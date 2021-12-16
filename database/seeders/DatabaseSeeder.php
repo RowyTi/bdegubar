@@ -17,9 +17,11 @@ class DatabaseSeeder extends Seeder
         Storage::disk('public')->deleteDirectory('logos');
         Storage::disk('public')->deleteDirectory('mesas');
         Storage::disk('public')->deleteDirectory('productos');
+        Storage::disk('public')->deleteDirectory('avatar');
         Storage::disk('public')->makeDirectory('logos');
         Storage::disk('public')->makeDirectory('mesas');
         Storage::disk('public')->makeDirectory('productos');
+        Storage::disk('public')->makeDirectory('avatar');
         $this->call([
             RoleSeeder::class,
             BranchSeeder::class,

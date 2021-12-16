@@ -36,6 +36,7 @@ class Schema extends SchemaProvider
             'paymentMethod' => $resource->payment_method,
             'state'         => $resource->state,
             'total'         => $resource->total,
+            'branch'        => $resource->branch()->first(['name', 'logo']),
             'createdAt'     => $resource->created_at->format('d/m/Y H:i'),
             'updatedAt'     => $resource->updated_at->format('d/m/y H:i'),
         ];
