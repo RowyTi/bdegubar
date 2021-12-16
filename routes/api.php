@@ -18,6 +18,7 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
             $api->hasMany('tables')->except('replace', 'add', 'remove');
             $api->hasMany('categories')->except('add', 'remove');
             $api->hasMany('comments')->except('replace', 'add', 'remove');
+            $api->hasMany('orders')->except('replace', 'add', 'remove');
             $api->hasMany('staff')->except('replace', 'add', 'remove');
             $api->hasOne('addresses')->except('replace', 'add', 'remove');
             $api->hasOne('paymentkey')->except('replace', 'add', 'remove');
@@ -73,6 +74,8 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
             $api->hasMany('comments')->except('replace', 'add', 'remove');
         });
 
+    $api->resource('orders');
+
     $api->patch('tables/state/{table}', 'StateController@tableState')
          ->middleware('auth:sanctum')
          ->name('change.state.table');
@@ -80,12 +83,7 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
         ->middleware('auth:sanctum')
         ->name('all.role');
 
-    // Route::patch('tables/state/{record}', [StateController::class, 'tableState'])
-    //     ->middleware('auth:sanctum')
-    //     ->name('change.state.table');
 
-    // Permissions
-//    Route::get('permission', [PermissionController::class, 'index'])->name('index.permission');
 
     // Login para miembros del staff [Clientes y Empleados]
     Route::post('login/staff', [LoginController::class, 'loginStaff'])->name('login.staff');

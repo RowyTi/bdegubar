@@ -110,6 +110,9 @@ class Adapter extends AbstractAdapter
     public function tables(){
         return $this->hasMany();
     }
+    public function orders(){
+        return $this->hasMany();
+    }
 
     protected function products(){
         return $this->hasMany();

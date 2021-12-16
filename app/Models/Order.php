@@ -9,6 +9,10 @@ class Order extends Model
 {
     use HasFactory;
 
+    const PENDIENTE = 1;
+    const PREPARANDO = 2;
+    const ENTREGADO = 3;
+    const ANULADO = 4;
     /**
      * The attributes that aren't mass assignable.
      *
@@ -33,11 +37,11 @@ class Order extends Model
 
     public function user()
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function branch()
     {
-        return $this->belongsTo(\App\Models\Branch::class);
+        return $this->belongsTo(Branch::class);
     }
 }

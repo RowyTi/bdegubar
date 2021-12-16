@@ -124,6 +124,14 @@ class Schema extends SchemaProvider
                 self::DATA          => function() use ($branch){
                     return $branch->categories;
                 }
+            ],
+            'orders' => [
+                self::SHOW_RELATED  => true,
+                self::SHOW_SELF     => true,
+                self::SHOW_DATA     => isset($includeRelationships['orders']),
+                self::DATA          => function() use ($branch){
+                    return $branch->orders;
+                }
             ]
         ];
     }

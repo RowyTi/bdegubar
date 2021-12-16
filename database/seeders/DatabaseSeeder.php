@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,18 +14,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Storage::disk('public')->deleteDirectory('logos');
+        Storage::disk('public')->deleteDirectory('mesas');
+        Storage::disk('public')->deleteDirectory('productos');
+        Storage::disk('public')->makeDirectory('logos');
+        Storage::disk('public')->makeDirectory('mesas');
+        Storage::disk('public')->makeDirectory('productos');
         $this->call([
             RoleSeeder::class,
             BranchSeeder::class,
-//            PaymentkeySeeder::class,
             CategorySeeder::class,
-//            TableSeeder::class,
-//            ProductSeeder::class,
-//            ProfileSeeder::class,
             StaffSeeder::class,
             UserSeeder::class,
-            CommentSeeder::class,
-            //SocialNetworkSeed::class,
+            CommentSeeder::class
         ]);
 
     }

@@ -1,10 +1,8 @@
 <?php
 
-namespace App\JsonApi\Branches;
+namespace App\JsonApi\Orders;
 
-use App\Rules\Slug;
 use CloudCreativity\LaravelJsonApi\Validation\AbstractValidators;
-use Illuminate\Validation\Rule;
 
 class Validators extends AbstractValidators
 {
@@ -15,16 +13,15 @@ class Validators extends AbstractValidators
      * @var string[]|null
      *      the allowed paths, an empty array for none allowed, or null to allow all paths.
      */
-    protected $allowedIncludePaths = ['tables', 'address', 'staff', 'comments', 'paymentkey', 'categories', 'orders'];
+    protected $allowedIncludePaths = ['branch','user'];
 
-    // protected $allowedFieldSets = ['name'];
     /**
      * The sort field names a client is allowed send.
      *
      * @var string[]|null
      *      the allowed fields, an empty array for none allowed, or null to allow all fields.
      */
-    protected $allowedSortParameters = ['name', 'state', 'updatedAt'];
+    protected $allowedSortParameters = ['status', 'updatedAt'];
 
     /**
      * The filters a client is allowed send.
@@ -32,7 +29,7 @@ class Validators extends AbstractValidators
      * @var string[]|null
      *      the allowed filters, an empty array for none allowed, or null to allow all.
      */
-    protected $allowedFilteringParameters = [];
+    protected $allowedFilteringParameters = ['branch_id', 'user_id'];
 
     /**
      * Get resource validation rules.
@@ -46,14 +43,7 @@ class Validators extends AbstractValidators
     protected function rules($record, array $data): array
     {
         return [
-            'name' => ['required'],
-            'slug' => [
-                'required',
-                'alpha_dash',
-                new Slug,
-                Rule::unique('branches')->ignore($record)
-                ],
-            'state'=> ['required'],
+            //
         ];
     }
 

@@ -5,6 +5,7 @@ use App\Models\Branch;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Menu;
+use App\Models\Order;
 use App\Models\PaymentKey;
 use App\Models\Product;
 use App\Models\Profile;
@@ -92,6 +93,7 @@ return [
         'users'             =>  User::class,
         'socialnetworks'    =>  SocialNetwork::class,
         'comments'          =>  Comment::class,
+        'orders'            =>  Order::class
     ],
 
     /*

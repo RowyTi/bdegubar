@@ -338,6 +338,36 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'sanctum',
                 'name' => 'delete:user'
             ],
+            // ORDERS PERMISSION
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'dashboard:order'
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'index:order'
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'read:order'
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'create:order'
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'update:order',
+            ],
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'delete:order'
+            ],
+                // KITCHEN PERMISSION
+            [
+                'guard_name' => 'sanctum',
+                'name' => 'dashboard:kitchen'
+            ],
         ];
 
         foreach ($permissions as $permission){
@@ -396,7 +426,14 @@ class RoleSeeder extends Seeder
             // PROFILE
             'dashboard:profile',
             'read:profile',
-            'update:profile'
+            'update:profile',
+            // ORDER
+            'dashboard:order',
+            'index:order',
+            'read:order',
+            'create:order',
+            'update:order',
+            'delete:order',
         ]);
         $encargado->givePermissionTo([
             'dashboard',
@@ -422,7 +459,12 @@ class RoleSeeder extends Seeder
             // PROFILE
             'dashboard:profile',
             'read:profile',
-            'update:profile'
+            'update:profile',
+            // ORDER
+            'dashboard:order',
+            'index:order',
+            'read:order',
+            'update:order',
         ]);
         $cocina->givePermissionTo([
             'dashboard',
@@ -430,7 +472,11 @@ class RoleSeeder extends Seeder
             'dashboard:profile',
             'read:profile',
             'update:profile',
-            // COCINA
+            // ORDER
+            'dashboard:kitchen',
+            'index:order',
+            'read:order',
+            'update:order',
         ]);
         $mozo->givePermissionTo([
             // TABLE
