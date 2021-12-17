@@ -18,10 +18,10 @@ class CreateAddressesTable extends Migration
             $table->string('street');
             $table->integer('number');
             $table->integer('piso')->nullable();
-            $table->string('dpto', 3)->nullable();
+            $table->string('dpto')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
-            $table->string('cp', 12)->nullable();
+            $table->string('cp')->nullable();
             $table->timestamps();
         });
     }

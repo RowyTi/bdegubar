@@ -45,9 +45,11 @@ class Validators extends AbstractValidators
         return [
             'street'    =>  ['required'],
             'number'    =>  ['required', 'numeric'],
-            'piso'      =>  ['numeric'],
-            'dpto'      =>  ['string'],
-            'cp'        =>  ['string'],
+            'piso'      =>  ['numeric', 'nullable'],
+            'dpto'      =>  ['string', 'nullable'],
+            'cp'        =>  ['string', 'nullable'],
+            'longitude' =>  ['nullable'],
+            'latitude'  =>  ['nullable']
         ];
     }
 

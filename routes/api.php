@@ -3,11 +3,8 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\UserController;
-use App\Http\Controllers\Api\PermissionController;
-use App\Http\Controllers\Api\StateController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Models\Permission;
 
 JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
     $api->resource('addresses')->except('index');
@@ -82,6 +79,23 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
     $api->get('role', 'PermissionController@getRole')
         ->middleware('auth:sanctum')
         ->name('all.role');
+
+    // VALIDATION UNIQUE STATE
+    $api->get('user-validate/{user}', 'UniquesController@usersUnique')
+        ->middleware('auth:sanctum')
+        ->name('user.unique.validate');
+    $api->get('staff-validate/{staff}', 'UniquesController@staffUnique')
+        ->middleware('auth:sanctum')
+        ->name('staff.unique.validate');
+    $api->get('branch-validate/{branch}', 'UniquesController@branchUnique')
+        ->middleware('auth:sanctum')
+        ->name('branch.unique.validate');
+    $api->get('category-validate/{category}', 'UniquesController@categoriesUnique')
+        ->middleware('auth:sanctum')
+        ->name('category.unique.validate');
+    $api->get('table-validate/{table}', 'UniquesController@tableUnique')
+        ->middleware('auth:sanctum')
+        ->name('table.unique.validate');
 
 
 
