@@ -57,6 +57,7 @@ class Schema extends SchemaProvider
         return [
             'name'      => $branch->name,
             'slug'      => $branch->slug,
+            'oSlug'     => $branch->slug,
             'logo'      => $branch->logo,
             'gmaps'     => $branch->address()->first(['latitude','longitude']),
             'state'     => $branch->state,

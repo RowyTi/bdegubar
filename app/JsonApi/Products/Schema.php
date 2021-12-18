@@ -32,12 +32,12 @@ class Schema extends SchemaProvider
     {
         return [
             'name'          =>  $product->name,
+            'slug'          =>  $product->slug,
             'description'   =>  $product->description,
             'price'         =>  $product->price,
             'quantity'      =>  $product->quantity,
             'image'         =>  $product->image,
             'state'         =>  $product->state,
-            'load'          =>  false,
             'createdAt'     =>  $product->created_at->format('d/m/Y H:i'),
             'updatedAt'     =>  $product->updated_at->format('d/m/Y H:i'),
         ];

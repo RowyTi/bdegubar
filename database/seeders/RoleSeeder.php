@@ -35,10 +35,6 @@ class RoleSeeder extends Seeder
             'guard_name' => 'sanctum',
             'name' => 'Mozo'
         ]);
-        $staff = Role::create([
-            'guard_name'=> 'sanctum',
-            'name' => 'Staff'
-        ]);
 
         $permissions = [
             // Public User Permissions
@@ -205,35 +201,6 @@ class RoleSeeder extends Seeder
                 'guard_name' => 'sanctum',
                 'name' => 'delete:profile'
             ],
-            // Role Permissions
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'dashboard:permission'
-            ],
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'assign:permission'
-            ],
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'index:permission'
-            ],
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'read:permission'
-            ],
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'create:permission'
-            ],
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'update:permission',
-            ],
-            [
-                'guard_name' => 'sanctum',
-                'name' => 'delete:permission'
-            ],
             // SocialNetwork Permissions
             [
                 'guard_name' => 'sanctum',
@@ -378,7 +345,6 @@ class RoleSeeder extends Seeder
             'dashboard:customer',
             'dashboard:staff',
             'dashboard:category',
-            'dashboard:permission',
             'dashboard:user',
         ]);
         $administrador->givePermissionTo([
@@ -397,11 +363,6 @@ class RoleSeeder extends Seeder
             'index:category',
             'read:category',
             'update:category',
-            // PERMISSION
-            'dashboard:permission',
-            'index:permission',
-            'read:permission',
-            'assign:permission',
             // TABLE
             'dashboard:table',
             'index:table',
@@ -488,12 +449,6 @@ class RoleSeeder extends Seeder
             'read:profile',
             'update:profile'
         ]);
-        $staff->givePermissionTo([
-            'dashboard',
-            // PROFILE
-            'dashboard:profile',
-            'read:profile',
-            'update:profile'
-        ]);
+
     }
 }
