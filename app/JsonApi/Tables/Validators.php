@@ -32,6 +32,11 @@ class Validators extends AbstractValidators
      *      the allowed filters, an empty array for none allowed, or null to allow all.
      */
     protected $allowedFilteringParameters = ['branch_id'];
+
+    protected $messages = [
+        'slug.unique' => 'La mesa ingresada, ya existe!',
+        'name.required' => 'El nombre de la mesa es obligatorio'
+    ];
     /**
      * Get resource validation rules.
      *

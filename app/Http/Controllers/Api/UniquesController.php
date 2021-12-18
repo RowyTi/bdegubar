@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
 use App\Models\Category;
-use App\Models\Product;
 use App\Models\Staff;
 use App\Models\Table;
 use App\Models\User;
@@ -61,19 +60,8 @@ class UniquesController extends Controller
 
     public function categoriesUnique($request)
     {
-        $isCategory = Category::select("slug")->where('slug', $request)->first();
+        $isCategory = Category::withTrashed()->select("slug")->where('slug', $request)->first();
         if (!$isCategory) {
-            $res = false;
-        }else{
-            $res = true;
-        }
-        return response()->json(['valido' => $res]);
-    }
-
-    public function productsUnique($request)
-    {
-        $isProduct = Product::withTrashed()->select("slug")->where('slug', $request)->first();
-        if (!$isProduct) {
             $res = false;
         }else{
             $res = true;

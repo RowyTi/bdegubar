@@ -96,9 +96,7 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
     $api->get('table-validate/{table}', 'UniquesController@tableUnique')
         ->middleware('auth:sanctum')
         ->name('table.unique.validate');
-    $api->get('product-validate/{product}', 'UniquesController@productsUnique')
-        ->middleware('auth:sanctum')
-        ->name('product.unique.validate');
+
 
 
     // Login para miembros del staff [Clientes y Empleados]

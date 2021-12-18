@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $guard_name = 'sanctum';
     /**
