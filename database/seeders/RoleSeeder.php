@@ -35,10 +35,6 @@ class RoleSeeder extends Seeder
             'guard_name' => 'sanctum',
             'name' => 'Mozo'
         ]);
-        $staff = Role::create([
-            'guard_name'=> 'sanctum',
-            'name' => 'Staff'
-        ]);
 
         $permissions = [
             // Public User Permissions
