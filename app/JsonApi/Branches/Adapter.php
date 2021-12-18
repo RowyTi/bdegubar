@@ -21,8 +21,8 @@ class Adapter extends AbstractAdapter
     ];
 
     // DEFAULT PAGINATION
-    protected $defaultPagination = ['number' => 1, 'size' => 10];
-    protected $defaultSort = '-updatedAt';
+    //    protected $defaultPagination = ['number' => 1, 'size' => 10];
+    //    protected $defaultSort = '-updatedAt';
 
     /**
      * Mapping of JSON API attribute field names to model keys.

@@ -34,7 +34,6 @@ class Schema extends SchemaProvider
             'name'      => $table->name,
             'qr'        => $table->qr,
             'state'     => $table->state,
-            'oSlug'     => $table->slug,
             'branch_id' => $table->branch_id,
             'createdAt' => $table->created_at->format('d/m/Y H:i'),
             'updatedAt' => $table->updated_at->format('d/m/Y H:i'),

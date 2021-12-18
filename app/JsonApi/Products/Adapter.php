@@ -52,12 +52,10 @@ class Adapter extends AbstractAdapter
 
     protected function creating(Product $product, $request){
         $img = getB64Image($request->image);
-        $nameSlug = Str::slug($request->branch_id .' '. $request->name);
         $img_extension = getB64Extension($request->image);
-        $img_name = 'productos/'.$request->branch_id.'/'.$nameSlug. '.' . $img_extension;
+        $img_name = 'productos/'.$request->branch_id.'/'.$request->slug. '.' . $img_extension;
         Storage::disk('public')->put($img_name, $img);
         $product->image = $img_name;
-        $product->slug = $nameSlug;
     }
 
     protected function updating(Product $product, $record){
@@ -65,11 +63,9 @@ class Adapter extends AbstractAdapter
         if ($original['image'] !== $record->image && $record->image !== null){
             Storage::disk('public')->delete($original['image']);
             $img = getB64Image($record->image);
-            $nameSlug = Str::slug($record->branch_id .' '. $record->name);
             $img_extension = getB64Extension($record->image);
-            $img_name = 'productos/'.$record->branch_id.'/'.$nameSlug. '.' . $img_extension;
+            $img_name = 'productos/'.$record->branch_id.'/'.$record->slug. '.' . $img_extension;
             $product->image = $img_name;
-            $product->slug = $nameSlug;
             Storage::disk('public')->put($img_name, $img);
         }else {
             $product->image = $original['image'];

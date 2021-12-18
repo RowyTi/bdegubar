@@ -54,7 +54,6 @@ class Validators extends AbstractValidators
                 'required',
                 'email',
                 Rule::unique('users')->ignore($record)],
-            'state'      => ['required'],
         ];
     }
 
