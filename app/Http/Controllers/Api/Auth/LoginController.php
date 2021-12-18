@@ -50,6 +50,12 @@ class LoginController extends Controller
             $user = $socialProfile->user()->first();
         }
 
+        if ($user->state ==='inactivo'){
+            throw ValidationException::withMessages([
+                'username' => 'Su cuenta se encuentra inactiva, comuníquese con soporte'
+            ]);
+        }
+
         $user->tokens()->delete();
 
         $token = $socialProfile->createToken($request->socialNetwork, ['public:user'])->plainTextToken;
@@ -77,6 +83,12 @@ class LoginController extends Controller
              ]);
          }
 
+         if ($user->state ==='inactivo'){
+             throw ValidationException::withMessages([
+                 'username' => 'Su cuenta se encuentra inactiva, comuníquese con soporte'
+             ]);
+         }
+
          $user->tokens()->delete();
 
          return response()->json([
@@ -94,11 +106,17 @@ class LoginController extends Controller
             'password' => ['required']
         ]);
 
-        $staff = Staff::where('username', $request->username)->first();
+        $staff = Staff::where('username', $request->username)
+            ->first();
 
         if (! Hash::check($request->password, optional($staff)->password)) {
             throw ValidationException::withMessages([
                 'username' => [__('auth.failed')]
+            ]);
+        }
+        if ($staff->state ==='inactivo'){
+            throw ValidationException::withMessages([
+                'username' => 'Su cuenta se encuentra inactiva'
             ]);
         }
 
@@ -107,16 +125,6 @@ class LoginController extends Controller
         $permissions = $staff->getAllPermissions()->pluck('name')->toArray();
         return response()->json([
             'token' => $staff->createToken($staff->username, $permissions )->plainTextToken
-        ]);
-    }
-
-    public function refresh(Request $request): JsonResponse
-    {
-        $user = $request->user();
-        $user->tokens()->delete();
-        $permissions = $user->getPermissionNames()->toArray();
-        return response()->json([
-            'token' => $user->createToken($user->username, $permissions)->plainTextToken
         ]);
     }
 
