@@ -94,7 +94,10 @@ class Adapter extends AbstractAdapter
         }
     }
     protected function deleting($request){
-        dd($request);
+        if($request->logo !== 'logos/logo-default.png')
+        {
+            Storage::disk('public')->delete($request->logo);
+        }
     }
 
     /**
