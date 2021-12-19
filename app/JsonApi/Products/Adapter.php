@@ -72,6 +72,9 @@ class Adapter extends AbstractAdapter
             $product->save();
         }
     }
+    protected function deleting($request){
+            Storage::disk('public')->delete($request->image);
+    }
     /**
      * @param Builder $query
      * @param Collection $filters

@@ -93,6 +93,9 @@ class Adapter extends AbstractAdapter
             ]);
         }
     }
+    protected function deleting($request){
+        dd($request);
+    }
 
     /**
      * @param Builder $query
