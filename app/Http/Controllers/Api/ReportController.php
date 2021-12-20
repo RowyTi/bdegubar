@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ReportController extends Controller
 {
     public function dashboardReport($request){
-//        dd($request);
+
        $ordenes = Order::where('branch_id', $request)
             ->where('state', 'entregado')
             ->get()->toArray();
@@ -19,16 +19,12 @@ class ReportController extends Controller
        for($i=0; $i< $cantidad; $i++){
             $total += $ordenes[$i]['total'];
        }
-       $mesas_ocupadas = Table::where('branch_id', $request)
-                        ->where('state', 'ocupado')->count();
-        $mesas_libres = Table::where('branch_id', $request)
-        ->where('state', 'libre')->count();
+       $rating = obtenerRating($request);
 
         return response()->json([
             'total' => $total,
             'ordenes' => $cantidad,
-            'mesal' => $mesas_libres,
-            'mesao' => $mesas_ocupadas
+            'rating'=> $rating
         ]);
     }
 }

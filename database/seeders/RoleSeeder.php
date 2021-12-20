@@ -392,9 +392,7 @@ class RoleSeeder extends Seeder
             'dashboard:order',
             'index:order',
             'read:order',
-            'create:order',
             'update:order',
-            'delete:order',
         ]);
         $encargado->givePermissionTo([
             'dashboard',
@@ -410,7 +408,6 @@ class RoleSeeder extends Seeder
             'dashboard:table',
             'index:table',
             'read:table',
-            'create:table',
             'update:table',
             // PRODUCT
             'dashboard:product',

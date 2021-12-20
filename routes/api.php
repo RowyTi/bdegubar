@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\UserController;
+use App\Http\Controllers\Api\ReportController;
 use CloudCreativity\LaravelJsonApi\Facades\JsonApi;
 use Illuminate\Support\Facades\Route;
 
@@ -72,15 +73,19 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
         });
 
     $api->resource('orders');
-    $api->get('dashboard/report/{table}', 'ReportController@dashboardReport')
+
+    $api->get('dashboard/report/{branch}', 'ReportController@dashboardReport')
         ->middleware('auth:sanctum')
         ->name('dashboard.report');
+
     $api->patch('tables/state/{table}', 'StateController@tableState')
          ->middleware('auth:sanctum')
          ->name('change.state.table');
+
     $api->patch('orders/state/{order}', 'StateController@orderState')
         ->middleware('auth:sanctum')
         ->name('change.state.order');
+
     $api->get('role', 'PermissionController@getRole')
         ->middleware('auth:sanctum')
         ->name('all.role');
@@ -105,7 +110,7 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
         ->middleware('auth:sanctum')
         ->name('product.unique.validate');
 
-
+Route::get('report/tables/{$table}', [ReportController::class, 'tablesReport']);
     // Login para miembros del staff [Clientes y Empleados]
     Route::post('login/staff', [LoginController::class, 'loginStaff'])->name('login.staff');
     Route::get('refresh/staff', [LoginController::class, 'refresh'])->name('refresh.token.staff')
