@@ -36,20 +36,18 @@ class Adapter extends AbstractAdapter
         parent::__construct(new Order(), $paging);
     }
     protected function creating(Order $order, $request){
-        foreach ($request->content as $item) {
-           $product = Product::find($item['id'])->first();
-           if ($product->quantity >= $item['quantity']){
-            $product->quantity -= $item['quantity'];
-            if ($product->quantity === 0.0){
-                $product->state = 'inactivo';
-            }
-            $product->save();
+        for ($i= 0; $i< count($request->content); $i++) {
+            $product = Product::find($request->content[$i]['id']);
+            if ($product->quantity >= $request->content[$i]['quantity']){
+                $product->quantity -= $request->content[$i]['quantity'];
+                if ($product->quantity === 10.0){
+                    $product->state = 'inactivo';
+                }
+                $product->save();
            }else{
                abort(406,'El producto ' . $product['name'] . ' se encuentra sin stock disponible');
            }
         }
-//        dd($request->content);
-
     }
 
     /**

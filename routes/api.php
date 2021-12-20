@@ -72,10 +72,15 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
         });
 
     $api->resource('orders');
-
+    $api->get('dashboard/report/{table}', 'ReportController@dashboardReport')
+        ->middleware('auth:sanctum')
+        ->name('dashboard.report');
     $api->patch('tables/state/{table}', 'StateController@tableState')
          ->middleware('auth:sanctum')
          ->name('change.state.table');
+    $api->patch('orders/state/{order}', 'StateController@orderState')
+        ->middleware('auth:sanctum')
+        ->name('change.state.order');
     $api->get('role', 'PermissionController@getRole')
         ->middleware('auth:sanctum')
         ->name('all.role');

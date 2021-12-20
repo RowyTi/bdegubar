@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Table;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -34,6 +35,28 @@ class StateController extends Controller
             return response()->json([
                 "message" =>  "Ocurrió un error al actualizar."
            ], 500);
+        }
+    }
+
+    public function orderState(Order $order, Request $request): JsonResponse
+    {
+//        dd($request->user('sanctum'));
+//        if ($request->user('sanctum')->cannot('update', $order)) {
+//            abort(403);
+//        }
+        try {
+            $order->update([
+                "state" => $request->state
+            ]);
+            $order->save();
+            return response()->json([
+                "message" => "Estado Actualizado"
+            ]);
+        } catch (Throwable $th) {
+//            dd($th);
+            return response()->json([
+                "message" =>  "Ocurrió un error al actualizar."
+            ], 500);
         }
     }
 }
