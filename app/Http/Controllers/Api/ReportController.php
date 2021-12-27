@@ -20,12 +20,21 @@ class ReportController extends Controller
         // obtener variacion de crecimiento de ordenes concretadas respecto mes actual y el anterior
         $ordenes_actual = obtenerOrdenesMensuales($request, $mes_actual);
         $ordenes_anterior = obtenerOrdenesMensuales($request, $mes_anterior);
-        $variacion_ordenes = ($ordenes_actual - $ordenes_anterior)/$ordenes_anterior;
+        if ($ordenes_anterior > 0) {
+            $variacion_ordenes = ($ordenes_actual - $ordenes_anterior)/$ordenes_anterior;
+        }else{
+            $variacion_ordenes = 0;
+        }
+ 
 
         // obtener variacion de crecimiento de ventas respecto mes actual y el anterior
         $ventas_actual = obtenerVentasTotalesMensuales($request, $mes_actual);
         $ventas_anterior = obtenerVentasTotalesMensuales($request, $mes_anterior);
-        $variacion_ventas = ($ventas_actual - $ventas_anterior)/$ventas_anterior;
+        if ($ventas_anterior > 0) {
+            $variacion_ventas = ($ventas_actual - $ventas_anterior)/$ventas_anterior;
+        }else{
+            $variacion_ventas = 0;
+        }
 
         $ordenes = Order::where('branch_id', $request)
             ->where('state', 'entregado')
