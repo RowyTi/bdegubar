@@ -24,14 +24,20 @@ class OrderFactory extends Factory
      */
     public function definition()
     {
+        $date = $this->faker->dateTimeBetween('-11 month', '-1 days')->format('Y-m-d H:i:s');
         return [
-            'content' => '{}',
+            'content' =>'{"id":"1","name":"pizza","description":"pizza grand con muzzarella","quantity":"1","unit_price":"500","total_price":"500"}',
+//            [{"id":"1","name":"pizza","description":"pizza grand con muzzarella","quantity":"1","unit_price":"750","total_price":"750"}, {"id":"2","name":"Patagonia IPA","description":"Cerveza Patagonia IPA tirada","quantity":"1","unit_price":"350","total_price":"350"}]',
             'take_away' => $this->faker->boolean,
             'payment_method' => $this->faker->randomElement(["1","2"]),
-            'state' => $this->faker->randomElement(["1","2","3","4"]),
-            'total' => $this->faker->randomFloat(0, 0, 9999999999.),
-            'user_id' => User::factory(),
-            'branch_id' => Branch::factory(),
+            'state' => $this->faker->randomElement(["entregado","anulado"]),
+            'total' => "1100",
+            'branch_id' => Branch::all()->random()->id,
+            'user_id'   => User::all()->random()->id,
+             'created_at'=> $date,
+            'updated_at' => $date
+//            'user_id' => User::factory(),
+//            'branch_id' => Branch::factory(),
         ];
     }
 }

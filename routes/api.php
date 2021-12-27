@@ -77,6 +77,18 @@ JsonApi::register('v1')->withNamespace('Api')->routes(function ($api, $router){
     $api->get('dashboard/report/{branch}', 'ReportController@dashboardReport')
         ->middleware('auth:sanctum')
         ->name('dashboard.report');
+    $api->get('orders/report/{branch}', 'ReportController@ordersMonths')
+        ->middleware('auth:sanctum')
+        ->name('orders.report');
+    $api->get('sales/report/{branch}', 'ReportController@salesMonths')
+        ->middleware('auth:sanctum')
+        ->name('sales.report');
+    $api->get('payment/report/{branch}', 'ReportController@paymentMethod')
+        ->middleware('auth:sanctum')
+        ->name('payment.method.report');
+    $api->get('take/report/{branch}', 'ReportController@orderTake')
+        ->middleware('auth:sanctum')
+        ->name('take.report');
 
     $api->patch('tables/state/{table}', 'StateController@tableState')
          ->middleware('auth:sanctum')

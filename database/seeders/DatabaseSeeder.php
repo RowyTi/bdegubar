@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             StaffSeeder::class,
             UserSeeder::class,
-            CommentSeeder::class
+            CommentSeeder::class,
+            OrderSeeder::class
         ]);
-
     }
 }
