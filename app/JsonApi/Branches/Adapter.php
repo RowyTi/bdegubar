@@ -75,7 +75,8 @@ class Adapter extends AbstractAdapter
                 }
                 $img = getB64Image($record->logo);
                 $img_extension = getB64Extension($record->logo);
-                $img_name = 'logos/'.$record->id.'/'. $record->slug . '.' . $img_extension;
+                $hash_name = date('mdYHis') . uniqid() . $record->slug;
+                $img_name = 'logos/'.$record->id.'/'.$hash_name. '.' . $img_extension;
                 $branch->logo = $img_name;
                 Storage::disk('public')->put($img_name, $img);
             }

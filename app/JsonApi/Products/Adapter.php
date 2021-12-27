@@ -53,7 +53,8 @@ class Adapter extends AbstractAdapter
     protected function creating(Product $product, $request){
         $img = getB64Image($request->image);
         $img_extension = getB64Extension($request->image);
-        $img_name = 'productos/'.$request->branch_id.'/'.$request->slug. '.' . $img_extension;
+        $hash_name = date('mdYHis') . uniqid() . $request->slug;
+        $img_name = 'productos/'.$request->branch_id.'/'.$hash_name. '.' . $img_extension;
         Storage::disk('public')->put($img_name, $img);
         $product->image = $img_name;
     }
@@ -61,10 +62,12 @@ class Adapter extends AbstractAdapter
     protected function updating(Product $product, $record){
         $original =  $product->getRawOriginal();
         if ($original['image'] !== $record->image && $record->image !== null){
+           
             Storage::disk('public')->delete($original['image']);
             $img = getB64Image($record->image);
             $img_extension = getB64Extension($record->image);
-            $img_name = 'productos/'.$record->branch_id.'/'.$record->slug. '.' . $img_extension;
+            $hash_name = date('mdYHis') . uniqid() . $request->slug;
+            $img_name = 'productos/'.$request->branch_id.'/'.$hash_name. '.' . $img_extension;
             $product->image = $img_name;
             Storage::disk('public')->put($img_name, $img);
         }else {
